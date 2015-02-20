@@ -1,0 +1,21 @@
+{
+  "name": "Brosec",
+  "version": "0.0.1",
+  "description": "Brosec - Security command-line fu for bros",
+  "main": "bros.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+  	"dirty":"*",
+  	"yargs":"*",
+    "cli-color": "*",
+    "prompt":"*",
+    "mstring":"*",
+    "cli-table":"*",
+    "teddybear":"*",
+    "express":"*" 
+  },
+  "author": "Gabe Marshall",
+  "license": "ISC"
+}
