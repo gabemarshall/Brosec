@@ -131,13 +131,14 @@ var attackMenu = new Menu("## Web ##",["XML"], pay.injection)
 var postExploitMenu = new Menu('## Post Exploitation ##', ["Reverse Shells", "Exfiltration"], pay.postexploit)
 var toolsMenu = new Menu('## Misc Tools ##', ["Bleh"], pay.tools)
 var linuxMenu = new Menu('## Linux ##', ["System Info", "File System", "Networking", "Stealth"], pay.linux)
-
+var windowsMenu = new Menu('## Windows ##', ["System Info", "File System", "Networking", "WMIC", "Powershell"], pay.windows)
 
 menus.infoGathering = infoGMenu.grabSecondaryMenu
 menus.injectionAttacks = attackMenu.grabSecondaryMenu
 menus.postExploitation = postExploitMenu.grabSecondaryMenu
 menus.miscTools = toolsMenu.grabSecondaryMenu
 menus.linux = linuxMenu.grabSecondaryMenu
+menus.windows =windowsMenu.grabSecondaryMenu
 
 
 module.exports = menus

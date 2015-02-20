@@ -17,7 +17,7 @@ exports.init = function(callback){
 	  var port = server.address().port
 	  console.log("")
 	  var q = question.new("", "༼ つ ◕_◕ ༽つ  :", server.close())
-	  console.log('\n\nWebserver running at http://%s:%s, press return to stop', host, port)
+	  console.log('\n\nA web server is running at http://%s:%s (press return to stop)', host, port)
 
 	})
 

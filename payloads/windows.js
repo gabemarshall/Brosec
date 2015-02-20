@@ -6,29 +6,55 @@ var blue = log.blue
 var black = log.blackBright
 var green = log.green
 var red = log.red
+var M = require('mstring')
+
 
 // Payload Array
 arrayWin = []
-var addPayload = arrayWin.push
+
+// Load payload function
+var Load = function(obj){
+	arrayWin.push(obj)
+}
 
 // title, description, payload, category, and callback (optional: used for additional options if needed)
 
-// ############### DNS ######################
+// ############### System Info ######################
 
-arrayWin.push({
-	title: "DNS Zone XFER",
-	payload: "dig @$$RHOST$$ $$PROMPT$$ -t AXFR",
-	sample: "dig @"+yellow("<dns server>")+blue(" <domain>")+" -t AXFR",
-	category: "DNS",
+Load({ payload: "ver", desc: "Get OS version", category: "System Info"})
+Load({ payload: "echo %USERNAME%", desc: "Get current user", category: "System Info"})
+Load({ payload: "sc query state=all", desc: "Show services", category: "System Info"})
+Load({ payload: "tasklist /svc", desc: "Show processes & services", category: "System Info"})
+Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System Info"})
+
+Load({
+	payload: "taskkill /PID $$PROMPT$$ /F",
+	sample: "taskkill /PID "+blue("<pid>")+green(" /F"),
+	desc: "Force process to terminate",
+	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		prompt.message = "What domain would you like to use? :"
+		prompt.message = "What PID would you like to terminate? :"
 		prompt.get([{name: '_', description: ':'}], function(err, result){
 			returnToPrepare(result._)
 		})	
 
 	}
-
 })
+
+Load({
+	payload: "reg query HKLM /f $$PROMPT$$ /t REG_SZ /s",
+	sample: "reg query HKLM /f "+blue("<search term>")+green(" /t REG_SZ /s"),
+	desc: "Search registry for value",
+	category: "System Info",
+	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
+		prompt.message = "What term would you like to search for? :"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(result._)
+		})	
+
+	}
+})
+
 
 
 
