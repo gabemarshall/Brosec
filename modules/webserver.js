@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var morgan = require('morgan')
 var question = require('./questions.js')
+var db = require('../db/db');
 
 app.use(morgan('combined'))
 
@@ -11,17 +12,17 @@ app.get('/', function (req, res) {
 
 exports.init = function(callback){
 	callback()
-	var server = app.listen(3000, function () {
+	
+	var port = db.getConfig("LPORT")
+	var server = app.listen(port, function () {
 
 	  var host = server.address().address
-	  var port = server.address().port
 	  console.log("")
-	  var q = question.new("", "༼ つ ◕_◕ ༽つ  :", server.close())
-	  console.log('\n\nA web server is running at http://%s:%s (press return to stop)', host, port)
+	  var q = question.new("", "༼ つ ◕_◕ ༽つ  :", server)
+	  console.log('\n\nA web server is running at http://%s:%s (ctrl c to stop)', host, port)
 
 	})
 
-	return server
 }
 
 

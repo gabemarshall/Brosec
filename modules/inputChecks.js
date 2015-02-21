@@ -6,7 +6,6 @@ var ifUserNeedsHelp = function(input, currentMenu, previousMenu){
 	if (input.match(/(help)/ig)){
 		menu.helpMenu(currentMenu)
 		return true
-		
 	
 	}
 	else {
@@ -66,7 +65,7 @@ var ifUserWantsToExit = function(input, currentMenu, previousMenu){
 var ifUserSaysConfigItem = function(input, currentMenu, previousMenu){
 	var input = input.toUpperCase()
 
-	if (input.match(/(LPORT|LHOST|RHOST|RPORT|USER)/) && input.length < 7){
+	if (input.match(/(set LPORT|set LHOST|set RHOST|set RPORT|set USER)/) && input.length < 7){
 		console.log("\n\n\n")
 		console.log(log.green(input)+" => "+log.blackBright(db.getConfig(input))+"\n\n")
 		currentMenu()
