@@ -131,7 +131,8 @@ function showAvailablePayloadTitles(array) {
         chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': ''
          , 'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': ''
          , 'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': ''
-         , 'right': '' , 'right-mid': '' , 'middle': '' }
+         , 'right': '' , 'right-mid': '' , 'middle': '' },
+         
     });
 
     for (i = 0; i < array.length; i++) {

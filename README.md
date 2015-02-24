@@ -17,6 +17,8 @@ Installation
 - cd into the directory and run `npm install`
 - create a symlink to /usr/bin (Optional)
 - Linux users will need to install xclip
+- Mac users may need to install netcat (via homebrew) for some payloads
+
 
 
 Usage
