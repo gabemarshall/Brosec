@@ -13,8 +13,8 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-exports.init = function(callback){
-	callback()
+exports.init = function(callback, a1){
+	callback(a1)
 	
 	var port = db.getConfig("LPORT")
 	var server = app.listen(port, function () {

@@ -12,9 +12,9 @@ var black = log.blackBright
 var currentOS = os.type()
 
 
-exports.init = function(callback) {
+exports.init = function(callback, a1) {
     
-    callback()
+    callback(a1)
 
     var port = db.getConfig("LPORT")
 
@@ -23,7 +23,6 @@ exports.init = function(callback) {
     
 
     console.log('\n'+black('[*]')+' A netcat listener is running on port %s (ctrl c to stop)', port)
-
 
 
 }
