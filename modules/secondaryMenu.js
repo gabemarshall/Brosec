@@ -26,55 +26,64 @@ var Menu = function(title, menuOptions, payloadType) {
     this.menuOptions = menuOptions
     this.payloadType = payloadType
 
-    this.grabSecondaryMenu = function(){
-    	return secondaryMenu();
+    this.grabSecondaryMenu = function(passthru){
+    	return secondaryMenu(passthru);
     }
 
     // Second level of menu system
-    var secondaryMenu = function() {
+    var secondaryMenu = function(passthru) {
 
-    	// Print the title for the menu as well as available options
-        console.log("\n\n\n\t" + title + "\n")
-        for (i = 0; i < menuOptions.length; i++) {
-            var pos = i + 1;
-            if (pos === menuOptions.length) {
-                console.log(pos + ". " + menuOptions[i] + "\n")
-            } else {
-                console.log(pos + ". " + menuOptions[i])
+        if (!passthru){
+            // Print the title for the menu as well as available options
+            console.log("\n\n\n\t" + title + "\n")
+            for (i = 0; i < menuOptions.length; i++) {
+                var pos = i + 1;
+                if (pos === menuOptions.length) {
+                    console.log(pos + ". " + menuOptions[i] + "\n")
+                } else {
+                    console.log(pos + ". " + menuOptions[i])
+                }
             }
+
+            // Ugly hack to optimize output
+            setTimeout(function() {
+                prompt.message = "Choose a category"
+                prompt.get([{
+                    name: 'IGMenu',
+                    description: '(1-9) or enter "back" to return to the main menu'
+                }], function(err, result) {
+
+                    try {
+                        result.IGMenu = result.IGMenu.toUpperCase();
+
+                        // Check if result contains valid commands
+                        check.allInputChecks(result.IGMenu, secondaryMenu, menu.mainMenu)
+
+                        // If result is within the valid range of menu options, proceed
+                        if (parseInt(result.IGMenu) >= 1 && parseInt(result.IGMenu) <= menuLength) {
+                            tertiaryMenu(menuOptions[result.IGMenu - 1])
+                        }
+
+                        // If result is numerical but isn't a valid command, reload menu and try again
+                        else if (parseInt(result.IGMenu)) {
+                            console.log("Sorry, please try again.")
+                            this.secondaryMenu()
+                        }
+
+                    } catch (err) {
+                        console.log("\nLater bro!")
+                    }
+
+                });
+            }, 40)
+        }
+        else {
+            // Ugly hack, fix later
+            setTimeout(function(){
+                tertiaryMenu(passthru)
+            },10)
         }
 
-        // Ugly hack to optimize output
-        setTimeout(function() {
-            prompt.message = "Choose a category"
-            prompt.get([{
-                name: 'IGMenu',
-                description: '(1-9) or enter "back" to return to the main menu'
-            }], function(err, result) {
-
-                try {
-                    result.IGMenu = result.IGMenu.toUpperCase();
-
-                    // Check if result contains valid commands
-                    check.allInputChecks(result.IGMenu, secondaryMenu, menu.mainMenu)
-
-                    // If result is within the valid range of menu options, proceed
-                    if (parseInt(result.IGMenu) >= 1 && parseInt(result.IGMenu) <= menuLength) {
-                        tertiaryMenu(menuOptions[result.IGMenu - 1])
-                    }
-
-                    // If result is numerical but isn't a valid command, reload menu and try again
-                    else if (parseInt(result.IGMenu)) {
-                        console.log("Sorry, please try again.")
-                        this.secondaryMenu()
-                    }
-
-                } catch (err) {
-                    console.log("\nLater bro!")
-                }
-
-            });
-        }, 40)
 
 		// Third level of menu system
         var tertiaryMenu = function(value) {
@@ -138,7 +147,7 @@ menus.injectionAttacks = attackMenu.grabSecondaryMenu
 menus.postExploitation = postExploitMenu.grabSecondaryMenu
 menus.miscTools = toolsMenu.grabSecondaryMenu
 menus.linux = linuxMenu.grabSecondaryMenu
-menus.windows =windowsMenu.grabSecondaryMenu
+menus.windows = windowsMenu.grabSecondaryMenu
 
 
 module.exports = menus
