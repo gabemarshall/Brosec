@@ -56,6 +56,38 @@ Load({
 })
 
 
+// Windows Files pg 15
+Load({
+	title: "Windows Common Files",
+	payload: "Windows Common Files",
+	sample: "A quick look at common windows files",
+	category: "File System",
+	callback: function(returnToPrepare){
+		var m = M(function(){
+		/***
+		
+		%SYSTEMROOT%								Usually C:\Windows
+		%SYSTEMROOT%\System32\drivers\etc\hosts					DNS entries
+		%SYSTEMROOT%\System32\drivers\etc\networks				Network settings
+		%SYSTEMROOT%\System32\config\SAM 					Password hashes
+		%SYSTEMROOT%\repair\SAM 						Backup copy of SAM file
+		%SYSTEMROOT%\System32\config\RegBack\SAM 				Backup copy of SAM file
+		%SYSTEMROOT%\System32\config\AppEvent.Evt   				Application Log
+		%SYSTEMROOT%\System32\config\SecEvent.Evt 				Security Log
+		%USER%\Start Menu\Programs\Startup 					Startup Location
+		%SYSTEMROOT%\Prefetch 							EXE logs
+
+		***/})
+		
+		console.log(m)
+		prompt.message = "Press enter to continue"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(1)	
+		})	
+
+	}
+})
+
 
 
 var unique = []
