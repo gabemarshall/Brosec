@@ -48,9 +48,19 @@ var ifUserAccessConfig = function(input, currentMenu, previousMenu){
 }
 
 var ifUserWantsConfig = function(input, currentMenu, previousMenu){
+	
+	
 	if (input.match(/(config|options)/ig)){
 		menu.printConfig(currentMenu)
 		return true
+		
+	}
+
+	else if (input.match(/(RPORT|RHOST|LPORT|LHOST|USER)/i)){
+		
+		currentMenu()
+		var thisConfigValue = input.toUpperCase()
+		console.log(log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n\n")
 		
 	}
 }
