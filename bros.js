@@ -19,15 +19,43 @@ catch (err){
 
 }
 
+function argExactSearch(value){
+	if (value.match(/scan|port|nmap|hping|cat/ig)){
+		secondaryMenu.infoGathering("Port Scanning")
+		return true
+	}
+	else {
+		return false
+	}
+}
+
+function getSecondArgDefinition(value){
+	if (value.match(/scan|port|nmap|hping|netcat/ig)){
+		return "Port Scanning"
+	}
+}
 
 function parseArgs(){
-	if (firstArgument === "infog"){
+
+
+	if (firstArgument === "INFOG" || firstArgument === "IG" || firstArgument === "1"){
+		
 		if (!secondArgument){
-			console.log(1)
 			secondaryMenu.infoGathering()
 		}
 		else {
-			secondaryMenu.infoGathering(secondArgument)
+			secondaryMenu.infoGathering(getSecondArgDefinition(secondArgument))
+		}
+		
+	}
+	else {
+		var userIsSearching = argExactSearch(firstArgument)
+		if (userIsSearching){
+			// User is searching for a specfic section from the command line. "Ex: bros nmap" 
+			// should load the nmap payloads
+		}
+		else {
+			menu.mainMenu()
 		}
 		
 	}
