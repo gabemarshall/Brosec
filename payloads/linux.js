@@ -105,6 +105,45 @@ Load({
 	}
 })
 
+Load({
+	title: "Config locations",
+	payload: "Config locations",
+	sample: "Common locations for config files",
+	category: "File System",
+	callback: function(returnToPrepare){
+		var m = M(function(){
+		/***
+
+		/etc/issue 	
+		/etc/master.passwd
+		/etc/crontab
+		/etc/sysctl.conf
+		/etc/resolv.conf
+		/etc/syslog.conf
+		/etc/chttp.conf
+		/etc/lighttpd.conf
+		/etc/cups/cupsd.confcda
+		/etc/inetd.conf
+		/opt/lampp/etc/httpd.conf
+		/etc/samba/smb.conf
+		/etc/openldap/ldap.conf
+		/etc/ldap/ldap.conf
+		/etc/exports
+		/etc/auto.master
+		/etc/auto_master
+		/etc/fstab
+
+		***/})
+		
+		console.log(m)
+		prompt.message = "Press enter to continue"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(1)	
+		})	
+
+	}
+})
+
 
 // ############### Networking  ######################
 // Add ssh port forwarding?

@@ -87,6 +87,9 @@ var Menu = function(title, menuOptions, payloadType) {
 
 		// Third level of menu system
         var tertiaryMenu = function(value) {
+            if(!value){
+                value = ""
+            }
             console.log("\n\t---[ "+value+" ]---")
             if (value) {
                 payloads = payloadType.getAll(value)
