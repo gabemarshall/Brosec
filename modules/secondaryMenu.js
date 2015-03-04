@@ -88,9 +88,13 @@ var Menu = function(title, menuOptions, payloadType) {
 		// Third level of menu system
         var tertiaryMenu = function(value) {
             if(!value){
-                value = ""
+                value = db.getConfig("MENU")
             }
+
             console.log("\n\t---[ "+value+" ]---")
+
+            db.newConfig("MENU", value)
+
             if (value) {
                 payloads = payloadType.getAll(value)
             }
@@ -138,17 +142,15 @@ var Menu = function(title, menuOptions, payloadType) {
 }
 
 var menus = {}
-var infoGMenu = new Menu("## Information Gathering ##", ["DNS", "Port Scanning", "SMB", "SNMP"], pay.infog);
-var attackMenu = new Menu("## Web ##",["XML"], pay.injection)
-var postExploitMenu = new Menu('## Post Exploitation ##', ["Reverse Shells", "Exfiltration"], pay.postexploit)
-var toolsMenu = new Menu('## Misc Tools ##', ["Bleh"], pay.tools)
-var linuxMenu = new Menu('## Linux ##', ["System Info", "File System", "Networking", "Stealth"], pay.linux)
-var windowsMenu = new Menu('## Windows ##', ["System Info", "File System", "Networking", "WMIC", "Powershell"], pay.windows)
+var infoGMenu = new Menu("--[ Information Gathering ]--", ["DNS", "Port Scanning", "SMB", "SNMP"], pay.infog);
+var attackMenu = new Menu("--[ Web ]--",["XML"], pay.injection)
+var postExploitMenu = new Menu('--[ Misc ]--', ["Reverse Shells", "Exfiltration"], pay.postexploit)
+var linuxMenu = new Menu('--[ Linux ]--', ["System Info", "File System", "Networking", "Stealth"], pay.linux)
+var windowsMenu = new Menu('--[ Windows ]--', ["System Info", "File System", "Networking", "WMIC", "Powershell"], pay.windows)
 
 menus.infoGathering = infoGMenu.grabSecondaryMenu
 menus.injectionAttacks = attackMenu.grabSecondaryMenu
 menus.postExploitation = postExploitMenu.grabSecondaryMenu
-menus.miscTools = toolsMenu.grabSecondaryMenu
 menus.linux = linuxMenu.grabSecondaryMenu
 menus.windows = windowsMenu.grabSecondaryMenu
 

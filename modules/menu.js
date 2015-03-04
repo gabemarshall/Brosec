@@ -35,7 +35,7 @@ function mainMenu(callback) {
     console.log(log.yellow("\nPlease choose one of the following menu options."))
     console.log(log.blackBright("\nAt any time enter 'help' for usage information.\n"))
     console.log("\n1. Information Gathering\t4. Web")
-    console.log("2. Linux\t\t\t5. *Post Exploitation")
+    console.log("2. Linux\t\t\t5. *Misc")
     console.log("3. *Windows\t\t\t")
     console.log("\n")
 
@@ -147,8 +147,6 @@ function showAvailablePayloadTitles(array) {
                 [log.blackBright('  => ') + array[i].sample]
             );
             
-            // console.log(log.green('\n' + num + '. ' + array[i].title) + '\n')
-            // console.log(log.blackBright('  => ') + array[i].sample)
         }
         else {
 
@@ -169,27 +167,6 @@ function showAvailablePayloadTitles(array) {
                 sample = array[i].payload
                 len = array[i].payload.length
             }
-
-
-            // console.log(len)
-            // if(len >= 30){
-            //     tab = "\t"
-            // }
-            // else if (len < 25 && len >= 21){
-            //     tab = "\t\t"
-            // }
-            // else if (len < 21 && len >= 13){
-            //     tab = "\t\t\t"
-            // }
-            // else if (len < 13 && len >= 5){
-            //     tab = "\t\t\t\t"
-            // }
-            // else if (len < 5){
-            //     tab = "\t\t\t\t\t"
-            // }
-
-
-            // console.log(log.green(num+". "+sample)+tab+array[i].desc)
 
             table.push(
                 [log.green(num+". "+sample), array[i].desc]
