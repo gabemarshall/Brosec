@@ -78,6 +78,9 @@ function mainMenu(callback) {
                     case "6":
                         secondaryMenu.miscTools()
                         break;
+                    default:
+                        mainMenu(console.log("\n\n"+log.red("Hmm..didn't quite get that, try again")))
+                        break;
                 }
             } catch (err) {
                 console.log("\nLater bro!")
@@ -109,15 +112,16 @@ exports.helpMenu = function(menuCallback) {
         name: 'helpMenu',
         description: ':'
     }], function(err, result) {
-
-        if (result.helpMenu.toUpperCase() != "BACK") {
-
-            if (!check.allInputChecks(result.helpMenu, menuCallback, menuCallback)) {
-                menuCallback()
+        try {
+            if (result.helpMenu.toUpperCase() != "BACK") {
+                if (!check.allInputChecks(result.helpMenu, menuCallback, menuCallback)) {
+                    menuCallback()
+                }
+            } else {
+                mainMenu()
             }
-
-        } else {
-            mainMenu()
+        } catch (err) {
+            console.log("\n\nLater bro!")
         }
 
     })
@@ -126,13 +130,26 @@ exports.helpMenu = function(menuCallback) {
 
 
 function showAvailablePayloadTitles(array) {
-    
+
     var table = new Table({
-        chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': ''
-         , 'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': ''
-         , 'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': ''
-         , 'right': '' , 'right-mid': '' , 'middle': '' },
-         
+        chars: {
+            'top': '',
+            'top-mid': '',
+            'top-left': '',
+            'top-right': '',
+            'bottom': '',
+            'bottom-mid': '',
+            'bottom-left': '',
+            'bottom-right': '',
+            'left': '',
+            'left-mid': '',
+            'mid': '',
+            'mid-mid': '',
+            'right': '',
+            'right-mid': '',
+            'middle': ''
+        },
+
     });
 
     for (i = 0; i < array.length; i++) {
@@ -141,26 +158,24 @@ function showAvailablePayloadTitles(array) {
         // If payload has a title then it is a longer more detailed command
         // and the formatting for the menu will be different
 
-        if(array[i].title){
+        if (array[i].title) {
             table.push(
-                [log.green('\n' + num + '. ' + array[i].title)],
-                [log.blackBright('  => ') + array[i].sample]
+                [log.green('\n' + num + '. ' + array[i].title)], [log.blackBright('  => ') + array[i].sample]
             );
-            
-        }
-        else {
+
+        } else {
 
             // Ugly, turn this into a separate function later
             // Make some space (formatting) for this type of cat menu
 
-            if (num === 1){
+            if (num === 1) {
                 console.log("")
             }
 
             var sample
             var len
-            
-            if (array[i].sample){
+
+            if (array[i].sample) {
                 sample = array[i].sample
                 len = array[i].sample.length
             } else {
@@ -169,7 +184,7 @@ function showAvailablePayloadTitles(array) {
             }
 
             table.push(
-                [log.green(num+". "+sample), array[i].desc]
+                [log.green(num + ". " + sample), array[i].desc]
             );
 
 
@@ -233,8 +248,7 @@ function setNewConfig(key, value) {
     db.newConfig(key, value)
 }
 
-function getValueLHOST(callback) {
-}
+function getValueLHOST(callback) {}
 
 function parseConfigPrompt(input, bool) {
     var parseError = false
