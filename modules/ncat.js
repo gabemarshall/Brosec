@@ -12,7 +12,7 @@ var black = log.blackBright
 var currentOS = os.type()
 
 
-exports.init = function(callback, a1) {
+exports.shell = function(callback, a1) {
     
     callback(a1)
 
@@ -21,6 +21,33 @@ exports.init = function(callback, a1) {
     
     exec("netcat -lnp "+port+" -vv");
     
+
+    console.log('\n'+black('[*]')+' A netcat listener is running on port %s (ctrl c to stop)', port)
+
+
+}
+
+exports.file = function(callback, a1) {
+    
+    callback(a1)
+    
+    var filename = a1
+    
+    try {
+	    filename = a1.split("/")
+	    filename = filename.pop()	
+    }
+    catch (err)
+    {
+    	// Do nothing
+    }
+
+
+    var port = db.getConfig("LPORT")
+
+    exec("netcat -lnp "+port+" > "+filename+" -vv");
+    
+    console.log('\n[*] Waiting to receive "'+filename+'"')
 
     console.log('\n'+black('[*]')+' A netcat listener is running on port %s (ctrl c to stop)', port)
 
