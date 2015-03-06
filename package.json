@@ -1,8 +1,12 @@
 {
   "name": "Brosec",
   "version": "0.0.1",
-  "description": "Brosec - Security command-line fu for bros",
+  "description": "Brosec - Pentest fu for bros",
   "main": "bros.js",
+  "repository": {
+  "type": "git",
+  "url": "git://github.com/gabemarshall/Brosec.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +17,6 @@
     "prompt":"*",
     "mstring":"*",
     "cli-table":"*",
-    "teddybear":"*",
     "express":"*" 
   },
   "author": "Gabe Marshall",

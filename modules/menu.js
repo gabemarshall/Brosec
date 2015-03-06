@@ -1,6 +1,5 @@
 var db = require('../db/db');
 var log = require('cli-color');
-var sleep = require('teddybear');
 var prompt = require('prompt');
 var Table = require('cli-table');
 var pay = require('../payloads/')

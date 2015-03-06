@@ -1,6 +1,5 @@
 var db = require('../db/db');
 var log = require('cli-color');
-var sleep = require('teddybear');
 var prompt = require('prompt');
 var pay = require('../payloads/')
 var output = require('./output')
@@ -131,7 +130,7 @@ var Menu = function(title, menuOptions, payloadType) {
                                     output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
                                 } else {
                                     console.log(log.red("\nError - invalid input, returning to main menu."))
-                                    sleep(250)
+                                    
                                     menu.mainMenu()
                                 }
                             }
