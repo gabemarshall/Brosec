@@ -56,7 +56,10 @@ function mainMenu(callback) {
         }], function(err, result) {
 
             try {
-                check.allInputChecks(result.mainMenu, mainMenu, mainMenu)
+                var test = check.allInputChecks(result.mainMenu, mainMenu, mainMenu)
+                if(test){
+                    result.mainMenu = "HOME"
+                }
 
                 switch (result.mainMenu.toUpperCase()) {
                     case "1":
@@ -77,10 +80,9 @@ function mainMenu(callback) {
                     case "6":
                         secondaryMenu.miscTools()
                         break;
+                    case "HOME":
                     case "HELP":
-                        break;
                     case "CONFIG":
-                        break;
                     case "BACK":
                         break;
                     default:
@@ -98,20 +100,23 @@ function mainMenu(callback) {
 exports.mainMenu = mainMenu
 
 exports.helpMenu = function(menuCallback) {
+    clearMenu()
     console.log(log.green("\n\t### Brosec Help Menu ###\n"))
     console.log("Overview")
     console.log("=========")
-    console.log("\n- Brosec is a RTFM-like utility to help Security Bros remember complex but useful payloads and commands.")
-    console.log("- Brosec stores your configuration in a local db for your convenience, and outputs payloads to the clipboard")
-    console.log("- Your current config can be accessed by the " + log.yellow("config") + " command at any time")
-    console.log("- Config values can be changed at any time by entering " + log.yellow("set <option> <value>\n"))
-    console.log("Options")
+    console.log("\n- Brosec is a RTFM-like utility to help Security Bros remember complex but useful payloads and commands")
+    console.log("- Brosec utilizes saved variables (set by you) to create custom payloads on the fly. This config info is stored in a local db for your convenience")
+    console.log("- Brosec outputs payloads and copies it to your clipboard in order to make your pentesting even more magical")
+    console.log("- Your current config can be accessed by the " + log.blackBright("config") + " command at any time, or by entering the variable name")
+    console.log("- Config values can be changed at any time by entering " + log.blackBright("set <variable> <value>\n"))
+    console.log("Payload Variables")
     console.log("=======\n")
-    console.log("- LHOST : Local IP or name")
-    console.log("- LPORT : Local IP or name")
-    console.log("- RHOST : Remote IP or name")
-    console.log("- RPORT : Remote IP or name")
-    console.log("- USER : Username (only used in a few payloads)\n")
+    console.log("- "+log.yellow("LHOST")+" : Local IP or hostname")
+    console.log("- "+log.yellow("LPORT")+" : Local Port")
+    console.log("- "+log.red("RHOST")+" : Remote IP or hostname")
+    console.log("- "+log.red("RPORT")+" : Remote Port")
+    console.log("- "+log.blackBright("USER")+" : Username (only used in a few payloads)\n")
+    console.log("- "+log.blue("PROMPT")+" : User Prompt (This isn't a stored value. Payloads with this variable will prompt for input.)\n")
     prompt.message = "Press any key to return :"
     prompt.get([{
         name: 'helpMenu',

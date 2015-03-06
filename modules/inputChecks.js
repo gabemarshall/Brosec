@@ -60,7 +60,7 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 		currentMenu()
 		var thisConfigValue = input.toUpperCase()
 		console.log(log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n\n")
-		
+		return true
 	}
 }
 

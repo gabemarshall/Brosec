@@ -124,19 +124,20 @@ var Menu = function(title, menuOptions, payloadType) {
                             config = menu.getConfig()
                             var thisInput = result.subIGMenu.toUpperCase()
 
-                            if (thisInput != "BACK" && thisInput != "HELP" && thisInput != "CONFIG" && parseInt(thisInput)) {
+                            if (thisInput != "BACK" && thisInput != "HELP" && thisInput != "CONFIG" && parseInt(thisInput) != NaN) {
                                 choice = parseInt(result.subIGMenu) - 1
-                                if (choice === parseInt(choice) && choice >= 0) {
+                                if (choice >= 0 && choice <= payloads.length + 1) {
                                     output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
                                 } else {
                                     console.log(log.red("\nError - invalid input, returning to main menu."))
                                     
-                                    menu.mainMenu()
+                                    tertiaryMenu()
                                 }
                             }
                         } catch (err) {
                             console.log("\nLater bro!")
                         }
+
 
                     });
                 }, 40)  
