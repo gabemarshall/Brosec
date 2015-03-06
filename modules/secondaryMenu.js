@@ -26,14 +26,14 @@ var Menu = function(title, menuOptions, payloadType) {
     this.menuOptions = menuOptions
     this.payloadType = payloadType
 
-    this.grabSecondaryMenu = function(passthru){
-    	return secondaryMenu(passthru);
+    this.grabSecondaryMenu = function(passthru, thirdArg){
+    	return secondaryMenu(passthru, thirdArg);
     }
 
     // Second level of menu system
-    var secondaryMenu = function(passthru) {
-
-        if (!passthru){
+    var secondaryMenu = function(secondArg, thirdArg) {
+        
+        if (!secondArg){
             // Print the title for the menu as well as available options
             console.log("\n\n\n\t" + title + "\n")
             for (i = 0; i < menuOptions.length; i++) {
@@ -80,60 +80,79 @@ var Menu = function(title, menuOptions, payloadType) {
         else {
             // Ugly hack, fix later
             setTimeout(function(){
-                tertiaryMenu(passthru)
+                if(!thirdArg){
+                    tertiaryMenu(menuOptions[secondArg-1])    
+                }
+                else {
+                    tertiaryMenu(menuOptions[secondArg-1], thirdArg)
+                }
+                
             },10)
         }
 
 
 		// Third level of menu system
-        var tertiaryMenu = function(value) {
+        var tertiaryMenu = function(value, thirdArg) {
             if(!value){
                 value = db.getConfig("MENU")
             }
+        
+            if (!thirdArg){
+                console.log("\n\t---[ "+value+" ]---")
 
-            console.log("\n\t---[ "+value+" ]---")
+                db.newConfig("MENU", value)
 
-            db.newConfig("MENU", value)
+                if (value) {
+                    payloads = payloadType.getAll(value)
+                }
 
-            if (value) {
+                menu.showAvailablePayloadTitles(payloads)
+
+                console.log("")
+
+                setTimeout(function() {
+                    prompt.message = "Choose a payload"
+                    prompt.get([{
+                        name: 'subIGMenu',
+                        description: '(1-' + payloads.length + ') or enter "back" to return to the main menu'
+                    }], function(err, result) {
+
+                        try {
+                            result.subIGMenu = result.subIGMenu.toUpperCase();
+
+                            check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
+
+                            config = menu.getConfig()
+                            var thisInput = result.subIGMenu.toUpperCase()
+
+                            if (thisInput != "BACK" && thisInput != "HELP" && thisInput != "CONFIG" && parseInt(thisInput)) {
+                                choice = parseInt(result.subIGMenu) - 1
+                                if (choice === parseInt(choice) && choice >= 0) {
+                                    output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
+                                } else {
+                                    console.log(log.red("\nError - invalid input, returning to main menu."))
+                                    sleep(250)
+                                    menu.mainMenu()
+                                }
+                            }
+                        } catch (err) {
+                            console.log("\nLater bro!")
+                        }
+
+                    });
+                }, 40)  
+            }
+            else {
+
+                config = menu.getConfig()
+                
                 payloads = payloadType.getAll(value)
+                 
+                output.prepare(payloads[thirdArg-1].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[thirdArg-1].callback,tertiaryMenu)
+                
             }
 
-            menu.showAvailablePayloadTitles(payloads)
 
-            console.log("")
-
-            setTimeout(function() {
-                prompt.message = "Choose a payload"
-                prompt.get([{
-                    name: 'subIGMenu',
-                    description: '(1-' + payloads.length + ') or enter "back" to return to the main menu'
-                }], function(err, result) {
-
-                    try {
-                        result.subIGMenu = result.subIGMenu.toUpperCase();
-
-                        check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
-
-                        config = menu.getConfig()
-                        var thisInput = result.subIGMenu.toUpperCase()
-
-                        if (thisInput != "BACK" && thisInput != "HELP" && thisInput != "CONFIG" && parseInt(thisInput)) {
-                            choice = parseInt(result.subIGMenu) - 1
-                            if (choice === parseInt(choice) && choice >= 0) {
-                                output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
-                            } else {
-                                console.log(log.red("\nError - invalid input, returning to main menu."))
-                                sleep(250)
-                                menu.mainMenu()
-                            }
-                        }
-                    } catch (err) {
-                        console.log("\nLater bro!")
-                    }
-
-                });
-            }, 40)
 
         }
 

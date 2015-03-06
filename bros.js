@@ -4,7 +4,7 @@ var argv = require('yargs').argv;
 var log = require('cli-color');
 var db = require('./db/db');
 var menu = require('./modules/menu');
-var secondaryMenu = require("./modules/secondaryMenu")
+var secondaryMenu = require("./modules/secondaryMenu");
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
@@ -19,52 +19,69 @@ catch (err){
 
 }
 
-function argExactSearch(value){
-	if (value.match(/scan|port|nmap|hping|cat/ig)){
-		secondaryMenu.infoGathering("Port Scanning")
-		return true
-	}
-	else {
-		return false
-	}
-}
-
-function getSecondArgDefinition(value){
-	if (value.match(/scan|port|nmap|hping|netcat/ig)){
-		return "Port Scanning"
+function getFirstArgValue(arg){
+	switch (arg) {
+		case 1:
+			return secondaryMenu.infoGathering;
+			break;
+		case 2:
+			return secondaryMenu.linux;
+			break;
+		case 3:
+			return secondaryMenu.windows;
+			break;
+		case 4:
+			return secondaryMenu.injectionAttacks;
+		case 5:
+			return secondaryMenu.postExploitation;
+		case 6:
+			return secondaryMenu.miscTools;
 	}
 }
 
 function parseArgs(){
 
 
-	if (firstArgument === "INFOG" || firstArgument === "IG" || firstArgument === "1"){
-		
+	if (firstArgument >= 1 && firstArgument <= 6){
+		secondaryMenu = getFirstArgValue(firstArgument);
+
 		if (!secondArgument){
-			secondaryMenu.infoGathering()
+			secondaryMenu();
+		}
+		else if (!thirdArgument) {
+			secondaryMenu(secondArgument);
 		}
 		else {
-			secondaryMenu.infoGathering(getSecondArgDefinition(secondArgument))
+			secondaryMenu(secondArgument, thirdArgument);
 		}
 		
 	}
-	else {
-		var userIsSearching = argExactSearch(firstArgument)
-		if (userIsSearching){
-			// User is searching for a specfic section from the command line. "Ex: bros nmap" 
-			// should load the nmap payloads
-		}
-		else {
-			menu.mainMenu()
-		}
+	else if (firstArgument > 10){
 		
+		// If input is entered as "bros 111" split up the input and handle them individually
+		var splitInput = firstArgument.toString(10).split("").map(function(t){return parseInt(t)})
+		var inputLength = splitInput.length;
+
+		secondaryMenu = getFirstArgValue(splitInput[0]);
+
+
+		switch (inputLength){
+			case 2:
+				secondaryMenu(splitInput[1]);
+				break;
+			case 3:
+				secondaryMenu(splitInput[1], splitInput[2])
+		}
+	}
+	else {
+		menu.mainMenu();
 	}
 }
 
 if (!firstArgument){
-	menu.mainMenu()
+	menu.mainMenu();
 }
 else {
-	parseArgs()
+	parseArgs();
 }
 

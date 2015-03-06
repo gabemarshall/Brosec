@@ -48,7 +48,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
         callback(prepPayload, lhost, lport, rhost, rport, user)
     }
     else {
-        console.log(lhost)
+        // console.log(lhost)
         prepPayload()
     }
 

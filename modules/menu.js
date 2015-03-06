@@ -58,6 +58,7 @@ function mainMenu(callback) {
 
             try {
                 check.allInputChecks(result.mainMenu, mainMenu, mainMenu)
+                return;
 
                 switch (result.mainMenu) {
                     case "1":
