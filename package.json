@@ -17,6 +17,7 @@
     "prompt":"*",
     "mstring":"*",
     "cli-table":"*",
+    "morgan":"*",
     "express":"*" 
   },
   "author": "Gabe Marshall",
