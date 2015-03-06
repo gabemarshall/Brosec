@@ -58,9 +58,8 @@ function mainMenu(callback) {
 
             try {
                 check.allInputChecks(result.mainMenu, mainMenu, mainMenu)
-                return;
 
-                switch (result.mainMenu) {
+                switch (result.mainMenu.toUpperCase()) {
                     case "1":
                         secondaryMenu.infoGathering()
                         break;
@@ -78,6 +77,12 @@ function mainMenu(callback) {
                         break;
                     case "6":
                         secondaryMenu.miscTools()
+                        break;
+                    case "HELP":
+                        break;
+                    case "CONFIG":
+                        break;
+                    case "BACK":
                         break;
                     default:
                         mainMenu(console.log("\n\n"+log.red("Hmm..didn't quite get that, try again")))
@@ -115,9 +120,9 @@ exports.helpMenu = function(menuCallback) {
     }], function(err, result) {
         try {
             if (result.helpMenu.toUpperCase() != "BACK") {
-                if (!check.allInputChecks(result.helpMenu, menuCallback, menuCallback)) {
+                
                     menuCallback()
-                }
+                
             } else {
                 mainMenu()
             }

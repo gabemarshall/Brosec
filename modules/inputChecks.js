@@ -27,7 +27,6 @@ var ifUserWantsBack = function(input, currentMenu, previousMenu){
 var ifUserWantsHome = function(input, currentMenu, previousMenu){
 	if (input.match(/(home|main)/ig)){
 		menu.mainMenu(menu.clearMenu())
-		return true
 	}
 }
 
