@@ -18,21 +18,21 @@ var addPayload = arrayInfo.push
 arrayInfo.push({
 	title: "Retrieve DNS server(s) of a domain", 
 	payload: 'host -t ns $$RHOST$$ | cut -d " " -f4',
-	sample: 'host -t ns '+yellow('<domain name (RHOST)>')+' | cut -d " " -f4',
+	sample: 'host -t ns '+red('<RHOST>')+' | cut -d " " -f4',
 	category: "DNS"
 })
 
 arrayInfo.push({
 	title: "Reverse DNS Lookup of an IP Address", 
 	payload: "dig +short -x $$RHOST$$",
-	sample: "dig +short -x "+yellow("<ip address (RHOST)>"),
+	sample: "dig +short -x "+red("<RHOST>"),
 	category: "DNS"
 })
 
 arrayInfo.push({
 	title: "DNS Zone XFER",
 	payload: "dig @$$RHOST$$ $$PROMPT$$ -t AXFR",
-	sample: "dig @"+yellow("<dns server>")+blue(" <domain>")+" -t AXFR",
+	sample: "dig @"+red("<RHOST (dns server)>")+blue(" <PROMPT (domain)>")+" -t AXFR",
 	category: "DNS",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
 		prompt.message = "What domain would you like to use? :"
