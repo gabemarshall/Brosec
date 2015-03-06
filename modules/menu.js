@@ -85,7 +85,7 @@ function mainMenu(callback) {
                     case "BACK":
                         break;
                     default:
-                        mainMenu(console.log("\n\n"+log.red("Hmm..didn't quite get that, try again")))
+                        mainMenu(console.log("\n\n"+log.red("Hmm..that input is invalid, try again")))
                         break;
                 }
             } catch (err) {
