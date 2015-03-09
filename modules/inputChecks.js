@@ -2,6 +2,10 @@ var menu = require('./menu');
 var db = require('../db/db');
 var log = require('cli-color');
 
+function clearMenu() {
+    console.log('\033[2J');
+}
+
 var ifUserNeedsHelp = function(input, currentMenu, previousMenu){
 	if (input.match(/(help)/ig)){
 		menu.helpMenu(currentMenu)
@@ -57,6 +61,7 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 
 	else if (input.match(/(RPORT|RHOST|LPORT|LHOST|USER)/i)){
 		
+		clearMenu()
 		currentMenu()
 		var thisConfigValue = input.toUpperCase()
 		console.log(log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n\n")

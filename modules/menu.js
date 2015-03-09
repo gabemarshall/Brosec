@@ -29,10 +29,10 @@ function clearMenu() {
 exports.clearMenu = clearMenu
 
 function mainMenu(callback) {
-
-    console.log(log.green("\n\t\t#########################"))
-    console.log(log.green("\t\t### Welcome to Brosec ###"))
-    console.log(log.green("\t\t#########################"))
+    
+    console.log(log.green("\n\t#########################"))
+    console.log(log.green("\t### Welcome to Brosec ###"))
+    console.log(log.green("\t#########################"))
     console.log(log.yellow("\nPlease choose one of the following menu options."))
     console.log(log.blackBright("\nAt any time enter 'help' for usage information.\n"))
     console.log("\n1. Information Gathering\t4. Web")
