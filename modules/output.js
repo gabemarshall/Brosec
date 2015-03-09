@@ -48,7 +48,6 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
         callback(prepPayload, lhost, lport, rhost, rport, user)
     }
     else {
-        // console.log(lhost)
         prepPayload()
     }
 
@@ -65,7 +64,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
         }
         payload = payload.replace(/(\$\$LHOST\$\$)/gi, lhost)
         payload = payload.replace(/(\$\$LPORT\$\$)/gi, lport)
-        payload = payload.replace(/(\$\$RHOST\$\$)/gi, rhost)
+        payload = payload.replace(/((<(RHOST)\s*?.*?>))/gi, rhost)
         payload = payload.replace(/(\$\$RPORT\$\$)/gi, rhost)
         payload = payload.replace(/(\$\$USER\$\$)/gi, user)
 

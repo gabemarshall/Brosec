@@ -5,6 +5,8 @@ var Table = require('cli-table');
 var pay = require('../payloads/')
 var output = require('./output')
 var check = require('./inputChecks')
+var colorize = require('./colorize.js')
+
 var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT", "SET USER"]
 
 var secondaryMenu = require("./secondaryMenu")
@@ -140,7 +142,6 @@ exports.helpMenu = function(menuCallback) {
 }
 
 
-
 function showAvailablePayloadTitles(array) {
 
     var table = new Table({
@@ -171,9 +172,23 @@ function showAvailablePayloadTitles(array) {
         // and the formatting for the menu will be different
 
         if (array[i].title) {
+            
+            // Colorize samples for output
+            if (!array[i].sample){
+                array[i].sample = array[i].payload
+            }
+
+            try {
+                var sample = colorize.samples(array[i].sample)
+            }
+            catch (err){
+                console.log(err)
+            }
+
             table.push(
-                [log.green('\n' + num + '. ' + array[i].title)], [log.blackBright('  => ') + array[i].sample]
+                [log.green('\n' + num + '. ' + array[i].title)], [log.blackBright('  => ') + sample]
             );
+
 
         } else {
 
@@ -194,6 +209,16 @@ function showAvailablePayloadTitles(array) {
                 sample = array[i].payload
                 len = array[i].payload.length
             }
+
+            // Colorize samples for output
+            try {
+                sample = colorize.samples(sample)
+            }
+            catch (err){
+                console.log(err)
+            }
+
+            
 
             table.push(
                 [log.green(num + ". " + sample), array[i].desc]

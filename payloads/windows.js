@@ -29,7 +29,7 @@ Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System 
 
 Load({
 	payload: "taskkill /PID $$PROMPT$$ /F",
-	sample: "taskkill /PID "+blue("<pid>")+green(" /F"),
+	sample: "taskkill /PID <PROMPT (pid)> /F",
 	desc: "Force process to terminate",
 	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
@@ -43,7 +43,7 @@ Load({
 
 Load({
 	payload: "reg query HKLM /f $$PROMPT$$ /t REG_SZ /s",
-	sample: "reg query HKLM /f "+blue("<search term>")+green(" /t REG_SZ /s"),
+	sample: "reg query HKLM /f <PROMPT (search term)> /t REG_SZ /s",
 	desc: "Search registry for value",
 	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
@@ -55,6 +55,7 @@ Load({
 	}
 })
 
+//sample: "reg query HKLM /f "+blue("<PROMPT (search term)>")+green(" /t REG_SZ /s"),
 
 // Windows Files pg 15
 Load({
