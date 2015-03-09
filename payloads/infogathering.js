@@ -23,7 +23,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "Reverse DNS Lookup of an IP Address", 
-	sample: "dig +short -x <RHOST (dns server)>",
+	payload: "dig +short -x <RHOST (dns server)>",
 	category: "DNS"
 })
 
@@ -73,8 +73,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "smbclient basic usage", 
-	payload: "smbclient -U $$USER$$ ~~$$RHOST$$~$$PROMPT$$",
-	sample: "smbclient -U <USER> \\\\<RHOST>\\<PROMPT (file share)>",
+	payload: "smbclient -U <USER> \\\\<RHOST>\\<PROMPT (file share)>",
 	category: "SMB",
 	callback: function(returnToPrepare){
 		prompt.message = "What network share would you like to connect to? :"
@@ -86,8 +85,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "nbtscan basic usage", 
-	payload: "nbtscan -r $$PROMPT$$",
-	sample: "nbtscan -r <RHOST (network range)>",
+	payload: "nbtscan -r <RHOST (network range)>",
 	category: "SMB",
 	callback: function(returnToPrepare){
 		prompt.message = "What network range would you like to scan? (Ex: 192.168.1.0/24) :"
@@ -99,29 +97,25 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "enum4linux basic usage", 
-	payload: "enum4linux -a $$RHOST$$",
-	sample: "enum4linux -a <RHOST (hostname)>",
+	payload: "enum4linux -a <RHOST (hostname)>",
 	category: "SMB"
 })
 
 arrayInfo.push({
 	title: "SMB user enum nmap script", 
-	payload: "nmap -sS -sU --script smb-enum-users -p U:127 T:139,445 $$RHOST$$",
-	sample: "nmap -sS -sU --script smb-enum-users -p U:127 T:139,445 <RHOST (hostname)>",
+	payload: "nmap -sS -sU --script smb-enum-users -p U:127 T:139,445 <RHOST (hostname)>",
 	category: "SMB"
 })
 
 arrayInfo.push({
 	title: "SMB os discovery nmap script", 
-	payload: "nmap -v -p 139, 445 --script=smb-os-discovery $$RHOST$$",
-	sample: "nmap -v -p 139, 445 --script=smb-os-discovery <RHOST hostname>",
+	payload: "nmap -v -p 139, 445 --script=smb-os-discovery <RHOST hostname>",
 	category: "SMB"
 })
 
 arrayInfo.push({
 	title: "Netbios server vulnerability check", 
-	payload: "nmap --script-args=unsafe=1 --script smb-check-vulns.nse -p 445 $$RHOST$$",
-	sample: "nmap --script-args=unsafe=1 --script smb-check-vulns.nse -p 445 <RHOST (hostname)>",
+	payload: "nmap --script-args=unsafe=1 --script smb-check-vulns.nse -p 445 <RHOST (hostname)>",
 	category: "SMB"
 })
 
@@ -129,8 +123,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "SNMP Enumeration using Nmap and a list of community strings", 
-	payload: "nmap -sU --open -p 161 $$RHOST$$ $$PROMPT$$ ",
-	sample: "nmap -sU --open -p 161 <RHOST (hostname)> <PROMPT (file path)>",
+	payload: "nmap -sU --open -p 161 <RHOST (hostname)> <PROMPT (file path)>",
 	category: "SNMP",
 	callback: function(returnToPrepare){
 		prompt.message = "Path to file :"
@@ -142,8 +135,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "Enumerating the entire MIB Tree w/ snmpwalk", 
-	payload: "snmpwalk -c $$PROMPT$$ -v1 $$RHOST$$",
-	sample: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST>",
+	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST>",
 	category: "SNMP",
 	callback: function(returnToPrepare){
 		prompt.message = "Community string :"
@@ -155,7 +147,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "Enumerating Windows Users w/ snmpwalk", 
-	sample: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.4.1.77.1.2.25",
+	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.4.1.77.1.2.25",
 	category: "SNMP",
 	callback: function(returnToPrepare){
 		prompt.message = "Community string :"
@@ -167,8 +159,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "Enumerating Windows Processes w/ snmpwalk", 
-	payload: "snmpwalk -c $$PROMPT$$ -v1 $$RHOST$$ 1.3.6.1.2.1.25.4.2.1.2",
-	sample: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.25.4.2.1.2",
+	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.25.4.2.1.2",
 	category: "SNMP",
 	callback: function(returnToPrepare){
 		prompt.message = "Community string :"
@@ -180,8 +171,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "Enumerating Open TCP Ports w/ snmpwalk", 
-	payload: "snmpwalk -c $$PROMPT$$ -v1 $$RHOST$$ 1.3.6.1.2.1.6.13.1.3",
-	sample: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.6.13.1.3",
+	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.6.13.1.3",
 	category: "SNMP",
 	callback: function(returnToPrepare){
 		prompt.message = "Community string :"
@@ -193,8 +183,7 @@ arrayInfo.push({
 
 arrayInfo.push({
 	title: "Enumerating Installed Software w/ snmpwalk", 
-	payload: "snmpwalk -c $$PROMPT$$ -v1 $$RHOST$$ 1.3.6.1.2.1.25.6.3.1.2",
-	sample: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST hostname or ip> 1.3.6.1.2.1.25.6.3.1.2",
+	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST hostname or ip> 1.3.6.1.2.1.25.6.3.1.2",
 	category: "SNMP",
 	callback: function(returnToPrepare){
 		prompt.message = "Community string :"
