@@ -49,7 +49,7 @@ var Menu = function(title, menuOptions, payloadType) {
                 prompt.message = "Choose a category"
                 prompt.get([{
                     name: 'IGMenu',
-                    description: '(1-9) or enter "back" to return to the main menu'
+                    description: '(1-'+menuOptions.length+') or enter "back" to return to the main menu'
                 }], function(err, result) {
 
                     try {
@@ -64,9 +64,13 @@ var Menu = function(title, menuOptions, payloadType) {
                         }
 
                         // If result is numerical but isn't a valid command, reload menu and try again
-                        else if (parseInt(result.IGMenu)) {
-                            console.log("Sorry, please try again.")
-                            this.secondaryMenu()
+                        else {
+                          
+                            setTimeout(function(){
+                                console.log(log.red("[*] Invalid input, please try again.\n"))
+                            },15)
+                          
+                          secondaryMenu()
                         }
 
                     } catch (err) {
@@ -129,7 +133,9 @@ var Menu = function(title, menuOptions, payloadType) {
                                 if (choice >= 0 && choice <= payloads.length + 1) {
                                     output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
                                 } else {
-                                    console.log(log.red("\nError - invalid input, returning to main menu."))
+                                    setTimeout(function(){
+                                        console.log(log.red("[*] Invalid input, please try again.\n"))
+                                    },15)
                                     
                                     tertiaryMenu()
                                 }

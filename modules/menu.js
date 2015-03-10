@@ -34,14 +34,17 @@ function mainMenu(callback) {
     console.log(log.green("\t### Welcome to Brosec ###"))
     console.log(log.green("\t#########################"))
     console.log(log.yellow("\nPlease choose one of the following menu options."))
-    console.log(log.blackBright("\nAt any time enter 'help' for usage information.\n"))
+    console.log(log.blackBright("\nAt any time enter 'help' for usage information."))
     console.log("\n1. Information Gathering\t4. Web")
     console.log("2. Linux\t\t\t5. Misc")
     console.log("3. Windows\t\t\t")
-    console.log("\n")
+    console.log("")
 
     if (callback) {
-        callback()
+        setTimeout(function(){
+            console.log(callback+"\n")    
+        }, 15)
+        
     }
 
     // Ugly hack, needs fixing. Without this the db values are checked before the db initalizes
@@ -54,7 +57,7 @@ function mainMenu(callback) {
         prompt.message = "Choose one of the above options"
         prompt.get([{
             name: 'mainMenu',
-            description: '(1-6)'
+            description: '(1-5)'
         }], function(err, result) {
 
             try {
@@ -88,7 +91,7 @@ function mainMenu(callback) {
                     case "BACK":
                         break;
                     default:
-                        mainMenu(console.log("\n\n"+log.red("Hmm..that input is invalid, try again")))
+                        mainMenu(log.red("[*] Invalid input, please try again."))
                         break;
                 }
             } catch (err) {
