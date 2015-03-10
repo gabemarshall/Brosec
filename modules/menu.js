@@ -62,6 +62,7 @@ function mainMenu(callback) {
 
             try {
                 var test = check.allInputChecks(result.mainMenu, mainMenu, mainMenu)
+                
                 if(test){
                     result.mainMenu = "HOME"
                 }

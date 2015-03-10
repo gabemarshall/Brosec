@@ -61,11 +61,18 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 
 	else if (input.match(/(RPORT|RHOST|LPORT|LHOST|USER)/i)){
 		
-		clearMenu()
-		currentMenu()
 		var thisConfigValue = input.toUpperCase()
-		console.log(log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n\n")
+		
+		setTimeout(function(){
+			clearMenu()
+			currentMenu()
+			console.log("\n"+log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n")
+		},25)
+		
 		return true
+	}
+	else {
+		return false
 	}
 }
 

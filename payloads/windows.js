@@ -43,8 +43,7 @@ Load({ payload: "tasklist /svc", desc: "Show processes & services", category: "S
 Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System Info"})
 
 Load({
-	payload: "taskkill /PID $$PROMPT$$ /F",
-	sample: "taskkill /PID <PROMPT (pid)> /F",
+	payload: "taskkill /PID <PROMPT (pid)> /F",
 	desc: "Force process to terminate",
 	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
@@ -57,8 +56,7 @@ Load({
 })
 
 Load({
-	payload: "reg query HKLM /f $$PROMPT$$ /t REG_SZ /s",
-	sample: "reg query HKLM /f <PROMPT (search term)> /t REG_SZ /s",
+	payload: "reg query HKLM /f <PROMPT (search term)> /t REG_SZ /s",
 	desc: "Search registry for value",
 	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
@@ -70,13 +68,13 @@ Load({
 	}
 })
 
-//sample: "reg query HKLM /f "+blue("<PROMPT (search term)>")+green(" /t REG_SZ /s"),
 
-// Windows Files pg 15
+// ############### File System ######################
+
+
 Load({
 	title: "Windows Common Files",
-	payload: "Windows Common Files",
-	sample: "A quick look at common windows files",
+	payload: "A quick look at common windows files",
 	category: "File System",
 	callback: function(returnToPrepare){
 		var m = M(function(){
@@ -105,6 +103,30 @@ Load({
 })
 
 
+// ############### Networking ######################
+
+
+
+
+// ################### WMIC ######################
+
+
+
+// ############### Powershell ######################
+
+Load({
+	title: "TCP Port Scan",
+	payload: '$ports=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($p in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$p);}catch{};if ($socket -eq $NULL){echo $ip":"$p" - Closed";}else{echo $ip":"$p" - Open";$socket = $NULL;}}',
+	category: "Powershell",
+	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
+		prompt.message = "Ports to scan (ex: 80,443,8080) :"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(result._)
+		})	
+
+	}
+})
+
 var unique = []
 var uniqueCategories = []
 
@@ -132,3 +154,23 @@ module.exports = {
 		}
 	}
 }
+
+
+/*
+TODO - Add these Payloads
+
+##########
+POWERSHELL
+##########
+
+Download File
+=============
+
+(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")
+
+Port Scanner
+============
+
+$ports=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($port in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$port);}catch{};if ($socket -eq $NULL){echo $ip":"$port" - Closed";}else{echo $ip":"$port" - Open";$socket = $NULL;}}
+
+*/

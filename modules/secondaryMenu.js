@@ -56,7 +56,7 @@ var Menu = function(title, menuOptions, payloadType) {
                         result.IGMenu = result.IGMenu.toUpperCase();
 
                         // Check if result contains valid commands
-                        check.allInputChecks(result.IGMenu, secondaryMenu, menu.mainMenu)
+                        var inputIsCommand = check.allInputChecks(result.IGMenu, secondaryMenu, menu.mainMenu)
 
                         // If result is within the valid range of menu options, proceed
                         if (parseInt(result.IGMenu) >= 1 && parseInt(result.IGMenu) <= menuLength) {
@@ -64,8 +64,8 @@ var Menu = function(title, menuOptions, payloadType) {
                         }
 
                         // If result is numerical but isn't a valid command, reload menu and try again
-                        else {
-                          
+                        else if (!inputIsCommand){
+
                             setTimeout(function(){
                                 console.log(log.red("[*] Invalid input, please try again.\n"))
                             },15)
@@ -123,15 +123,15 @@ var Menu = function(title, menuOptions, payloadType) {
                         try {
                             result.subIGMenu = result.subIGMenu.toUpperCase();
 
-                            check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
-
+                            var inputIsCommand = check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
+                            
                             config = menu.getConfig()
                             var thisInput = result.subIGMenu.toUpperCase()
 
-                            if (thisInput != "BACK" && thisInput != "HELP" && thisInput != "CONFIG" && parseInt(thisInput) != NaN) {
+                            if (!inputIsCommand) {
                                 choice = parseInt(result.subIGMenu) - 1
-                                if (choice >= 0 && choice <= payloads.length + 1) {
-                                    output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
+                                if (choice >= 0 && choice <= payloads.length) {
+                                   output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
                                 } else {
                                     setTimeout(function(){
                                         console.log(log.red("[*] Invalid input, please try again.\n"))
@@ -153,8 +153,16 @@ var Menu = function(title, menuOptions, payloadType) {
                 config = menu.getConfig()
                 
                 payloads = payloadType.getAll(value)
-                 
-                output.prepare(payloads[thirdArg-1].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[thirdArg-1].callback,tertiaryMenu)
+                
+                try {
+                    output.prepare(payloads[thirdArg-1].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[thirdArg-1].callback,tertiaryMenu)
+                }
+                catch (err){
+                    setTimeout(function(){
+                        console.log(log.red("\n[*] Payload not found, please try again.\n"))
+                    },15)
+                } 
+                
                 
             }
 
