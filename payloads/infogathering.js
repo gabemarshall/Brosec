@@ -7,27 +7,51 @@ var black = log.blackBright
 var green = log.green
 var red = log.red
 
-// Payload Array
+// Initialize array and Payload Helper
 arrayInfo = []
-var addPayload = arrayInfo.push
 
-// title, description, payload, category, and callback (optional: used for additional options if needed)
+var Load = function(obj){
+	arrayInfo.push(obj)
+}
 
+/* 
+###########################################
+############### Payloads ##################
+###########################################
+
+
+---[Payload Parameters]---
+
+Required: title, payload, and category
+Optional: callback (used for prompt variable)
+
+
+---[Variable Formatting]---
+
+* If variables aren't added properly, they will not work
+* Variables can include instructions if needed.
+* Instructions should be kept in parenthesis
+	
+	ex: foobar <RHOST> <LHOST> <LPORT>
+	ex: foobar <RHOST (hostname)> <RPORT>	 
+
+
+*/
 // ############### DNS ######################
 
-arrayInfo.push({
+Load({
 	title: "Retrieve DNS server(s) of a domain", 
 	payload: 'host -t ns <RHOST (dns server)> | cut -d " " -f4',
 	category: "DNS"
 })
 
-arrayInfo.push({
+Load({
 	title: "Reverse DNS Lookup of an IP Address", 
 	payload: "dig +short -x <RHOST (dns server)>",
 	category: "DNS"
 })
 
-arrayInfo.push({
+Load({
 	title: "DNS Zone XFER",
 	payload: "dig @<RHOST (dns server)> <PROMPT (domain)> -t AXFR",
 	category: "DNS",
@@ -44,19 +68,19 @@ arrayInfo.push({
 
 // ############### Port Scanning Payloads ######################
 
-arrayInfo.push({
+Load({
 	title: "Nmap Verbose Version Scan", 
 	payload: "nmap -v -sS -sV --version-all -A <RHOST>",
 	category: "Port Scanning"
 })
 
-arrayInfo.push({
+Load({
 	title: "Netcat Port Scan", 
 	payload: "nc -v -z -w2 <RHOST> 1-65535",
 	category: "Port Scanning"
 })
 
-arrayInfo.push({
+Load({
 	title: "Send TCP SYN packets every 5 seconds to a specific port", 
 	payload: "hping <RHOST (hostname)> -S -V -p <RPORT> -i 5",
 	category: "Port Scanning",
@@ -71,7 +95,7 @@ arrayInfo.push({
 
 // ############### SMB ######################
 
-arrayInfo.push({
+Load({
 	title: "smbclient basic usage", 
 	payload: "smbclient -U <USER> \\\\<RHOST>\\<PROMPT (file share)>",
 	category: "SMB",
@@ -83,7 +107,7 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "nbtscan basic usage", 
 	payload: "nbtscan -r <RHOST (network range)>",
 	category: "SMB",
@@ -95,25 +119,25 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "enum4linux basic usage", 
 	payload: "enum4linux -a <RHOST (hostname)>",
 	category: "SMB"
 })
 
-arrayInfo.push({
+Load({
 	title: "SMB user enum nmap script", 
 	payload: "nmap -sS -sU --script smb-enum-users -p U:127 T:139,445 <RHOST (hostname)>",
 	category: "SMB"
 })
 
-arrayInfo.push({
+Load({
 	title: "SMB os discovery nmap script", 
 	payload: "nmap -v -p 139, 445 --script=smb-os-discovery <RHOST hostname>",
 	category: "SMB"
 })
 
-arrayInfo.push({
+Load({
 	title: "Netbios server vulnerability check", 
 	payload: "nmap --script-args=unsafe=1 --script smb-check-vulns.nse -p 445 <RHOST (hostname)>",
 	category: "SMB"
@@ -121,7 +145,7 @@ arrayInfo.push({
 
 // ############### SNMP ######################
 
-arrayInfo.push({
+Load({
 	title: "SNMP Enumeration using Nmap and a list of community strings", 
 	payload: "nmap -sU --open -p 161 <RHOST (hostname)> <PROMPT (file path)>",
 	category: "SNMP",
@@ -133,7 +157,7 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "Enumerating the entire MIB Tree w/ snmpwalk", 
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST>",
 	category: "SNMP",
@@ -145,7 +169,7 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "Enumerating Windows Users w/ snmpwalk", 
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.4.1.77.1.2.25",
 	category: "SNMP",
@@ -157,7 +181,7 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "Enumerating Windows Processes w/ snmpwalk", 
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.25.4.2.1.2",
 	category: "SNMP",
@@ -169,7 +193,7 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "Enumerating Open TCP Ports w/ snmpwalk", 
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.6.13.1.3",
 	category: "SNMP",
@@ -181,7 +205,7 @@ arrayInfo.push({
 	}
 })
 
-arrayInfo.push({
+Load({
 	title: "Enumerating Installed Software w/ snmpwalk", 
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST hostname or ip> 1.3.6.1.2.1.25.6.3.1.2",
 	category: "SNMP",
@@ -192,6 +216,16 @@ arrayInfo.push({
 		})
 	}
 })
+
+
+
+
+/* 
+######################################################
+############### End of Payloads ######################
+######################################################
+*/
+
 
 var unique = []
 var uniqueCategories = []

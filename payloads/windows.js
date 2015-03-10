@@ -1,23 +1,38 @@
 var prompt = require('prompt');
-var log = require('cli-color');
-var options = log.yellow
-var yellow = log.yellow
-var blue = log.blue
-var black = log.blackBright
-var green = log.green
-var red = log.red
 var M = require('mstring')
 
 
-// Payload Array
+// Initialize array and Payload Helper
+
 arrayWin = []
 
-// Load payload function
 var Load = function(obj){
 	arrayWin.push(obj)
 }
 
-// title, description, payload, category, and callback (optional: used for additional options if needed)
+/* 
+###########################################
+############### Payloads ##################
+###########################################
+
+
+---[Payload Parameters]---
+
+Required: title, payload, and category
+Optional: callback (used for prompt variable)
+
+
+---[Variable Formatting]---
+
+* If variables aren't added properly, they will not work
+* Variables can include instructions if needed.
+* Instructions should be kept in parenthesis
+	
+	ex: foobar <RHOST> <LHOST> <LPORT>
+	ex: foobar <RHOST (hostname)> <RPORT>	 
+
+
+*/
 
 // ############### System Info ######################
 
@@ -88,7 +103,6 @@ Load({
 
 	}
 })
-
 
 
 var unique = []

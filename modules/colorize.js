@@ -6,7 +6,7 @@ exports.samples = function(sample){
     var doesSampleContainRemote = sample.match(/((<(RHOST)\s*?.*?>))/)
     var doesSampleContainRemotePort = sample.match(/((<(RPORT)\s*?.*?>))/)
     var doesSampleContainLocal = sample.match(/((<(LHOST)\s*?.*?>))/)
-    var doesSampleContainLocalPort = sample.match(/((<(LHOST)\s*?.*?>))/)
+    var doesSampleContainLocalPort = sample.match(/((<(LPORT)\s*?.*?>))/)
     var doesSampleContainUser = sample.match(/((<(USER)\s*?.*?>))/)
 
     function addSomeColor(val, color){

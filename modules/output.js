@@ -55,18 +55,19 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
         if(cResult){
 
             if(typeof(cResult) === "string"){
-                payload = payload.replace(/(\$\$PROMPT\$\$)/gi, cResult)
+                payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, cResult)
             } else {
                 tmenu()
                 return
             }
             
         }
-        payload = payload.replace(/(\$\$LHOST\$\$)/gi, lhost)
-        payload = payload.replace(/(\$\$LPORT\$\$)/gi, lport)
+
+        payload = payload.replace(/((<(LHOST)\s*?.*?>))/gi, lhost)
+        payload = payload.replace(/((<(LPORT)\s*?.*?>))/gi, lport)
         payload = payload.replace(/((<(RHOST)\s*?.*?>))/gi, rhost)
-        payload = payload.replace(/(\$\$RPORT\$\$)/gi, rhost)
-        payload = payload.replace(/(\$\$USER\$\$)/gi, user)
+        payload = payload.replace(/((<(RPORT)\s*?.*?>))/gi, rhost)
+        payload = payload.replace(/((<(USER)\s*?.*?>))/gi, user)
 
         payload = payload.replace(/(')/gi, "\\'")
         if(payload.match(/undefined/)){
