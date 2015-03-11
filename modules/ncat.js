@@ -1,5 +1,5 @@
 var sys = require('sys');
-var exec = require('child_process').exec;
+var exec = require('child_process')
 var log = require('cli-color');
 var os = require('os');
 var question = require('./questions.js')
@@ -44,7 +44,7 @@ exports.file = function(callback, a1) {
 
     var port = db.getConfig("LPORT")
 
-    exec("netcat -lnp "+port+" > "+filename+" -vv");
+    exec.execSync("netcat -lnp "+port+" > "+filename+" -vv");
     
     console.log('\n[*] Waiting to receive "'+filename+'"')
 

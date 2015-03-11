@@ -31,11 +31,11 @@ function getFirstArgValue(arg){
 			return secondaryMenu.windows;
 			break;
 		case 4:
-			return secondaryMenu.injectionAttacks;
+			return secondaryMenu.webAttacks;
 		case 5:
-			return secondaryMenu.postExploitation;
-		case 6:
-			return secondaryMenu.miscTools;
+			return secondaryMenu.misc;
+		// case 6:
+		// 	return secondaryMenu.miscTools;
 	}
 }
 
