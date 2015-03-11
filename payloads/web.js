@@ -11,10 +11,10 @@ var M = require('mstring')
 var web = require("../modules/webserver.js")
 
 // Payload Array
-arrayInjection = []
+arrayWeb = []
 
 var Load = function(obj){
-	arrayInjection.push(obj)
+	arrayWeb.push(obj)
 }
 
 /* 
@@ -97,24 +97,24 @@ var unique = []
 var uniqueCategories = []
 
 module.exports = {
-	values: arrayInjection,
+	values: arrayWeb,
 	getAll: function(value){
 		tempArray = []
-		for(i=0;i<arrayInjection.length;i++){
-			if (arrayInjection[i].category === value){
-				tempArray.push(arrayInjection[i])
+		for(i=0;i<arrayWeb.length;i++){
+			if (arrayWeb[i].category === value){
+				tempArray.push(arrayWeb[i])
 			}
 		}
 		return tempArray
 	},
 	getCategories: function(){
-		for (i=0;i<arrayInjection.length;i++){
-			if(unique[arrayInjection[i].category]){
+		for (i=0;i<arrayWeb.length;i++){
+			if(unique[arrayWeb[i].category]){
 
 			}
 			else {
-				unique[arrayInjection[i].category] = true;
-				uniqueCategories.push(arrayInjection[i].category)
+				unique[arrayWeb[i].category] = true;
+				uniqueCategories.push(arrayWeb[i].category)
 			} 
 		return uniqueCategories
 		}

@@ -176,14 +176,14 @@ var Menu = function(title, menuOptions, payloadType) {
 
 var menus = {}
 var infoGMenu = new Menu("--[ Information Gathering ]--", ["DNS", "Port Scanning", "SMB", "SNMP"], pay.infog);
-var attackMenu = new Menu("--[ Web ]--",["XML"], pay.injection)
-var postExploitMenu = new Menu('--[ Misc ]--', ["Reverse Shells", "Exfiltration"], pay.postexploit)
+var webMenu = new Menu("--[ Web ]--",["XML"], pay.web)
+var miscMenu = new Menu('--[ Misc ]--', ["Reverse Shells", "Exfiltration"], pay.misc)
 var linuxMenu = new Menu('--[ Linux ]--', ["System Info", "File System", "Networking", "Stealth"], pay.linux)
 var windowsMenu = new Menu('--[ Windows ]--', ["System Info", "File System", "Networking", "WMIC", "Powershell"], pay.windows)
 
 menus.infoGathering = infoGMenu.grabSecondaryMenu
-menus.injectionAttacks = attackMenu.grabSecondaryMenu
-menus.postExploitation = postExploitMenu.grabSecondaryMenu
+menus.webAttacks = webMenu.grabSecondaryMenu
+menus.misc = miscMenu.grabSecondaryMenu
 menus.linux = linuxMenu.grabSecondaryMenu
 menus.windows = windowsMenu.grabSecondaryMenu
 
