@@ -4,7 +4,7 @@ var morgan = require('morgan')
 var question = require('./questions.js')
 var db = require('../db/db');
 var log = require('cli-color');
-var blue = log.blue
+var blue = log.cyan
 var black = log.blackBright
 
 app.use(morgan('combined'))

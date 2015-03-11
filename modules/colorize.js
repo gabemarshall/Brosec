@@ -16,7 +16,7 @@ exports.samples = function(sample){
     }
 
     if (doesSampleContainPrompt){
-        sample = addSomeColor(doesSampleContainPrompt, log.blue) 
+        sample = addSomeColor(doesSampleContainPrompt, log.cyan) 
     }
     if (doesSampleContainRemote){
         sample = addSomeColor(doesSampleContainRemote, log.red)

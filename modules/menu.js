@@ -124,7 +124,7 @@ exports.helpMenu = function(menuCallback) {
     console.log("- "+log.red("RHOST")+" : Remote IP or hostname")
     console.log("- "+log.red("RPORT")+" : Remote Port")
     console.log("- "+log.blackBright("USER")+" : Username (only used in a few payloads)\n")
-    console.log("- "+log.blue("PROMPT")+" : User Prompt (This isn't a stored value. Payloads with this variable will prompt for input.)\n")
+    console.log("- "+log.cyan("PROMPT")+" : User Prompt (This isn't a stored value. Payloads with this variable will prompt for input.)\n")
     prompt.message = "Press any key to return :"
     prompt.get([{
         name: 'helpMenu',

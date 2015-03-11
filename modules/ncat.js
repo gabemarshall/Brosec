@@ -5,7 +5,6 @@ var os = require('os');
 var question = require('./questions.js')
 var db = require('../db/db');
 var log = require('cli-color');
-var blue = log.blue
 var black = log.blackBright
 
 
