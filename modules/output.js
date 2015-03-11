@@ -14,7 +14,7 @@ exports.cmd = function(input){
 
     input = input.replace(/(\\)/gi,"")
     // Hack to include payloads with lots of forward slashes
-    input = input.replace(/(~)/gi,"\\")
+    input = input.replace(/(@@)/gi,"\\")
     
     if (input.match(/(\\)/gi)){
         console.log(log.yellow('\n'+input+'\n'))
@@ -23,7 +23,6 @@ exports.cmd = function(input){
     else {
         console.log(log.yellow('\n'+input+'\n'))
     }
-    
     input = input.replace(/(\$)/gi,"\\\$")
     input = input.replace(/(")/gi,"\\\"")
 
@@ -38,7 +37,7 @@ exports.cmd = function(input){
     else {
         exec("echo \""+input+"\" | clip", print);
     }
-	
+    
     console.log(log.green('Output copied to clipboard!'))
 }
 
@@ -56,6 +55,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
 
             if(typeof(cResult) === "string"){
                 payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, cResult)
+                payload = payload.replace(/(\\)/gi,"@@")
             } else {
                 tmenu()
                 return
