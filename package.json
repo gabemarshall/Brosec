@@ -4,21 +4,22 @@
   "description": "Brosec - Pentest fu for bros",
   "main": "bros.js",
   "repository": {
-  "type": "git",
-  "url": "git://github.com/gabemarshall/Brosec.git"
+    "type": "git",
+    "url": "git://github.com/gabemarshall/Brosec.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-  	"dirty":"*",
-  	"yargs":"*",
     "cli-color": "*",
-    "prompt":"*",
-    "mstring":"*",
-    "cli-table":"*",
-    "morgan":"*",
-    "express":"*" 
+    "cli-table": "*",
+    "dirty": "*",
+    "express": "*",
+    "kexec": "^1.2.0",
+    "morgan": "*",
+    "mstring": "*",
+    "prompt": "*",
+    "yargs": "*"
   },
   "author": "Gabe Marshall",
   "license": "ISC"
