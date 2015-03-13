@@ -69,8 +69,11 @@ function parseArgs(){
 			if (secondArgument && thirdArgument){
 				check.allInputChecks(firstArgument+" "+secondArgument+" "+thirdArgument, console.log, menu.mainMenu)
 			}
-			else {
+			else if (firstArgument.toUpperCase() === "HELP"){
 				check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu)
+			}
+			else {
+				check.allInputChecks(firstArgument, console.log, console.log)
 			}
 			
 		}

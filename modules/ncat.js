@@ -52,11 +52,6 @@ exports.file = function(callback, a1) {
 
     console.log(black('\n[*] Waiting to receive "'+filename+'"'))
     kexec(config.netcat+" -lnp "+port+" > "+filename+" -vv");
-    
-    
-
-    
-
 
 }
 

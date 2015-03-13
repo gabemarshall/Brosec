@@ -64,7 +64,7 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 		var thisConfigValue = input.toUpperCase()
 		
 		setTimeout(function(){
-			clearMenu()
+			//clearMenu()
 			currentMenu()
 			console.log("\n"+log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n")
 		},25)
