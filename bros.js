@@ -5,19 +5,12 @@ var log = require('cli-color');
 var db = require('./db/db');
 var menu = require('./modules/menu');
 var secondaryMenu = require("./modules/secondaryMenu");
+var check = require('./modules/inputChecks')
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
 var thirdArgument = argv._[2];
 
-try {
-	firstArgument = firstArgument.toUpperCase();
-	secondArgument = secondArgument.toUpperCase();
-	thirdArgument = thirdArgument.toUpperCase();
-}
-catch (err){
-
-}
 
 function getFirstArgValue(arg){
 	switch (arg) {
@@ -34,8 +27,6 @@ function getFirstArgValue(arg){
 			return secondaryMenu.webAttacks;
 		case 5:
 			return secondaryMenu.misc;
-		// case 6:
-		// 	return secondaryMenu.miscTools;
 	}
 }
 
@@ -72,6 +63,22 @@ function parseArgs(){
 			case 3:
 				secondaryMenu(splitInput[1], splitInput[2])
 		}
+	}
+	else if (typeof(firstArgument)==="string"){
+		if (firstArgument.toUpperCase() != "CONFIG"){
+			if (secondArgument && thirdArgument){
+				check.allInputChecks(firstArgument+" "+secondArgument+" "+thirdArgument, console.log, menu.mainMenu)
+			}
+			else {
+				check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu)
+			}
+			
+		}
+		else {
+			console.log(log.yellow("\n[*] Sorry, that isn't valid input from the command line"))
+			menu.mainMenu()
+		}
+		
 	}
 	else {
 		menu.mainMenu();
