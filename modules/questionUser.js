@@ -1,6 +1,7 @@
 var prompt = require('prompt');
+var web = require("./webserver.js")
 
-exports.ask = function(question, callback, noexit) {
+exports.ask = function(question, callback, type) {
 
     prompt.message = question + " :"
 
@@ -9,13 +10,28 @@ exports.ask = function(question, callback, noexit) {
         description: ":"
     }], function(err, result) {
         try {
-        	if (noexit){
-        		// In some payloads we don't want to exit the menu system
-        		callback(1)
+        	switch (type){
+        		case "noexit":
+        			callback(1);
+        			break;
+        		case "web":
+        			console.log("Debug web")
+					result._ = result._.toUpperCase()
+					if (result._ === "Y"){
+						var server = web.init(callback)
+					}
+					else {
+						callback(result._)
+					}
+					break;
+				case "ncat":
+					console.log("Debug netcat");
+					break;
+				default:
+					callback(result._);
+					break;
         	}
-        	else {
-        		callback(result._)
-        	}
+      
         } catch (err) {
             console.log("\nLater bro!")
         }

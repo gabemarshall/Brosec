@@ -65,7 +65,7 @@ exports.Init = function(returnToPrepare, msg, type){
     
     if (msg){
        
-        prompt.message = msg
+        prompt.message = msg+" :"
         prompt.get([{name: '_', description: ':'}], function(err, result){
             var a1 = result._
             prompt.message = "Should I start a netcat listener for you? (Y/n)"
