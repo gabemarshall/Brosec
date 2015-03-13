@@ -3,7 +3,6 @@ var kexec = require('kexec');
 var log = require('cli-color');
 var os = require('os');
 var prompt = require('prompt');
-var question = require('./questions.js');
 var db = require('../db/db');
 var log = require('cli-color');
 var black = log.blackBright;

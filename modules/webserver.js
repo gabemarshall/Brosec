@@ -1,7 +1,6 @@
 var express = require('express')
 var app = express()
 var morgan = require('morgan')
-var question = require('./questions.js')
 var db = require('../db/db');
 var log = require('cli-color');
 var blue = log.cyan
