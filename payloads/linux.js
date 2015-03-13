@@ -122,7 +122,7 @@ Load({
 		/etc/syslog.conf
 		/etc/chttp.conf
 		/etc/lighttpd.conf
-		/etc/cups/cupsd.confcda
+		/etc/cups/cupsd.conf
 		/etc/inetd.conf
 		/opt/lampp/etc/httpd.conf
 		/etc/samba/smb.conf
