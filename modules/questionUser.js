@@ -27,6 +27,8 @@ exports.ask = function(question, callback, type) {
 				case "ncat":
 					console.log("Debug netcat");
 					break;
+                case "multiple":
+                    console.log("Debug multiple");
 				default:
 					callback(result._);
 					break;

