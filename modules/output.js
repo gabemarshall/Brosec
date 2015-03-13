@@ -82,6 +82,6 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
 }
 
 function print(error, stdout, stderr) { 
-  sys.puts(stdout) 
+  console.log(stdout) 
 }
 

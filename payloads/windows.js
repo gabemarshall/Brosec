@@ -110,7 +110,7 @@ Load({
 
 // ################### WMIC ######################
 
-
+Load({ payload: "wmic qfe get hotfixid", desc: "Get Patch IDs", category: "WMIC"})
 
 // ############### Powershell ######################
 
