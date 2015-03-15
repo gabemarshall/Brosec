@@ -1,13 +1,13 @@
 var dirty = require('dirty');
-var config = require('../config.js')
+var settings = require('../settings.js')
 
 // By default, brosec stores its data file in /var/tmp
-// Change storage location by altering config.js
+// Change storage location by altering settings.js
 try {
-  var db = dirty(config.dbPath);  
+  var db = dirty(settings.dbPath);  
 }
 catch (err){
-  console.log("There was a problem initializing the bros. Check the config.js file to specify a valid storage location.")
+  console.log("There was a problem initializing the bros. Check the settings.js file to specify a valid storage location.")
 }
 
 var output = require('../modules/output')
