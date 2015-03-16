@@ -6,7 +6,7 @@ var prompt = require('prompt');
 var db = require('../db/db');
 var log = require('cli-color');
 var black = log.blackBright;
-var config = require('../config.js')
+var settings = require('../settings.js')
 
 var currentOS = os.type()
 
@@ -24,7 +24,7 @@ exports.shell = function(callback, a1) {
     }
     else {
         console.log('\n'+black('[*]')+' Initializing a netcat listener.. (ctrl c to stop)\n');
-        kexec(config.netcat+" -lnp "+port+" -vv");
+        kexec(settings.netcat+" -lnp "+port+" -vv");
 
     } 
 
@@ -51,7 +51,7 @@ exports.file = function(callback, a1) {
     var port = db.getConfig("LPORT")
 
     console.log(black('\n[*] Waiting to receive "'+filename+'"'))
-    kexec(config.netcat+" -lnp "+port+" > "+filename+" -vv");
+    kexec(settings.netcat+" -lnp "+port+" > "+filename+" -vv");
 
 }
 
