@@ -41,10 +41,10 @@ exports.cmd = function(input){
     console.log(log.green('Output copied to clipboard!'))
 }
 
-exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, tmenu){
+exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, callback, tmenu){
 
     if(callback){
-        callback(prepPayload, lhost, lport, rhost, rport, user)
+        callback(prepPayload, lhost, lport, rhost, rport, user, path)
     }
     else {
         prepPayload()
@@ -68,6 +68,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, callback, 
         payload = payload.replace(/((<(RHOST)\s*?.*?>))/gi, rhost)
         payload = payload.replace(/((<(RPORT)\s*?.*?>))/gi, rhost)
         payload = payload.replace(/((<(USER)\s*?.*?>))/gi, user)
+        payload = payload.replace(/((<(PATH)\s*?.*?>))/gi, path)
 
         payload = payload.replace(/(')/gi, "\\'")
         if(payload.match(/undefined/)){

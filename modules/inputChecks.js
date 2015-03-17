@@ -59,7 +59,7 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 		
 	}
 
-	else if (input.match(/(RPORT|RHOST|LPORT|LHOST|USER)/i)){
+	else if (input.match(/(RPORT|RHOST|LPORT|LHOST|USER|PATH)/i)){
 		
 		var thisConfigValue = input.toUpperCase()
 		
@@ -86,8 +86,9 @@ var ifUserWantsToExit = function(input, currentMenu, previousMenu){
 var ifUserSaysConfigItem = function(input, currentMenu, previousMenu){
 	var input = input.toUpperCase()
 
-	if (input.match(/(set LPORT|set LHOST|set RHOST|set RPORT|set USER)/) && input.length < 7){
+	if (input.match(/(set LPORT|set LHOST|set RHOST|set RPORT|set USER|set PATH)/)){
 		console.log("\n\n\n")
+		console.log("DEBUG!!")
 		console.log(log.green(input)+" => "+log.blackBright(db.getConfig(input))+"\n\n")
 		currentMenu()
 	}

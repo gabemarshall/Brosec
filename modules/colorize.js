@@ -8,6 +8,7 @@ exports.samples = function(sample){
     var doesSampleContainLocal = sample.match(/((<(LHOST)\s*?.*?>))/)
     var doesSampleContainLocalPort = sample.match(/((<(LPORT)\s*?.*?>))/)
     var doesSampleContainUser = sample.match(/((<(USER)\s*?.*?>))/)
+    var doesSampleContainPath = sample.match(/((<(PATH)\s*?.*?>))/)
 
     function addSomeColor(val, color){
         var temp = sample.split(val[0])
@@ -32,6 +33,9 @@ exports.samples = function(sample){
     }
     if (doesSampleContainLocalPort){
         sample = addSomeColor(doesSampleContainLocalPort, log.yellow)
+    }
+    if (doesSampleContainPath){
+        sample = addSomeColor(doesSampleContainPath, log.blackBright)
     }
 
 

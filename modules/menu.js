@@ -7,7 +7,7 @@ var output = require('./output')
 var check = require('./inputChecks')
 var colorize = require('./colorize.js')
 
-var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT", "SET USER"]
+var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT", "SET USER", "SET PATH"]
 
 var secondaryMenu = require("./secondaryMenu")
 
@@ -17,6 +17,7 @@ var LPORT
 var RHOST
 var RPORT
 var USER
+var PATH
 
 var debug = function() {}
 
@@ -123,7 +124,8 @@ exports.helpMenu = function(menuCallback) {
     console.log("- "+log.yellow("LPORT")+" : Local Port")
     console.log("- "+log.red("RHOST")+" : Remote IP or hostname")
     console.log("- "+log.red("RPORT")+" : Remote Port")
-    console.log("- "+log.blackBright("USER")+" : Username (only used in a few payloads)\n")
+    console.log("- "+log.blackBright("PATH")+" : Local or Remote Path")
+    console.log("- "+log.blackBright("USER")+" : Username \n")
     console.log("- "+log.cyan("PROMPT")+" : User Prompt (This isn't a stored value. Payloads with this variable will prompt for input.)\n")
     prompt.message = "Press enter to return :"
     prompt.get([{
@@ -239,6 +241,8 @@ exports.showAvailablePayloadTitles = showAvailablePayloadTitles
 
 
 function printConfig(returnMenu) {
+
+
     getConfig()
     clearMenu()
     if (returnMenu) {
@@ -246,12 +250,18 @@ function printConfig(returnMenu) {
         console.log(log.blackBright("\t=====================\n"))
     }
 
+    
+    if(!LHOST){LHOST="..."};if(!LPORT){LPORT="..."};if(!RHOST){RHOST="..."}if(!RPORT){RPORT="..."}
+    if(!PATH){PATH="..."}if(!USER){USER="..."}
+
+
     console.log(log.yellow("LHOST: ") + LHOST)
     console.log(log.yellow("LPORT: ") + LPORT)
     console.log("")
     console.log(log.red("RHOST: ") + RHOST)
     console.log(log.red("RPORT: ") + RPORT)
     console.log("")
+    console.log(log.blackBright("PATH: ") + PATH)
     console.log(log.blackBright("USER: ") + USER)
     console.log("")
 
@@ -332,6 +342,9 @@ function parseConfigPrompt(input, bool) {
             } else if (detectedOption.toUpperCase() === "SET USER") {
                 setNewConfig("USER", detectedOptionValue)
                 saveSuccess("USER", detectedOptionValue)
+            } else if (detectedOption.toUpperCase() === "SET PATH") {
+                setNewConfig("PATH", detectedOptionValue)
+                saveSuccess("PATH", detectedOptionValue)
             }
 
         }
@@ -356,6 +369,7 @@ function getConfig() {
     RPORT = db.getConfig("RPORT")
 
     USER = db.getConfig("USER")
+    PATH = db.getConfig("PATH")
 
     var configObj = {}
 
@@ -364,10 +378,11 @@ function getConfig() {
     configObj.RHOST = RHOST
     configObj.RPORT = RPORT
     configObj.USER = USER
+    configObj.PATH = PATH
 
     return configObj
 
-    if (!LHOST && !LPORT && !RHOST && !RPORT && !USER) {
+    if (!LHOST && !LPORT && !RHOST && !RPORT && !USER && !PATH) {
         console.log(log.red("\nWarning: No config found. If this is your first time, enter 'help' for usage info"))
     }
 }

@@ -4,7 +4,7 @@ var prompt = require('prompt');
 var pay = require('../payloads/')
 var output = require('./output')
 var check = require('./inputChecks')
-var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT, SET USER"]
+var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT, SET USER", "SET PATH"]
 var menu = require('./menu');
 
 var payloads
@@ -14,7 +14,7 @@ var LPORT
 var RHOST
 var RPORT
 var USER
-
+var PATH
 
 
 // Menu Generator
@@ -131,7 +131,7 @@ var Menu = function(title, menuOptions, payloadType) {
                             if (!inputIsCommand) {
                                 choice = parseInt(result.subIGMenu) - 1
                                 if (choice >= 0 && choice <= payloads.length) {
-                                   output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[choice].callback,tertiaryMenu)
+                                   output.prepare(payloads[choice].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, config.PATH, payloads[choice].callback,tertiaryMenu)
                                 } else {
                                     setTimeout(function(){
                                         console.log(log.red("[*] Invalid input, please try again.\n"))
@@ -155,7 +155,7 @@ var Menu = function(title, menuOptions, payloadType) {
                 payloads = payloadType.getAll(value)
                 
                 try {
-                    output.prepare(payloads[thirdArg-1].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, payloads[thirdArg-1].callback,tertiaryMenu)
+                    output.prepare(payloads[thirdArg-1].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, config.PATH, payloads[thirdArg-1].callback,tertiaryMenu)
                 }
                 catch (err){
                     setTimeout(function(){

