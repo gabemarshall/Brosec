@@ -35,7 +35,7 @@ function mainMenu(callback) {
     console.log(log.green("\t### Welcome to Brosec ###"))
     console.log(log.green("\t#########################"))
     console.log(log.yellow("\nPlease choose one of the following menu options."))
-    console.log(log.blackBright("\nAt any time enter 'help' for usage information."))
+    console.log(log.blackBright("\nAt any time enter ")+log.blackBright.inverse("help")+log.blackBright(" for usage information."))
     console.log("\n1. Information Gathering\t4. Web")
     console.log("2. Linux\t\t\t5. Misc")
     console.log("3. Windows\t\t\t")

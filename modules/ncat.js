@@ -7,6 +7,7 @@ var db = require('../db/db');
 var log = require('cli-color');
 var black = log.blackBright;
 var settings = require('../settings.js')
+var lulz = require('cli-color/throbber');
 
 var currentOS = os.type()
 
@@ -23,8 +24,20 @@ exports.shell = function(callback, a1) {
         console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
     }
     else {
-        console.log('\n'+black('[*]')+' Initializing a netcat listener.. (ctrl c to stop)\n');
-        kexec(settings.netcat+" -lnp "+port+" -vv");
+
+        console.log(log.blackBright("\n[*] Initializing hacking sequence (aka starting a netcat listener)\n"))
+
+        count = 0
+        var hacking = lulz(function (str) {
+          process.stdout.write(str);
+          count++
+          if (count === 125){
+            hacking.stop()
+            kexec(settings.netcat+" -lnp "+port+" -vv");
+          }
+        }, 10);
+
+        hacking.start();
 
     } 
 
