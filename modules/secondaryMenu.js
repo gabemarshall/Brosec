@@ -179,7 +179,7 @@ var infoGMenu = new Menu("--[ Information Gathering ]--", ["DNS", "Port Scanning
 var webMenu = new Menu("--[ Web ]--",["XML"], pay.web)
 var miscMenu = new Menu('--[ Misc ]--', ["Reverse Shells", "Exfiltration"], pay.misc)
 var linuxMenu = new Menu('--[ Linux ]--', ["System Info", "File System", "Networking", "Stealth"], pay.linux)
-var windowsMenu = new Menu('--[ Windows ]--', ["System Info", "File System", "Networking", "WMIC", "Powershell"], pay.windows)
+var windowsMenu = new Menu('--[ Windows ]--', ["System Info", "File System", "Networking", "WMIC", "Powershell", "Windows Registry"], pay.windows)
 
 menus.infoGathering = infoGMenu.grabSecondaryMenu
 menus.webAttacks = webMenu.grabSecondaryMenu
