@@ -3,10 +3,12 @@ var app = express()
 var morgan = require('morgan')
 var db = require('../db/db');
 var log = require('cli-color');
+var path = require('path');
 var blue = log.cyan
 var black = log.blackBright
 
 app.use(morgan('combined'))
+app.use(express.static(__dirname + '/webpub'));
 
 app.get('/', function (req, res) {
   res.send('Come at me bro!')
