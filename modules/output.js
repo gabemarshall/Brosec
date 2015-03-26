@@ -50,11 +50,11 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
         prepPayload()
     }
 
-    function prepPayload(cResult){
-        if(cResult){
+    function prepPayload(userResponse){
+        if(userResponse){
 
-            if(typeof(cResult) === "string"){
-                payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, cResult)
+            if(typeof(userResponse) === "string"){
+                payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, userResponse)
                 payload = payload.replace(/(\\)/gi,"@@")
             } else {
                 tmenu()

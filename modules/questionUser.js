@@ -1,5 +1,5 @@
 var prompt = require('prompt');
-var web = require("./webserver.js")
+var web = require("./webserver/webserver.js")
 
 exports.ask = function(question, callback, type) {
 
@@ -15,7 +15,7 @@ exports.ask = function(question, callback, type) {
         			callback(1);
         			break;
         		case "web":
-        			console.log("Debug web")
+        			
 					result._ = result._.toUpperCase()
 					if (result._ === "Y"){
 						var server = web.init(callback)
@@ -25,10 +25,10 @@ exports.ask = function(question, callback, type) {
 					}
 					break;
 				case "ncat":
-					console.log("Debug netcat");
+					
 					break;
                 case "multiple":
-                    console.log("Debug multiple");
+                    
 				default:
 					callback(result._);
 					break;

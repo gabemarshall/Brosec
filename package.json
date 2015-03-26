@@ -14,11 +14,13 @@
     "cli-color": "*",
     "cli-table": "*",
     "dirty": "*",
+    "ejs": "^2.3.1",
     "express": "*",
     "kexec": "^1.2.0",
     "morgan": "*",
     "mstring": "*",
     "prompt": "*",
+    "underscore": "^1.8.2",
     "yargs": "*"
   },
   "author": "Gabe Marshall",
