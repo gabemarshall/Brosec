@@ -1,15 +1,14 @@
-var sys = require('sys');
-var kexec = require('kexec');
-var log = require('cli-color');
-var os = require('os');
-var prompt = require('prompt');
-var db = require('../db/db');
-var log = require('cli-color');
-var black = log.blackBright;
-var settings = require('../settings.js')
-var lulz = require('cli-color/throbber');
-
-var currentOS = os.type()
+var sys = require('sys'),
+    kexec = require('kexec'),
+    log = require('cli-color'),
+    os = require('os'),
+    prompt = require('prompt'),
+    db = require('../db/db'),
+    log = require('cli-color'),
+    black = log.blackBright,
+    settings = require('../settings.js'),
+    lulz = require('cli-color/throbber'),
+    currentOS = os.type()
 
 
 exports.shell = function(callback, a1) {
@@ -25,13 +24,12 @@ exports.shell = function(callback, a1) {
     }
     else {
 
-        console.log(log.blackBright("\n[*] Initializing hacking sequence (aka starting a netcat listener)\n"))
-
+        console.log(log.blackBright("\n[*] Initializing hacking sequence\n"))
         count = 0
         var hacking = lulz(function (str) {
           process.stdout.write(str);
           count++
-          if (count === 125){
+          if (count === 75){
             hacking.stop()
             kexec(settings.netcat+" -lnp "+port+" -vv");
           }
