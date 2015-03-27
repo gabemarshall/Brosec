@@ -60,7 +60,7 @@ Load({
 	category: "XML",
 	callback: function(returnToPrepare){
 		
-	  question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare)			
+	  question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare, "web")			
 		
 	}
 })

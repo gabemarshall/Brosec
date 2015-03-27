@@ -97,9 +97,7 @@ exports.Init = function(returnToPrepare, msg, type){
         })  
     }
     else {
-
         prompt.message = "Should I start a netcat listener for you? (Y/n)"
-
         prompt.get([{name: '_', description: ':'}], function(err, result){
             result._ = result._.toUpperCase()
             if (result._ === "Y"){

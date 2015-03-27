@@ -9,31 +9,38 @@ exports.ask = function(question, callback, type) {
         name: '_',
         description: ":"
     }], function(err, result) {
+
+        var returnValue = result._
+
         try {
-        	switch (type){
-        		case "noexit":
-        			callback(1);
-        			break;
-        		case "web":
-        			
-					result._ = result._.toUpperCase()
-					if (result._ === "Y"){
-						var server = web.init(callback)
-					}
-					else {
-						callback(result._)
-					}
-					break;
-				case "ncat":
-					
-					break;
-                case "multiple":
+            switch (type) {
+                case "noexit":
+                    callback(1);
+                    break;
+                case "web":
                     
-				default:
-					callback(result._);
-					break;
-        	}
-      
+                    prompt.message = "Should I fire up a web server for you? (Y/n) :"
+                    prompt.get([{
+                        name: '_',
+                        description: ":"
+                    }], function(err, result) {
+
+                        result._ = result._.toUpperCase()
+                        if (result._ === "Y") {
+                            var server = web.init()
+                            callback(returnValue)
+                        } else {
+                            callback(returnValue)
+                        }
+                    })
+
+                    break;
+                    
+                default:
+                    callback(result._);
+                    break;
+            }
+
         } catch (err) {
             console.log("\nLater bro!")
         }
