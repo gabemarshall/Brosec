@@ -28,6 +28,7 @@ exports.some = function(question, callback, type) {
     
     var ask = function(q) {
         if (typeof q === "string") {
+
             prompt.message = q;
             prompt.get([{
                 name: '_',
@@ -43,6 +44,7 @@ exports.some = function(question, callback, type) {
 
             })
         } else {
+            temp += 1;
             q(callback);
         }
 
@@ -59,8 +61,8 @@ exports.some = function(question, callback, type) {
                 init += 1;
             } else {
                 clearInterval(checkStatus);
-                callback(finalAnswer);
+                //callback(finalAnswer);
             }
         }
-    }, 25)
+    }, 500)
 }

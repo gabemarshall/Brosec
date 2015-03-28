@@ -37,8 +37,8 @@ exports.cmd = function(input){
     else {
         exec("echo \""+input+"\" | clip", print);
     }
-    
-    console.log(log.green('Output copied to clipboard!'))
+
+    console.log(log.green('Output copied to clipboard!'));
 }
 
 exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, callback, tmenu){
