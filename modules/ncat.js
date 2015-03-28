@@ -7,7 +7,6 @@ var sys = require('sys'),
     log = require('cli-color'),
     black = log.blackBright,
     settings = require('../settings.js'),
-    lulz = require('cli-color/throbber'),
     currentOS = os.type()
 
 
@@ -19,23 +18,12 @@ exports.shell = function(callback, a1) {
 
     // kexec currently does not support windows
     // if user is using windows, send them a nice error msg :/
-    if (currentOS != 'Darwin' && currentOS != 'Linux'){
+    if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
         console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
-    }
-    else {
+    } else {
 
         console.log(log.blackBright("\n[*] Initializing hacking sequence\n"))
-        count = 0
-        var hacking = lulz(function (str) {
-          process.stdout.write(str);
-          count++
-          if (count === 75){
-            hacking.stop()
-            kexec(settings.netcat+" -lnp "+port+" -vv");
-          }
-        }, 10);
-
-        hacking.start();
+        kexec(settings.netcat+" -lnp "+port+" -vv");
 
     } 
 
@@ -52,9 +40,7 @@ exports.file = function(callback, a1) {
     try {
 	    filename = a1.split("/")
 	    filename = filename.pop()	
-    }
-    catch (err)
-    {
+    } catch (err) {
     	// Do nothing
     }
 

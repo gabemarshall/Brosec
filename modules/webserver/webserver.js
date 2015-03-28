@@ -25,7 +25,6 @@ app.get('/send.dtd', function(req, res){
 })
 
 exports.init = function(callback, a1){
-	//callback(a1)
 
 	lhost = db.getConfig("LHOST");
 	lport = db.getConfig("LPORT");

