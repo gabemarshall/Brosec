@@ -21,8 +21,7 @@ var Load = function(obj){
 // ############### System Info ######################
 
 Load({
-	payload: "nbtstat -A $$RHOST$$",
-	sample: "nbtstat -A "+yellow("<ip address>")+"        ",
+	payload: "nbtstat -A <RHOST>",
 	desc: "Get hostname for <ip address>",
 	category: "System Info"
 })
@@ -155,8 +154,7 @@ Load({ payload: "route -n", desc: "Find the ip of your gateway", category: "Netw
 Load({ payload: "route -n get default", desc: "Find the ip of your gateway (MacOS)", category: "Networking"})
 
 Load({
-	payload: "smb://$$RHOST$$/$$PROMPT$$",
-	sample: "smb://"+yellow("<ip address>/")+blue("share"),
+	payload: "smb://<RHOST>/<PROMPT (share)>",
 	desc: "Mount Windows share",
 	category: "Networking",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
