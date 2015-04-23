@@ -41,7 +41,7 @@ Optional: callback (used for prompt variable)
 
 Load({
 	title: "Retrieve DNS server(s) of a domain", 
-	payload: 'host -t ns <RHOST (dns server)> | cut -d " " -f4',
+	payload: 'host -t ns <RHOST (domain)> | cut -d " " -f4',
 	category: "DNS"
 })
 
