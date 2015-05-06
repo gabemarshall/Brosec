@@ -10,6 +10,12 @@ var Load = function(obj){
 	arrayWin.push(obj)
 }
 
+// Question helper method
+var questions = [];
+var question = function(val){
+	questions.push(val);
+}
+
 /* 
 ###########################################
 ############### Payloads ##################
@@ -68,7 +74,7 @@ Load({
 	title: "Windows Common Files",
 	payload: "A quick look at common windows files",
 	category: "File System",
-	callback: function(returnToPrepare){
+	callback: function(bro){
 		var m = M(function(){
 		/***
 		
@@ -87,9 +93,11 @@ Load({
 		
 		console.log(m)
 	
-		// Pass noexit as the third arguement if you dont want to exit 
-		// Since this 'payload' is a list of files, we don't need to copy it to the pasteboard and exit
-		question.ask("Press enter to continue", returnToPrepare, "noexit")	
+		prompt.message = "Press enter to continue"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(1)	
+		})
+		
 
 	}
 })
