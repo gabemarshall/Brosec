@@ -14,7 +14,7 @@ var Load = function(obj){
 	arrayInfo.push(obj)
 }
 
-/* 
+/*
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -31,22 +31,22 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-	
+
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>	 
+	ex: foobar <RHOST (hostname)> <RPORT>
 
 
 */
 // ############### DNS ######################
 
 Load({
-	title: "Retrieve DNS server(s) of a domain", 
+	title: "Retrieve DNS server(s) of a domain",
 	payload: 'host -t ns <RHOST (domain)> | cut -d " " -f4',
 	category: "DNS"
 })
 
 Load({
-	title: "Reverse DNS Lookup of an IP Address", 
+	title: "Reverse DNS Lookup of an IP Address",
 	payload: "dig +short -x <RHOST (dns server)>",
 	category: "DNS"
 })
@@ -59,7 +59,7 @@ Load({
 		prompt.message = "What domain would you like to use? :"
 		prompt.get([{name: '_', description: ':'}], function(err, result){
 			returnToPrepare(result._)
-		})	
+		})
 
 	}
 
@@ -69,19 +69,19 @@ Load({
 // ############### Port Scanning Payloads ######################
 
 Load({
-	title: "Nmap Verbose Version Scan", 
+	title: "Nmap Verbose Version Scan",
 	payload: "nmap -v -sS -sV --version-all -A <RHOST>",
 	category: "Port Scanning"
 })
 
 Load({
-	title: "Netcat Port Scan", 
+	title: "Netcat Port Scan",
 	payload: "nc -v -z -w2 <RHOST> 1-65535",
 	category: "Port Scanning"
 })
 
 Load({
-	title: "Send TCP SYN packets every 5 seconds to a specific port", 
+	title: "Send TCP SYN packets every 5 seconds to a specific port",
 	payload: "hping <RHOST (hostname)> -S -V -p <RPORT> -i 5",
 	category: "Port Scanning",
 	callback: function(returnToPrepare){
@@ -96,7 +96,7 @@ Load({
 // ############### SMB ######################
 
 Load({
-	title: "smbclient basic usage", 
+	title: "smbclient basic usage",
 	payload: "smbclient -U <USER> \\\\<RHOST>\\<PROMPT (file share)>",
 	category: "SMB",
 	callback: function(returnToPrepare){
@@ -108,7 +108,7 @@ Load({
 })
 
 Load({
-	title: "nbtscan basic usage", 
+	title: "nbtscan basic usage",
 	payload: "nbtscan -r <RHOST (network range)>",
 	category: "SMB",
 	callback: function(returnToPrepare){
@@ -120,25 +120,25 @@ Load({
 })
 
 Load({
-	title: "enum4linux basic usage", 
+	title: "enum4linux basic usage",
 	payload: "enum4linux -a <RHOST (hostname)>",
 	category: "SMB"
 })
 
 Load({
-	title: "SMB user enum nmap script", 
-	payload: "nmap -sS -sU --script smb-enum-users -p U:127 T:139,445 <RHOST (hostname)>",
+	title: "SMB user enum nmap script",
+	payload: "nmap -sS -sU --script smb-enum-users -p U:127,T:139,445 <RHOST (hostname)>",
 	category: "SMB"
 })
 
 Load({
-	title: "SMB os discovery nmap script", 
+	title: "SMB os discovery nmap script",
 	payload: "nmap -v -p 139, 445 --script=smb-os-discovery <RHOST hostname>",
 	category: "SMB"
 })
 
 Load({
-	title: "Netbios server vulnerability check", 
+	title: "Netbios server vulnerability check",
 	payload: "nmap --script-args=unsafe=1 --script smb-check-vulns.nse -p 445 <RHOST (hostname)>",
 	category: "SMB"
 })
@@ -146,7 +146,7 @@ Load({
 // ############### SNMP ######################
 
 Load({
-	title: "SNMP Enumeration using Nmap and a list of community strings", 
+	title: "SNMP Enumeration using Nmap and a list of community strings",
 	payload: "nmap -sU --open -p 161 <RHOST (hostname)> <PROMPT (file path)>",
 	category: "SNMP",
 	callback: function(returnToPrepare){
@@ -158,7 +158,7 @@ Load({
 })
 
 Load({
-	title: "Enumerating the entire MIB Tree w/ snmpwalk", 
+	title: "Enumerating the entire MIB Tree w/ snmpwalk",
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST>",
 	category: "SNMP",
 	callback: function(returnToPrepare){
@@ -170,7 +170,7 @@ Load({
 })
 
 Load({
-	title: "Enumerating Windows Users w/ snmpwalk", 
+	title: "Enumerating Windows Users w/ snmpwalk",
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.4.1.77.1.2.25",
 	category: "SNMP",
 	callback: function(returnToPrepare){
@@ -182,7 +182,7 @@ Load({
 })
 
 Load({
-	title: "Enumerating Windows Processes w/ snmpwalk", 
+	title: "Enumerating Windows Processes w/ snmpwalk",
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.25.4.2.1.2",
 	category: "SNMP",
 	callback: function(returnToPrepare){
@@ -194,7 +194,7 @@ Load({
 })
 
 Load({
-	title: "Enumerating Open TCP Ports w/ snmpwalk", 
+	title: "Enumerating Open TCP Ports w/ snmpwalk",
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST> 1.3.6.1.2.1.6.13.1.3",
 	category: "SNMP",
 	callback: function(returnToPrepare){
@@ -206,7 +206,7 @@ Load({
 })
 
 Load({
-	title: "Enumerating Installed Software w/ snmpwalk", 
+	title: "Enumerating Installed Software w/ snmpwalk",
 	payload: "snmpwalk -c <PROMPT (community string)> -v1 <RHOST hostname or ip> 1.3.6.1.2.1.25.6.3.1.2",
 	category: "SNMP",
 	callback: function(returnToPrepare){
@@ -220,7 +220,7 @@ Load({
 
 
 
-/* 
+/*
 ######################################################
 ############### End of Payloads ######################
 ######################################################
@@ -249,7 +249,7 @@ module.exports = {
 			else {
 				unique[arrayInfo[i].category] = true;
 				uniqueCategories.push(arrayInfo[i].category)
-			} 
+			}
 		return uniqueCategories
 		}
 	}
