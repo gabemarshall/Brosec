@@ -53,7 +53,13 @@ var Menu = function(title, menuOptions, payloadType) {
                 }], function(err, result) {
 
                     try {
-                        result.IGMenu = result.IGMenu.toUpperCase();
+
+                        // Check if input is a valid number, this can probably be removed at some point
+                        // TODO: Investigate why input needed to be up cased originally.
+
+                        if(!isNaN(parseInt(result.IGMenu || 0))){
+                            result.IGMenu = result.IGMenu.toUpperCase();
+                        }
 
                         // Check if result contains valid commands
                         var inputIsCommand = check.allInputChecks(result.IGMenu, secondaryMenu, menu.mainMenu)
@@ -121,7 +127,13 @@ var Menu = function(title, menuOptions, payloadType) {
                     }], function(err, result) {
 
                         try {
-                            result.subIGMenu = result.subIGMenu.toUpperCase();
+
+                            // Check if input is a valid number, this can probably be removed at some point
+                            // TODO: Investigate why input needed to be up cased originally.
+
+                            if(!isNaN(parseInt(result.IGMenu || 0))){
+                                result.subIGMenu = result.subIGMenu.toUpperCase();
+                            }
 
                             var inputIsCommand = check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
                             

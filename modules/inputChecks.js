@@ -38,9 +38,6 @@ var ifUserAccessConfig = function(input, currentMenu, previousMenu){
 	if (input.match(/(set)/ig)){
 		menu.parseConfigPrompt(input, false)
 
-		// Ugly hacks ftw!
-		
-		//setTimeout(function(){menu.printConfig(currentMenu)}, 25)
 		setTimeout(function(){currentMenu()}, 25)
 		return true
 		
@@ -88,7 +85,6 @@ var ifUserSaysConfigItem = function(input, currentMenu, previousMenu){
 
 	if (input.match(/(set LPORT|set LHOST|set RHOST|set RPORT|set USER|set PATH)/)){
 		console.log("\n\n\n")
-		console.log("DEBUG!!")
 		console.log(log.green(input)+" => "+log.blackBright(db.getConfig(input))+"\n\n")
 		currentMenu()
 	}

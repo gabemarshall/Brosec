@@ -97,7 +97,7 @@ Load({
 
 Load({
 	title: "smbclient basic usage",
-	payload: "smbclient -U <USER> \\\\<RHOST>\\<PROMPT (file share)>",
+	payload: "smbclient -U <USER> \\\\\\\\<RHOST>\\\\<PROMPT (file share)>",
 	category: "SMB",
 	callback: function(returnToPrepare){
 		prompt.message = "What network share would you like to connect to? :"
@@ -110,13 +110,7 @@ Load({
 Load({
 	title: "nbtscan basic usage",
 	payload: "nbtscan -r <RHOST (network range)>",
-	category: "SMB",
-	callback: function(returnToPrepare){
-		prompt.message = "What network range would you like to scan? (Ex: 192.168.1.0/24) :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})
-	}
+	category: "SMB"
 })
 
 Load({
