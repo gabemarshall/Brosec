@@ -29,10 +29,10 @@ exports.cmd = function(input){
     var currentOS = os.type()
 
     if (currentOS === "Darwin"){
-       exec("printf \""+input+"\" | pbcopy", print); 
+       exec("printf \"%s\" \""+input+"\"| pbcopy", print); 
     }
     else if (currentOS === "Linux"){
-        exec("printf \""+input+"\" | xclip -selection clipboard", print);
+        exec("printf \"%s\" \""+input+"\"| xclip -selection clipboard", print);
     }
     else {
         exec("echo \""+input+"\" | clip", print);
