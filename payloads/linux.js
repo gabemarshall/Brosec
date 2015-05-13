@@ -1,12 +1,13 @@
-var prompt = require('prompt');
-var log = require('cli-color');
-var options = log.yellow
-var yellow = log.yellow
-var blue = log.cyan
-var black = log.blackBright
-var green = log.green
-var red = log.red
-var M = require('mstring')
+var prompt = require('prompt'),
+log = require('cli-color'),
+options = log.yellow,
+yellow = log.yellow,
+blue = log.cyan,
+black = log.blackBright,
+green = log.green,
+red = log.red,
+ask = require('../modules/questionUser'),
+M = require('mstring')
 
 // Payload Array
 arrayLinux = []
@@ -14,6 +15,12 @@ arrayLinux = []
 // Load payload function
 var Load = function(obj){
 	arrayLinux.push(obj)
+}
+
+// Question helper method
+var questions = [];
+var question = function(val){
+	questions.push(val);
 }
 
 // title, description, payload, category, and callback (optional: used for additional options if needed)
@@ -67,7 +74,15 @@ Load({ payload: "ps -ef", desc: "Process listing", category: "System Info"})
 // Linux File Commands pg 6
 Load({ payload: "diff file1 file2", desc: "Compare two files", category: "File System"})
 Load({ payload: "strings -n 5", desc: "Set minimum string length", category: "File System"})
-Load({ payload: "ps -ef", desc: "Process listing", category: "File System"})
+Load({
+	title: "Find files and grep results",
+	payload: "find . -type f -exec grep -IHin '<PROMPT (search string)>' {} +",
+	callback: function(bro){
+		question("What search term would you like to use?");
+		ask.some(questions, bro);
+	},
+	category: "File System"
+})
 
 // Linux File System Structure pg 7
 Load({
