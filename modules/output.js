@@ -12,13 +12,13 @@ var warn = function(){
 
 exports.cmd = function(input){
 
-    input = input.replace(/(\\)/gi,"")
+    //input = input.replace(/(\\)/gi,"")
     // Hack to include payloads with lots of forward slashes
-    input = input.replace(/(@@)/gi,"\\")
+    // input = input.replace(/(@@)/gi,"\\")
     
     if (input.match(/(\\)/gi)){
         console.log(log.yellow('\n'+input+'\n'))
-        input = input.replace(/(\\)/gi,"\\\\\\\\")
+        input = input.replace(/(\\)/gi,"\\\\")
     }
     else {
         console.log(log.yellow('\n'+input+'\n'))
@@ -55,7 +55,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
 
             if(typeof(userResponse) === "string"){
                 payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, userResponse)
-                payload = payload.replace(/(\\)/gi,"@@")
+                //payload = payload.replace(/(\\)/gi,"@@")
             } else {
                 tmenu()
                 return

