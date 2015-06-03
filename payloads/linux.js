@@ -27,45 +27,21 @@ var question = function(val){
 
 // ############### System Info ######################
 
-Load({
-	payload: "nbtstat -A <RHOST>",
-	desc: "Get hostname for <ip address>",
-	category: "System Info"
-})
-
-Load({
-	payload: "id",
-	desc: "Get current username",
-	category: "System Info"
-})
-
-Load({
-	payload: "w",
-	desc: "Logged on users",
-	category: "System Info"
-})
-
-Load({
-	payload: "who -a",
-	desc: "Basic info about current users",
-	category: "System Info"
-})
-
-Load({ payload: "last -a", desc: "Basic info about current users", category: "System Info"})
+Load({ payload: "nbtstat -A <RHOST>", desc: "Get hostname for <ip address>", category: "System Info"})
+Load({ payload: "id", desc: "Get current username", category: "System Info"})
+Load({ payload: "who -a", desc: "Info about currently logged on users", category: "System Info"})
+Load({ payload: "w", desc: "Info about currently logged on users including their active processes", category: "System Info"})
+Load({ payload: "last -a", desc: "Basic info about recently logged on users", category: "System Info"})
 Load({ payload: "ps -ef", desc: "Process listing", category: "System Info"})
 Load({ payload: "df -h", desc: "Disk usage (free)", category: "System Info"})
-
 Load({ payload: "uname -a", desc: "Kernel version/CPU", category: "System Info"})
 Load({ payload: "cat /etc/issue", desc: "Show OS Info", category: "System Info"})
 Load({ payload: "cat /etc/*release*", desc: "Show OS version info", category: "System Info"})
 Load({ payload: "cat /proc/version", desc: "Show kernel info", category: "System Info"})
-
 Load({ payload: "rpm --query -all", desc: "Show installed packages (Redhat)", category: "System Info"})
 Load({ payload: "rpm -vih *.rpm", desc: "Install RPM package (-e remove)", category: "System Info"})
 Load({ payload: "dpkg -get-selections", desc: "Show installed packages (Ubuntu)", category: "System Info"})
 Load({ payload: "dpkg -I *.deb", desc: "Install DEB package (-r remove)", category: "System Info"})
-
-
 Load({ payload: "ps -ef", desc: "Process listing", category: "System Info"})
 
 
