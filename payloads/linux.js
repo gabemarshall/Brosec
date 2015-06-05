@@ -1,13 +1,6 @@
 var prompt = require('prompt'),
-log = require('cli-color'),
-options = log.yellow,
-yellow = log.yellow,
-blue = log.cyan,
-black = log.blackBright,
-green = log.green,
-red = log.red,
-ask = require('../modules/questionUser'),
-M = require('mstring')
+	ask = require('../modules/questionUser'),
+	M = require('mstring');
 
 // Payload Array
 arrayLinux = []
@@ -23,7 +16,39 @@ var question = function(val){
 	questions.push(val);
 }
 
-// title, description, payload, category, and callback (optional: used for additional options if needed)
+
+/* 
+###########################################
+############### Payloads ##################
+###########################################
+
+
+---[Payload Parameters]---
+
+Required: title, payload, and category
+Optional: callback (used for prompt variable)
+	
+	Ex:
+
+	callback: function(bro){
+		question.ask("Do you even ...?") // Ask the user something, return value will be entered as PROMPT value
+		question.ask(ask.http) // Ask user if they want to start a webserver after the payload is printed
+	}
+
+
+---[Variable Formatting]---
+
+* If variables aren't added properly, they will not work
+* Variables can include instructions if needed.
+* Instructions should be kept in parenthesis
+	
+	ex: foobar <RHOST> <LHOST> <LPORT>
+	ex: foobar <RHOST (hostname)> <RPORT>	 
+
+
+*/
+
+
 
 // ############### System Info ######################
 
@@ -166,8 +191,11 @@ Load({ payload: "touch ~/.bash_history", desc: "Clear bash history", category: "
 Load({ payload: "rm -rf ~/.bash_history && ln -s ~/.bash_history /dev/null", desc:"Permanently remove bash history", category:"Stealth"})
 
 
-var unique = []
-var uniqueCategories = []
+/*
+######################################################
+############### End of Payloads ######################
+######################################################
+*/
 
 module.exports = {
 	values: arrayLinux,
@@ -179,17 +207,5 @@ module.exports = {
 			}
 		}
 		return tempArray
-	},
-	getCategories: function(){
-		for (i=0;i<arrayLinux.length;i++){
-			if(unique[arrayLinux[i].category]){
-
-			}
-			else {
-				unique[arrayLinux[i].category] = true;
-				uniqueCategories.push(arrayLinux[i].category)
-			} 
-		return uniqueCategories
-		}
 	}
 }

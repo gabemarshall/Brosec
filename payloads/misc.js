@@ -1,18 +1,6 @@
-var prompt = require('prompt');
-var log = require('cli-color');
-var options = log.yellow
-var yellow = log.yellow
-var blue = log.cyan
-var black = log.blackBright
-var green = log.green
-var red = log.red
-var question = require('../modules/questionUser');
-
-var ncat = require("../modules/ncat.js")
-
-// Todo (needs factoring)
-
-
+var prompt = require('prompt'),
+	question = require('../modules/questionUser'),
+	ncat = require("../modules/ncat.js");
 
 // Payload Array
 arrayMisc = []
@@ -107,9 +95,11 @@ Load({
 	}
 })
 
-
-var unique = []
-var uniqueCategories = []
+/*
+######################################################
+############### End of Payloads ######################
+######################################################
+*/
 
 module.exports = {
 	values: arrayInfo,
@@ -121,17 +111,5 @@ module.exports = {
 			}
 		}
 		return tempArray
-	},
-	getCategories: function(){
-		for (i=0;i<arrayMisc.length;i++){
-			if(unique[arrayMisc[i].category]){
-
-			}
-			else {
-				unique[arrayMisc[i].category] = true;
-				uniqueCategories.push(arrayMisc[i].category)
-			} 
-		return uniqueCategories
-		}
 	}
 }

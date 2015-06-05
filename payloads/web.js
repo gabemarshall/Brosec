@@ -1,11 +1,5 @@
-var log = require('cli-color'),
-	options = log.yellow,
-	yellow = log.yellow,
-	blue = log.cyan,
-	black = log.blackBright,
-	green = log.green,
-	red = log.red,
-	M = require('mstring'),
+
+var M = require('mstring'),
 	ask = require('../modules/questionUser'),
 	web = require("../modules/webserver/webserver.js");
 
@@ -36,8 +30,8 @@ Optional: callback (used for prompt variable)
 	Ex:
 
 	callback: function(bro){
-		question.ask("Do you even ...?") // Ask the user something, return value will be entered as PROMPT value
-		question.ask(ask.http) // Ask user if they want to start a webserver after the payload is printed
+		question.ask("Do you even ...?") Ask the user something, return value will be entered as PROMPT value
+		question.ask(ask.http) Ask user if they want to start a webserver after the payload is printed
 	}
 
 
@@ -90,10 +84,11 @@ Load({
 	category: "XML"
 })
 
-
-
-var unique = []
-var uniqueCategories = []
+/*
+######################################################
+############### End of Payloads ######################
+######################################################
+*/
 
 module.exports = {
 	values: arrayWeb,
@@ -105,17 +100,5 @@ module.exports = {
 			}
 		}
 		return tempArray
-	},
-	getCategories: function(){
-		for (i=0;i<arrayWeb.length;i++){
-			if(unique[arrayWeb[i].category]){
-
-			}
-			else {
-				unique[arrayWeb[i].category] = true;
-				uniqueCategories.push(arrayWeb[i].category)
-			} 
-		return uniqueCategories
-		}
 	}
 }

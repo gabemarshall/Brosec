@@ -1,6 +1,6 @@
-var prompt = require('prompt');
-var M = require('mstring');
-var ask = require('../modules/questionUser');
+var prompt = require('prompt'),
+	M = require('mstring'),
+	ask = require('../modules/questionUser');
 
 // Initialize array and Payload Helper
 
@@ -26,6 +26,13 @@ var question = function(val){
 
 Required: title, payload, and category
 Optional: callback (used for prompt variable)
+	
+	Ex:
+
+	callback: function(bro){
+		question.ask("Do you even ...?") // Ask the user something, return value will be entered as PROMPT value
+		question.ask(ask.http) // Ask user if they want to start a webserver after the payload is printed
+	}
 
 
 ---[Variable Formatting]---
@@ -39,6 +46,7 @@ Optional: callback (used for prompt variable)
 
 
 */
+
 
 // ############### System Info ######################
 
@@ -170,13 +178,12 @@ Load({
 	category: "Windows Registry"
 })
 
-// ############## End of Payloads ##############
 
-
-
-
-var unique = []
-var uniqueCategories = []
+/*
+######################################################
+############### End of Payloads ######################
+######################################################
+*/
 
 module.exports = {
 	values: arrayWin,
@@ -188,17 +195,5 @@ module.exports = {
 			}
 		}
 		return tempArray
-	},
-	getCategories: function(){
-		for (i=0;i<arrayWin.length;i++){
-			if(unique[arrayWin[i].category]){
-
-			}
-			else {
-				unique[arrayWin[i].category] = true;
-				uniqueCategories.push(arrayWin[i].category)
-			} 
-		return uniqueCategories
-		}
 	}
 }

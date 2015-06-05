@@ -1,11 +1,4 @@
 var prompt = require('prompt');
-var log = require('cli-color');
-var options = log.yellow
-var yellow = log.yellow
-var blue = log.cyan
-var black = log.blackBright
-var green = log.green
-var red = log.red
 
 // Initialize array and Payload Helper
 arrayInfo = []
@@ -14,7 +7,7 @@ var Load = function(obj){
 	arrayInfo.push(obj)
 }
 
-/*
+/* 
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -24,6 +17,13 @@ var Load = function(obj){
 
 Required: title, payload, and category
 Optional: callback (used for prompt variable)
+	
+	Ex:
+
+	callback: function(bro){
+		question.ask("Do you even ...?") Ask the user something, return value will be entered as PROMPT value
+		question.ask(ask.http) Ask user if they want to start a webserver after the payload is printed
+	}
 
 
 ---[Variable Formatting]---
@@ -31,12 +31,14 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-
+	
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>
+	ex: foobar <RHOST (hostname)> <RPORT>	 
 
 
 */
+
+
 // ############### DNS ######################
 
 Load({
@@ -221,11 +223,7 @@ Load({
 */
 
 
-var unique = []
-var uniqueCategories = []
-
 module.exports = {
-	values: arrayInfo,
 	getAll: function(value){
 		tempArray = []
 		for(i=0;i<arrayInfo.length;i++){
@@ -234,17 +232,5 @@ module.exports = {
 			}
 		}
 		return tempArray
-	},
-	getCategories: function(){
-		for (i=0;i<arrayInfo.length;i++){
-			if(unique[arrayInfo[i].category]){
-
-			}
-			else {
-				unique[arrayInfo[i].category] = true;
-				uniqueCategories.push(arrayInfo[i].category)
-			}
-		return uniqueCategories
-		}
 	}
 }
