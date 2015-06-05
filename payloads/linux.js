@@ -197,15 +197,4 @@ Load({ payload: "rm -rf ~/.bash_history && ln -s ~/.bash_history /dev/null", des
 ######################################################
 */
 
-module.exports = {
-	values: arrayLinux,
-	getAll: function(value){
-		tempArray = []
-		for(i=0;i<arrayLinux.length;i++){
-			if (arrayLinux[i].category === value){
-				tempArray.push(arrayLinux[i])
-			}
-		}
-		return tempArray
-	}
-}
+module.exports = arrayLinux;

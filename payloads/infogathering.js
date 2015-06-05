@@ -213,9 +213,6 @@ Load({
 	}
 })
 
-
-
-
 /*
 ######################################################
 ############### End of Payloads ######################
@@ -223,14 +220,7 @@ Load({
 */
 
 
-module.exports = {
-	getAll: function(value){
-		tempArray = []
-		for(i=0;i<arrayInfo.length;i++){
-			if (arrayInfo[i].category === value){
-				tempArray.push(arrayInfo[i])
-			}
-		}
-		return tempArray
-	}
-}
+module.exports = arrayInfo;
+
+
+

@@ -185,15 +185,4 @@ Load({
 ######################################################
 */
 
-module.exports = {
-	values: arrayWin,
-	getAll: function(value){
-		tempArray = []
-		for(i=0;i<arrayWin.length;i++){
-			if (arrayWin[i].category === value){
-				tempArray.push(arrayWin[i])
-			}
-		}
-		return tempArray
-	}
-}
+module.exports = arrayWin;

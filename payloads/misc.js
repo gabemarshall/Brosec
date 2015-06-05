@@ -101,15 +101,4 @@ Load({
 ######################################################
 */
 
-module.exports = {
-	values: arrayInfo,
-	getAll: function(value){
-		tempArray = []
-		for(i=0;i<arrayMisc.length;i++){
-			if (arrayMisc[i].category === value){
-				tempArray.push(arrayMisc[i])
-			}
-		}
-		return tempArray
-	}
-}
+module.exports = arrayMisc;

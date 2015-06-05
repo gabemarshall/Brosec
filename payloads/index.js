@@ -1,5 +1,43 @@
-exports.infog = require("./infogathering.js");
-exports.misc = require("./misc.js");
-exports.web = require("./web.js");
-exports.linux = require("./linux.js");
-exports.windows = require("./windows.js");
+var infog = require("./infogathering.js"),
+	misc = require("./misc.js"),
+	web = require("./web.js"),
+	linux = require("./linux.js"),
+	windows = require("./windows.js");
+
+infog.getAll = function(value){
+	return initializePayloads(infog, value);
+}
+
+misc.getAll = function(value){
+	return initializePayloads(misc, value);
+}
+
+web.getAll = function(value){
+	return initializePayloads(web, value);
+}
+
+linux.getAll = function(value){
+	return initializePayloads(linux, value);
+}
+
+windows.getAll = function(value){
+	return initializePayloads(windows, value);
+}
+
+
+var initializePayloads = function(payloadArray, value){
+	tempArray = []
+	for(i=0;i<payloadArray.length;i++){
+		if (payloadArray[i].category === value){
+			tempArray.push(payloadArray[i]);
+		}
+	}
+
+	return tempArray;
+}
+
+exports.infog = infog;
+exports.misc = misc;
+exports.web = web;
+exports.linux = linux;
+exports.windows = windows;

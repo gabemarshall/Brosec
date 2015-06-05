@@ -90,15 +90,4 @@ Load({
 ######################################################
 */
 
-module.exports = {
-	values: arrayWeb,
-	getAll: function(value){
-		tempArray = []
-		for(i=0;i<arrayWeb.length;i++){
-			if (arrayWeb[i].category === value){
-				tempArray.push(arrayWeb[i])
-			}
-		}
-		return tempArray
-	}
-}
+module.exports = arrayWeb;
