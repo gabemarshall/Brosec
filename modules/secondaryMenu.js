@@ -131,10 +131,6 @@ var Menu = function(title, menuOptions, payloadType) {
                             // Check if input is a valid number, this can probably be removed at some point
                             // TODO: Investigate why input needed to be up cased originally.
 
-                            if(!isNaN(parseInt(result.IGMenu || 0))){
-                                result.subIGMenu = result.subIGMenu.toUpperCase();
-                            }
-
                             var inputIsCommand = check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
                             
                             config = menu.getConfig()
