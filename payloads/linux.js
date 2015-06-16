@@ -75,8 +75,10 @@ Load({ payload: "ps -ef", desc: "Process listing", category: "System Info"})
 // Linux File Commands pg 6
 Load({ payload: "diff file1 file2", desc: "Compare two files", category: "File System"})
 Load({ payload: "strings -n 5", desc: "Set minimum string length", category: "File System"})
+Load({ payload: "find / -perm +6000 -type f -exec ls -ld {} \\;", desc: "Find all SUID binaries", category: "File System"})
+
 Load({
-	title: "Find files and grep results",
+	desc: "Find files and grep results",
 	payload: "find . -type f -exec grep -IHin '<PROMPT (search string)>' {} +",
 	callback: function(bro){
 		question("What search term would you like to use?");
@@ -84,6 +86,7 @@ Load({
 	},
 	category: "File System"
 })
+
 
 // Linux File System Structure pg 7
 Load({

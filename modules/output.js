@@ -12,8 +12,8 @@ var warn = function(){
 
 exports.cmd = function(input){
 
-    input = input.replace(/(\\)/gi,"")
-   // Hack to include payloads with lots of forward slashes
+   // input = input.replace(/(\\)/gi,"")
+   // TODO ^ do we need this? 
    //input = input.replace(/(@@)/gi,"\\")
     
     if (input.match(/(\\)/gi)){
