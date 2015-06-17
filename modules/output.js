@@ -12,7 +12,7 @@ var warn = function(){
 
 exports.cmd = function(input){
 
-   // input = input.replace(/(\\)/gi,"")
+   input = input.replace(/(\\')/gi,"'")
    // TODO ^ do we need this? 
    //input = input.replace(/(@@)/gi,"\\")
     

