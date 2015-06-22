@@ -1,6 +1,12 @@
-var prompt = require('prompt');
-var web = require("./webserver/webserver.js")
-var finalAnswer;
+var prompt = require('prompt'),
+    os = require('os'),
+    log = require('cli-color'),
+    web = require("./webserver/webserver.js"),
+    settings = require('../settings.js'),
+    db = require('../db/db'),
+    currentOS = os.type(),
+    kexec = require('kexec'),
+    finalAnswer
 
 exports.http = function(callback) {
     prompt.message = "Should I fire up a web server for you? (Y/n) :"
@@ -12,6 +18,34 @@ exports.http = function(callback) {
         result._ = result._.toUpperCase()
         if (result._ === "Y") {
             var server = web.init();
+            callback(finalAnswer);
+        } else {
+            callback(finalAnswer);
+        }
+    })
+}
+
+exports.ncat = function(callback) {
+    prompt.message = "Should I start a netcat listener for you? (Y/n) :"
+    prompt.get([{
+        name: '_',
+        description: ":"
+    }], function(err, result) {
+
+        result._ = result._.toUpperCase()
+        if (result._ === "Y") {
+            var port = db.getConfig("LPORT")
+
+            // kexec currently does not support windows
+            // if user is using windows, send them a nice error msg :/
+            if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
+                console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
+            } else {
+
+                console.log(log.blackBright("\n[*] Initializing hacking sequence\n"))
+                kexec(settings.netcat+" -lnp "+port+" -vv");
+
+            } 
             callback(finalAnswer);
         } else {
             callback(finalAnswer);
