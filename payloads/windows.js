@@ -120,9 +120,9 @@ Load({payload: "netstat -nabo", desc: "Lists ports / connections with correspond
 Load({payload: "netstat -na | findstr :445", desc: "Find listening connections on specific port", category: "Networking"})
 Load({payload: "net user /domain", desc: "Lists all of the domain users", category: "Networking"})
 Load({payload: "net localgroup administrators", desc: "Prints local admins", category: "Networking"})
-Load({payload: "net group “Domain Admins” /domain", desc: "Prints list of Domain Admins", category: "Networking"})
+Load({payload: "net group \"Domain Admins\" /domain", desc: "Prints list of Domain Admins", category: "Networking"})
 Load({payload: "net localgroup administrators /domain", desc: "Prints local admins", category: "Networking"})
-Load({payload: "net group “Domain Controllers” /domain", desc: "Prints the list of Domain Controllers for the current domain", category: "Networking"})
+Load({payload: "net group \"Domain Controllers\" /domain", desc: "Prints the list of Domain Controllers for the current domain", category: "Networking"})
 Load({payload: "netsh firewall set opmode disable", desc: "Disable Windows Firewall", category: "Networking"})
 
 // ################### WMIC ######################
