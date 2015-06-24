@@ -55,6 +55,7 @@ Load({ payload: "echo %USERNAME%", desc: "Get current user", category: "System I
 Load({ payload: "sc query state=all", desc: "Show services", category: "System Info"})
 Load({ payload: "tasklist /svc", desc: "Show processes & services", category: "System Info"})
 Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System Info"})
+Load({ payload: "net localgroup administrators", desc: "Prints local admins", category: "System Info"})
 
 Load({
 	payload: "taskkill /PID <PROMPT (pid)> /F",
@@ -119,9 +120,7 @@ Load({payload: "netstat -r", desc: "Display routing table", category: "Networkin
 Load({payload: "netstat -nabo", desc: "Lists ports / connections with corresponding process", category: "Networking"})
 Load({payload: "netstat -na | findstr :445", desc: "Find listening connections on specific port", category: "Networking"})
 Load({payload: "net user /domain", desc: "Lists all of the domain users", category: "Networking"})
-Load({payload: "net localgroup administrators", desc: "Prints local admins", category: "Networking"})
 Load({payload: "net group \"Domain Admins\" /domain", desc: "Prints list of Domain Admins", category: "Networking"})
-Load({payload: "net localgroup administrators /domain", desc: "Prints local admins", category: "Networking"})
 Load({payload: "net group \"Domain Controllers\" /domain", desc: "Prints the list of Domain Controllers for the current domain", category: "Networking"})
 Load({payload: "netsh firewall set opmode disable", desc: "Disable Windows Firewall", category: "Networking"})
 
