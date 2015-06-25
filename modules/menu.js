@@ -84,9 +84,6 @@ function mainMenu(callback) {
                     case "5":
                         secondaryMenu.misc()
                         break;
-                    // case "6":
-                    //     secondaryMenu.tools()
-                    //     break;
                     case "HOME":
                     case "HELP":
                     case "CONFIG":
