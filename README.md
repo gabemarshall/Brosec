@@ -21,6 +21,7 @@ Installation
 - cd into the directory and run `npm install`
 - Linux users will need to install xclip
 - Mac users may need to install netcat (via homebrew) for some payloads
+- Windows support is coming soon
 
 
 

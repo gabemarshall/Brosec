@@ -5,8 +5,13 @@ var prompt = require('prompt'),
     settings = require('../settings.js'),
     db = require('../db/db'),
     currentOS = os.type(),
-    kexec = require('kexec'),
     finalAnswer
+
+if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
+    console.log("The Brosec netcat initializer is currently not supported in Windows, sorry bro.")
+} else {
+   var kexec = require('kexec');
+}
 
 exports.http = function(callback) {
     prompt.message = "Should I fire up a web server for you? (Y/n) :"
