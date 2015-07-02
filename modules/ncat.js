@@ -1,5 +1,4 @@
 var sys = require('sys'),
-    kexec = require('kexec'),
     log = require('cli-color'),
     os = require('os'),
     prompt = require('prompt'),

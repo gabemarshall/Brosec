@@ -17,11 +17,14 @@ Overview
 Installation
 ============
 
+Some features currently do not work on Windows, full support is coming soon
+
+- Install Node >= v0.10  
 - git clone https://github.com/gabemarshall/Brosec.git
 - cd into the directory and run `npm install`
 - Linux users will need to install xclip
-- Mac users may need to install netcat (via homebrew) for some payloads
-- Windows support is coming soon
+- Mac users may need to install netcat (via homebrew is recommended) for some payloads
+
 
 
 
