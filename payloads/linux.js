@@ -76,6 +76,7 @@ Load({ payload: "ps -ef", desc: "Process listing", category: "System Info"})
 Load({ payload: "diff file1 file2", desc: "Compare two files", category: "File System"})
 Load({ payload: "strings -n 5", desc: "Set minimum string length", category: "File System"})
 Load({ payload: "find / -perm +6000 -type f -exec ls -ld {} \\;", desc: "Find all SUID binaries", category: "File System"})
+Load({ payload: "find . -type f -mmin -5 -not -path \"*/proc/*\" 2>/dev/null", desc: "Find all files modified in the last 5 minutes", category: "File System"})
 
 Load({
 	desc: "Find files and grep results",
