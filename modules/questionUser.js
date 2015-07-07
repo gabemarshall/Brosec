@@ -48,10 +48,11 @@ exports.ncat = function(callback) {
             } else {
 
                 console.log(log.blackBright("\n[*] Initializing hacking sequence\n"))
+                callback(finalAnswer);
                 kexec(settings.netcat+" -lnp "+port+" -vv");
 
             } 
-            callback(finalAnswer);
+            
         } else {
             callback(finalAnswer);
         }

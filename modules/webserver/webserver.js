@@ -5,9 +5,7 @@ var express = require('express'),
 	log = require('cli-color'),
 	path = require('path'),
 	blue = log.cyan,
-	black = log.blackBright,
-	os = require('os'),
-	exec = require('child_process').exec;
+	black = log.blackBright
 
 
 app.use(morgan('combined'));
@@ -37,24 +35,8 @@ app.get('/inline.dtd', function(req, res){
 
 exports.init = function(callback, a1){
 	
-
-	// refactor this into a module at some point
 	lhost = db.getConfig("LHOST");
 	lport = db.getConfig("LPORT");
-
-    // var currentOS = os.type()
-
-    // if (currentOS === "Darwin"){
-    //    exec("sed -i '' 's/\\([0-9]\\{1,3\\}\\.\\)\\{3\\}[0-9]\\{1,3\\}\\(\\:[0-9]\\{1,5\\}\\)/"+lhost+":"+lport+"/g' " + __dirname + '/pub/send.dtd'); 
-    // }
-    // else if (currentOS === "Linux"){
-    //     exec("sed -i '' 's/\\([0-9]\\{1,3\\}\\.\\)\\{3\\}[0-9]\\{1,3\\}\\(\\:[0-9]\\{1,5\\}\\)/"+lhost+":"+lport+"/g' " + __dirname + '/pub/send.dtd'); 
-    // }
-    // else {
-    //     console.log("Brosec alters DTD files on the fly, but this feature isn't available on Windows at the moment ;(");
-    // }
-
-
 	
 	var server = app.listen(lport, function () {
 	  console.log('\n'+black('[*]')+' A web server is running on port %s (ctrl c to stop)', lport);
