@@ -37,7 +37,7 @@ function mainMenu(callback) {
     console.log(log.yellow("\nPlease choose one of the following menu options."))
     console.log(log.blackBright("\nAt any time enter ")+log.blackBright.inverse("help")+log.blackBright(" for usage information."))
     console.log("\n1. Information Gathering\t4. Web")
-    console.log("2. Linux\t\t\t5. Post Exploitation")
+    console.log("2. Linux\t\t\t5. Miscellaneous")
     console.log("3. Windows\t\t\t")
     console.log("")
 
