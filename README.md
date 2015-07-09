@@ -39,9 +39,13 @@ Payload Variables
 - PROMPT : User Prompt (This isn't a stored value. Instead, payloads with this variable will prompt for input.)
 
 
-Command Line Usage
+Usage Examples
 ==================
 
-`$ bros`
+####Retrieve DNS server(s) of a domain
 
-`$ bros 121` (Example to access a frequently used payload via the payload's menu sequence)
+![](http://i.imgur.com/Rgl8RR6.gif)
+
+shortcut via command line `bros 121`
+
+![](http://i.imgur.com/IvOquvj.gif)
