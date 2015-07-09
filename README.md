@@ -46,6 +46,4 @@ Usage Examples
 
 ![](http://i.imgur.com/Rgl8RR6.gif)
 
-shortcut via command line `bros 121`
-
-![](http://i.imgur.com/IvOquvj.gif)
+[shortcut](http://i.imgur.com/IvOquvj.gif) via command line `bros 121`
