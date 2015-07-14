@@ -21,7 +21,7 @@ exports.shell = function(callback, a1) {
         console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
     } else {
 
-        console.log(log.blackBright("\n[*] Initializing hacking sequence\n"))
+        console.log(log.blackBright("\n[*] Initializing hacking sequence (shell)\n"))
         kexec(settings.netcat+" -lnp "+port+" -vv");
 
     } 

@@ -94,7 +94,7 @@ Load({
 	category: "Exfiltration",
 	callback: function(bro){
 		question("Which file would you like to exfiltrate? (ex: /.ssh/id_rsa)");
-		question(ask.ncat);
+		question(ask.ncatReceiveFile);
 		ask.some(questions, bro);
 	}
 })
@@ -105,6 +105,7 @@ Load({
 	category: "Exfiltration",
 	callback: function(bro){
 		question("What file would you like to download? (ex: script.sh)");
+		question(ask.ncatReceiveFile);
 		ask.some(questions, bro);
 	}
 })
@@ -115,6 +116,7 @@ Load({
 	category: "Exfiltration",
 	callback: function(bro){
 		question("What is the remote path to the file you'd like to download?");
+		question(ask.ncatReceiveFile);
 		ask.some(questions, bro);
 	}
 })

@@ -10,6 +10,8 @@ settings.dbPath = '/var/tmp/bros.db'
 
 settings.netcat = "netcat"
 
+settings.storagePath = "/var/tmp/"
+
 
 
 

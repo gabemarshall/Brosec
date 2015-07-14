@@ -59,6 +59,33 @@ exports.ncat = function(callback) {
     })
 }
 
+exports.ncatReceiveFile = function(callback) {
+    prompt.message = "Should I start a netcat listener for you? (Y/n) :"
+    prompt.get([{
+        name: '_',
+        description: ":"
+    }], function(err, result) {
+
+        result._ = result._.toUpperCase()
+        if (result._ === "Y") {
+            var port = db.getConfig("LPORT")
+
+            // kexec currently does not support windows
+            // if user is using windows, send them a nice error msg :/
+            if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
+                console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
+            } else {                
+                callback(finalAnswer);
+                console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved in "+settings.storagePath+")\n"))
+                kexec(settings.netcat+" -lnp "+port+" > "+settings.storagePath+finalAnswer+" -vv");
+            } 
+            
+        } else {
+            callback(finalAnswer);
+        }
+    })
+}
+
 exports.some = function(question, callback, type) {
 
     var init = 0;
