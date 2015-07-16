@@ -22,6 +22,9 @@
     "prompt": "*",
     "yargs": "*"
   },
+  "optionalDependencies":{
+    "kexec":"^1.2.0"
+  },
   "author": "Gabe Marshall",
   "license": "ISC"
 }
