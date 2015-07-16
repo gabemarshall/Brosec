@@ -71,18 +71,19 @@ exports.ncatReceiveFile = function(callback) {
             var port = db.getConfig("LPORT");
             var path = db.getConfig("PATH");
 
-            if (!path){
-              console.log("Warning: Path variable is not set")
+            if (!path || path.length <= 0){
+              log.yellow("Warning: Path variable is not set, defaulting to /var/tmp/")
             }
-
+            path = "/var/tmp/"
             // kexec currently does not support windows
             // if user is using windows, send them a nice error msg :/
             if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
                 console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
             } else {
                 callback(finalAnswer);
-                console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved in "+path+")\n"))
-                kexec(settings.netcat+" -lnp "+port+" > "+path+" -vv");
+                var localFile = finalAnswer.replace(/(\/)/g, "_")
+                console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved as "+path+"/bros"+localFile+")\n"))
+                kexec(settings.netcat+" -lnp "+port+" > "+path+"/bros"+localFile+" -vv");
             }
 
         } else {
