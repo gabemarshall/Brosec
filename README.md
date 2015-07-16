@@ -17,14 +17,6 @@ Overview
 Installation
 ============
 
-Some features currently do not work on Windows, full support is coming soon
-
-- Install Node >= v0.10  
-- git clone https://github.com/gabemarshall/Brosec.git
-- cd into the directory and run `npm install`
-- Linux users will need to install xclip
-- Mac users may need to install netcat (via homebrew is recommended) for some payloads
-
 #### Mac
 
 - `brew install node netcat` - Install Nodejs and netcat
@@ -33,8 +25,10 @@ Some features currently do not work on Windows, full support is coming soon
 
 #### Linux
 
-- `<package manager> install nodejs build-essential g++ xclip netcat` Install Nodejs and other dependencies
+- `<package manager> install node build-essential g++ xclip netcat` Install Nodejs and other dependencies
+- `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
+
 
 #### Initial Configuration
 
