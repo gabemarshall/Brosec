@@ -8,11 +8,9 @@ var prompt = require('prompt'),
     checkModule = require('./checkModule.js'),
     finalAnswer
 
-// if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
-//     console.log("The Brosec netcat initializer is currently not supported in Windows, sorry bro.")
-// } else {
-//    var kexec = require('kexec');
-// }
+if (checkModule.kexec()){
+     var kexec = require('kexec');
+}
 
 exports.http = function(callback) {
     prompt.message = "Should I fire up a web server for you? (Y/n) :"
@@ -45,7 +43,8 @@ exports.ncat = function(callback) {
             // kexec currently does not support windows
             // if user is using windows, send them a nice error msg :/
             if (!checkModule.kexec()){
-                console.log(log.blackBright("\n[*] To start a netcat listener, run the following => "+settings.netcat+" -lnp "+port+" -vv"));
+                console.log(log.red("\n[!] kexec module for netcat payloads appears to be missing!"));
+                console.log(log.blackBright("[*] To start a netcat listener, run the following => "+settings.netcat+" -lnp "+port+" -vv"));
                 callback(finalAnswer);
             } else {
                 console.log(log.blackBright("\n[*] Initializing hacking sequence ("+settings.netcat+" -lnp "+port+" -vv)"));
