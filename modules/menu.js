@@ -30,7 +30,7 @@ function clearMenu() {
 exports.clearMenu = clearMenu
 
 function mainMenu(callback) {
-    
+
     console.log(log.green("\n\t#########################"))
     console.log(log.green("\t### Welcome to Brosec ###"))
     console.log(log.green("\t#########################"))
@@ -43,9 +43,9 @@ function mainMenu(callback) {
 
     if (callback) {
         setTimeout(function(){
-            console.log(callback+"\n")    
+            console.log(callback+"\n")
         }, 15)
-        
+
     }
 
     // Ugly hack, needs fixing. Without this the db values are checked before the db initalizes
@@ -63,7 +63,7 @@ function mainMenu(callback) {
 
             try {
                 var test = check.allInputChecks(result.mainMenu, mainMenu, mainMenu)
-                
+
                 if(test){
                     result.mainMenu = "HOME"
                 }
@@ -131,9 +131,9 @@ exports.helpMenu = function(menuCallback) {
     }], function(err, result) {
         try {
             if (result.helpMenu.toUpperCase() != "BACK") {
-                
+
                     menuCallback()
-                
+
             } else {
                 mainMenu()
             }
@@ -175,7 +175,7 @@ function showAvailablePayloadTitles(array) {
         // and the formatting for the menu will be different
 
         if (array[i].title) {
-            
+
             // Colorize samples for output
             if (!array[i].sample){
                 array[i].sample = array[i].payload
@@ -221,7 +221,7 @@ function showAvailablePayloadTitles(array) {
                 console.log(err)
             }
 
-            
+
 
             table.push(
                 [log.green(num + ". " + sample), array[i].desc]
@@ -247,7 +247,7 @@ function printConfig(returnMenu) {
         console.log(log.blackBright("\t=====================\n"))
     }
 
-    
+
     if(!LHOST){LHOST="..."};if(!LPORT){LPORT="..."};if(!RHOST){RHOST="..."}if(!RPORT){RPORT="..."}
     if(!PATH){PATH="..."}if(!USER){USER="..."}
 

@@ -5,13 +5,10 @@ var settings = {}
 
 settings.dbPath = '/var/tmp/bros.db'
 
-// ---[netcat]--- 
+// ---[netcat]---
 // (ex: ncat, netcat, nc.traditional)
 
 settings.netcat = "netcat"
-
-settings.storagePath = "/var/tmp/"
-
 
 
 

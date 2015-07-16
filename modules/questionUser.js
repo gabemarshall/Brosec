@@ -51,8 +51,8 @@ exports.ncat = function(callback) {
                 callback(finalAnswer);
                 kexec(settings.netcat+" -lnp "+port+" -vv");
 
-            } 
-            
+            }
+
         } else {
             callback(finalAnswer);
         }
@@ -68,18 +68,23 @@ exports.ncatReceiveFile = function(callback) {
 
         result._ = result._.toUpperCase()
         if (result._ === "Y") {
-            var port = db.getConfig("LPORT")
+            var port = db.getConfig("LPORT");
+            var path = db.getConfig("PATH");
+
+            if (!path){
+              console.log("Warning: Path variable is not set")
+            }
 
             // kexec currently does not support windows
             // if user is using windows, send them a nice error msg :/
             if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
                 console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
-            } else {                
+            } else {
                 callback(finalAnswer);
-                console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved in "+settings.storagePath+")\n"))
-                kexec(settings.netcat+" -lnp "+port+" > "+settings.storagePath+finalAnswer+" -vv");
-            } 
-            
+                console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved in "+path+")\n"))
+                kexec(settings.netcat+" -lnp "+port+" > "+path+" -vv");
+            }
+
         } else {
             callback(finalAnswer);
         }
@@ -92,7 +97,7 @@ exports.some = function(question, callback, type) {
     var temp = 0;
 
     var counter = question.length;
-    
+
     var ask = function(q) {
         if (typeof q === "string") {
             prompt.message = q;

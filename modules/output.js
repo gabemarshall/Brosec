@@ -13,9 +13,9 @@ var warn = function(){
 exports.cmd = function(input){
 
    input = input.replace(/(\\')/gi,"'")
-   // TODO ^ do we need this? 
+   // TODO ^ do we need this?
    //input = input.replace(/(@@)/gi,"\\")
-    
+
     if (input.match(/(\\)/gi)){
         console.log(log.yellow('\n'+input+'\n'))
         input = input.replace(/(\\)/gi,"\\\\")
@@ -29,7 +29,7 @@ exports.cmd = function(input){
     var currentOS = os.type()
 
     if (currentOS === "Darwin"){
-       exec("printf \"%s\" \""+input+"\"| pbcopy", print); 
+       exec("printf \"%s\" \""+input+"\"| pbcopy", print);
     }
     else if (currentOS === "Linux"){
         exec("printf \"%s\" \""+input+"\"| xclip -selection clipboard", print);
@@ -60,7 +60,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
                 tmenu()
                 return
             }
-            
+
         }
 
         payload = payload.replace(/((<(LHOST)\s*?.*?>))/gi, lhost)
@@ -82,7 +82,6 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
 
 }
 
-function print(error, stdout, stderr) { 
-  console.log(stdout) 
+function print(error, stdout, stderr) {
+  console.log(stdout)
 }
-
