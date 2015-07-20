@@ -42,7 +42,7 @@ Installation
 Configuration
 =====================
 
-Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing the settings.js file.
+Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via teh settings.netcat variable.
 
 #### Payload Variables
 
@@ -54,7 +54,7 @@ Brosec stores configuration values in a local json db file. The default storage 
 - PROMPT : User Prompt (This isn't a stored value. Instead, payloads with this variable will prompt for input.)
 
 
-Usage Examples
+Additional Usage Examples
 ==================
 
 #### Retrieve DNS server(s) of a domain
