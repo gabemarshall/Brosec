@@ -68,7 +68,15 @@ Load({ payload: "rpm -vih *.rpm", desc: "Install RPM package (-e remove)", categ
 Load({ payload: "dpkg -get-selections", desc: "Show installed packages (Ubuntu)", category: "System Info"})
 Load({ payload: "dpkg -I *.deb", desc: "Install DEB package (-r remove)", category: "System Info"})
 Load({ payload: "ps -ef", desc: "Process listing", category: "System Info"})
-
+Load({
+	desc: "Get all environment variables seen by a process",
+	payload: "cat /proc/<PROMPT (PID)>/environ | tr '\\0' '\\n'",
+	callback: function(bro){
+		question("What process would you like to check?");
+		ask.some(questions, bro);
+	},
+	category: "System Info"
+})
 
 // ############### File System  ######################
 
