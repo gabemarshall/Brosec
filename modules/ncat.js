@@ -10,7 +10,7 @@ var sys = require('sys'),
 
 
 exports.shell = function(callback, a1) {
-    
+
     callback(a1)
 
     var port = db.getConfig("LPORT")
@@ -20,25 +20,23 @@ exports.shell = function(callback, a1) {
     if (currentOS !== 'Darwin' && currentOS !== 'Linux'){
         console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
     } else {
-
         console.log(log.blackBright("\n[*] Initializing hacking sequence (shell)\n"))
         kexec(settings.netcat+" -lnp "+port+" -vv");
-
-    } 
+    }
 
 
 
 }
 
 exports.file = function(callback, a1) {
-    
+
     callback(a1)
-    
+
     var filename = a1
-    
+
     try {
 	    filename = a1.split("/")
-	    filename = filename.pop()	
+	    filename = filename.pop()
     } catch (err) {
     	// Do nothing
     }
@@ -53,9 +51,9 @@ exports.file = function(callback, a1) {
 
 
 exports.Init = function(returnToPrepare, msg, type){
-    
+
     if (msg){
-       
+
         prompt.message = msg+" :"
         prompt.get([{name: '_', description: ':'}], function(err, result){
             var a1 = result._
@@ -70,14 +68,14 @@ exports.Init = function(returnToPrepare, msg, type){
                     else {
                         var server = exports.file(returnToPrepare,a1)
                     }
-                    
+
                 }
                 else {
                     returnToPrepare(a1)
                 }
-                
+
             })
-        })  
+        })
     }
     else {
         prompt.message = "Should I start a netcat listener for you? (Y/n)"
@@ -89,10 +87,8 @@ exports.Init = function(returnToPrepare, msg, type){
             else {
                 returnToPrepare()
             }
-            
+
         })
     }
 
 }
-
-
