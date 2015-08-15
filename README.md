@@ -41,6 +41,7 @@ Installation
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
+Add bros directory path to your PATH env variable, create a symlink for the bros file, etc 
 
 Configuration
 =====================
