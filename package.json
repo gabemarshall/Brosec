@@ -21,6 +21,7 @@
     "mstring": "*",
     "prompt": "*",
     "yargs": "*",
+    "body-parser": "*",
     "ecstatic": "*"
   },
   "optionalDependencies":{
