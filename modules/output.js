@@ -32,7 +32,7 @@ exports.cmd = function(input){
        exec("printf \"%s\" \""+input+"\"| pbcopy", print);
     }
     else if (currentOS === "Linux"){
-        exec("printf \"%s\" \""+input+"\"| xclip -selection clipboard", print);
+        exec("printf \"%s\" \""+input+"\"| xsel -i -b", print);
     }
     else {
         exec("echo \""+input+"\" | clip", print);
