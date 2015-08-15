@@ -21,7 +21,7 @@
     "mstring": "*",
     "prompt": "*",
     "yargs": "*",
-    "ecstatic": "*",
+    "ecstatic": "*"
   },
   "optionalDependencies":{
     "kexec":"^1.2.0"
