@@ -1,6 +1,6 @@
 {
   "name": "Brosec",
-  "version": "0.0.1",
+  "version": "0.0.1a",
   "description": "Brosec - Pentest fu for bros",
   "main": "bros.js",
   "repository": {
@@ -20,7 +20,8 @@
     "morgan": "*",
     "mstring": "*",
     "prompt": "*",
-    "yargs": "*"
+    "yargs": "*",
+    "ecstatic": "*",
   },
   "optionalDependencies":{
     "kexec":"^1.2.0"

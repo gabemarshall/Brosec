@@ -2,10 +2,11 @@ var express = require('express'),
 	app = express(),
 	morgan = require('morgan'),
 	db = require('../../db/db'),
-	log = require('cli-color'),
+	color = require('cli-color'),
 	path = require('path'),
-	blue = log.cyan,
-	black = log.blackBright
+	log = function(msg){
+		console.log(color.blackBright(msg))
+	}
 
 
 app.use(morgan('combined'));
@@ -34,14 +35,12 @@ app.get('/inline.dtd', function(req, res){
 })
 
 exports.init = function(callback, a1){
-	
+
 	lhost = db.getConfig("LHOST");
 	lport = db.getConfig("LPORT");
-	
+
 	var server = app.listen(lport, function () {
-	  console.log('\n'+black('[*]')+' A web server is running on port %s (ctrl c to stop)', lport);
+		log('\n [*] An http server is running on port '+lport+' (ctrl c to stop)');
 	})
 
 }
-
-

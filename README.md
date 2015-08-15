@@ -9,19 +9,22 @@ Overview
 - Brosec utilizes saved configuration variables (set at any time by you) to create custom payloads on the fly. These variables persist in a local database for your convenience.
 - Brosec outputs payloads and copies them to your clipboard in order to make your pentesting even more magical
 
-
+<br>
+##### Usage Example(s)
 ###### XXE for Bros
 ![](http://i.imgur.com/hxrqlvk.gif)
 
 <br>
 - Configuration variables can be accessed by the `config` command at any time, or by entering the variable name
 - Config values can be changed at any time by entering `set <variable> <value>`
+<br><br>
 
 ![](http://i.imgur.com/FCateZJ.gif)
 
 - You can navigate to frequently used payloads by entering the menu sequence from the command line: `bros <sequence>`
   - Ex: `bros 413` - This would automate entering 4 for the Web Menu, 1 for the XXE sub menu, and 3 for the XXE local file read payload
 
+Need a quick web server? Forget python SimpleHTTPServer, bros has your back with `bros http` when entered via the command line.
 
 Installation
 ============
