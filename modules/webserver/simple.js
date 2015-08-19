@@ -15,10 +15,10 @@ exports.init = function(argv) {
   try {
       port = argv._[1];
       if (!port){
-        port = 8000
+        port = 8000;
       }
   } catch (err){
-      port = 8000
+      port = 8000;
   }
 
   app.use(morgan('combined'));
@@ -31,7 +31,10 @@ exports.init = function(argv) {
     root: publicDir
   }));
 
-  log.status(" [*] An http server is serving "+publicDir+" on port "+port+" (ctrl c to stop)");
-  app.listen(port, hostname);
+  var server = app.listen(port, function () {
+    log.status(" [*] An http server is serving "+publicDir+" on port "+port+" (ctrl c to stop)");
+  })
+
+
 
 }
