@@ -7,7 +7,7 @@ var prompt = require('prompt'),
 arrayWin = []
 
 var Load = function(obj){
-	arrayWin.push(obj)
+	arrayWin.push(obj);
 }
 
 // Question helper method
@@ -16,7 +16,7 @@ var question = function(val){
 	questions.push(val);
 }
 
-/* 
+/*
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -26,7 +26,7 @@ var question = function(val){
 
 Required: title, payload, and category
 Optional: callback (used for prompt variable)
-	
+
 	Ex:
 
 	callback: function(bro){
@@ -40,9 +40,9 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-	
+
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>	 
+	ex: foobar <RHOST (hostname)> <RPORT>
 
 
 */
@@ -81,12 +81,12 @@ Load({
 
 Load({
 	title: "Windows Common Files",
-	payload: "A quick look at common windows files",
+	payload: "A quick look at common windows files\n",
 	category: "File System",
 	callback: function(bro){
 		var m = M(function(){
 		/***
-		
+
 		%SYSTEMROOT%								Usually C:\Windows
 		%SYSTEMROOT%\System32\drivers\etc\hosts					DNS entries
 		%SYSTEMROOT%\System32\drivers\etc\networks				Network settings
@@ -99,18 +99,27 @@ Load({
 		%SYSTEMROOT%\Prefetch 							EXE logs
 
 		***/})
-		
+
 		console.log(m)
-	
+
 		prompt.message = "Press enter to continue"
 		prompt.get([{name: '_', description: ':'}], function(err, result){
-			bro(1)	
+			bro(1)
 		})
-		
+
 
 	}
 })
 
+Load({
+	desc: "Find string in file",
+	payload: "find /I '<PROMPT (search string)>' <filename>",
+	callback: function(bro){
+		question("What search term would you like to use?");
+		ask.some(questions, bro);
+	},
+	category: "File System"
+});
 
 // ############### Networking ######################
 
@@ -167,13 +176,13 @@ Load({
 
 Load({
 	title: "Enable Remote Desktop",
-	payload: "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 0 /f",  
+	payload: "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 0 /f",
 	category: "Windows Registry"
 })
 
 Load({
 	title: "Export Windows Security Hives",
-	payload: "reg SAVE HKLM\\SECURITY security.hive && reg SAVE HKLM\\SYSTEM system.hive && reg SAVE HKLM\\SAM sam.hive ",  
+	payload: "reg SAVE HKLM\\SECURITY security.hive && reg SAVE HKLM\\SYSTEM system.hive && reg SAVE HKLM\\SAM sam.hive ",
 	category: "Windows Registry"
 })
 

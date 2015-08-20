@@ -17,7 +17,7 @@ var question = function(val){
 }
 
 
-/* 
+/*
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -27,7 +27,7 @@ var question = function(val){
 
 Required: title, payload, and category
 Optional: callback (used for prompt variable)
-	
+
 	Ex:
 
 	callback: function(bro){
@@ -41,9 +41,9 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-	
+
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>	 
+	ex: foobar <RHOST (hostname)> <RPORT>
 
 
 */
@@ -122,12 +122,12 @@ Load({
 		/var 		Contains variable data (ie: logging files)
 
 		***/})
-		
+
 		console.log(m)
 		prompt.message = "Press enter to continue"
 		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(1)	
-		})	
+			returnToPrepare(1)
+		})
 
 	}
 })
@@ -141,7 +141,7 @@ Load({
 		var m = M(function(){
 		/***
 
-		/etc/issue 	
+		/etc/issue
 		/etc/master.passwd
 		/etc/crontab
 		/etc/sysctl.conf
@@ -161,12 +161,12 @@ Load({
 		/etc/fstab
 
 		***/})
-		
+
 		console.log(m)
 		prompt.message = "Press enter to continue"
 		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(1)	
-		})	
+			returnToPrepare(1)
+		})
 
 	}
 })
@@ -189,7 +189,7 @@ Load({
 		prompt.message = "What share would you like to mount? :"
 		prompt.get([{name: '_', description: ':'}], function(err, result){
 			returnToPrepare(result._)
-		})	
+		})
 
 	}
 })
