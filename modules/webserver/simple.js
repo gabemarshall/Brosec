@@ -10,7 +10,10 @@ exports.init = function(argv) {
     color = require('cli-color'),
     publicDir = process.cwd(),
     log = require('../log.js'),
+    os = require('os'),
+    interfaces = os.networkInterfaces(),
     port;
+
 
   try {
       port = argv._[1];
@@ -31,8 +34,16 @@ exports.init = function(argv) {
     root: publicDir
   }));
 
+
   var server = app.listen(port, function () {
     log.status(" [*] An http server is serving "+publicDir+" on port "+port+" (ctrl c to stop)");
+    Object.keys(interfaces).forEach(function (key) {
+      interfaces[key].forEach(function (details) {
+        if (details.family == 'IPv4') {
+          log.status(("\thttp://" + details.address + ":" + port));
+        }
+      });
+    });
   })
 
 
