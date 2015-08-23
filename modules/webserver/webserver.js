@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
   res.send('Come at me bro!');
 })
 
-app.get('/send.dtd', function(req, res){
+app.get('/send', function(req, res){
 	res.setHeader('content-type', 'application/xml-dtd');
 	res.render('send.ejs', {
 		lhost:lhost,

