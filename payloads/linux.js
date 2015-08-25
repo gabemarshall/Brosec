@@ -88,7 +88,7 @@ Load({ payload: "find . -type f -mmin -5 -not -path \"*/proc/*\" 2>/dev/null", d
 
 Load({
 	desc: "Find files and grep results",
-	payload: "find . -type f -exec grep -IHin '<PROMPT (search string)>' {} +",
+	payload: "find . -type f -exec grep -IHin '<PROMPT (search string)>' 2>/dev/null {} +",
 	callback: function(bro){
 		question("What search term would you like to use?");
 		ask.some(questions, bro);
