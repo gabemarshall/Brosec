@@ -26,7 +26,7 @@ app.get('/send', function(req, res){
 	})
 })
 
-app.get('/inline.dtd', function(req, res){
+app.get('/inline', function(req, res){
 	res.setHeader('content-type', 'application/xml-dtd');
 	res.render('inline.ejs', {
 		lhost:lhost,
