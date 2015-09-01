@@ -31,7 +31,7 @@ Installation
 
 #### Mac
 
-- `brew install node netcat` - Install Nodejs and netcat
+- `brew install node netcat` - Install Nodejs and netcat (or nc, ncat, etc)
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
@@ -41,6 +41,16 @@ Installation
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
+### Windows (Unsupported)
+
+- Install [nodejs](https://nodejs.org/download)
+- Install [ncat](https://nmap.org/download.html)
+- `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
+
+Payloads that utilize netcat will not work due to the kexec library not being supported in Windows
+
+
+#### Optional
 Add bros directory path to your PATH env variable, create a symlink for the bros file, etc
 
 Configuration
