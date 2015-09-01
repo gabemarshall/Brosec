@@ -36,7 +36,7 @@ exports.init = function(argv) {
 
 
   var server = app.listen(port, function () {
-    log.status(" [*] An http server is serving "+publicDir+" on port "+port+" (ctrl c to stop)");
+    console.log(" [*] An http server is serving "+publicDir+" on port "+port+" (ctrl c to stop)");
     Object.keys(interfaces).forEach(function (key) {
       interfaces[key].forEach(function (details) {
         if (details.family == 'IPv4') {
