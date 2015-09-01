@@ -41,12 +41,12 @@ Installation
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
-Add bros directory path to your PATH env variable, create a symlink for the bros file, etc 
+Add bros directory path to your PATH env variable, create a symlink for the bros file, etc
 
 Configuration
 =====================
 
-Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via teh settings.netcat variable.
+Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via the settings.netcat variable.
 
 #### Payload Variables
 
