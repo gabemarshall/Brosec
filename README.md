@@ -26,6 +26,8 @@ Overview
 
 Need a quick web server? Forget python SimpleHTTPServer, bros has your back with `bros http` when entered via the command line.
 
+![](http://i.imgur.com/47BHim4.gif)
+
 Installation
 ============
 
