@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 
-var argv = require('yargs').argv;
-var log = require('cli-color');
-var db = require('./db/db');
-var menu = require('./modules/menu');
-var secondaryMenu = require("./modules/secondaryMenu");
-var check = require('./modules/inputChecks')
-var simpleWeb = require('./modules/webserver/simple.js')
+var argv = require('yargs').argv,
+    log = require('cli-color'),
+    brosDir = require.resolve('cli-color'),
+    db = require('./db/db'),
+    menu = require('./modules/menu'),
+    secondaryMenu = require("./modules/secondaryMenu"),
+    check = require('./modules/inputChecks'),
+    simpleWeb = require('./modules/webserver/simple.js')
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
 var thirdArgument = argv._[2];
+
+// Get install path
+brosDir = brosDir.split("node_modules");
+brosDir = brosDir[0];
 
 
 function getFirstArgValue(arg) {

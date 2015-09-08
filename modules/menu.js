@@ -1,15 +1,14 @@
 var db = require('../db/db');
-var log = require('cli-color');
-var prompt = require('prompt');
-var Table = require('cli-table');
-var pay = require('../payloads/')
-var output = require('./output')
-var check = require('./inputChecks')
-var colorize = require('./colorize.js')
+    log = require('cli-color'),
+    prompt = require('prompt'),
+    Table = require('cli-table'),
+    pay = require('../payloads/'),
+    output = require('./output'),
+    check = require('./inputChecks'),
+    colorize = require('./colorize.js'),
+    secondaryMenu = require("./secondaryMenu");
 
 var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT", "SET USER", "SET PATH"]
-
-var secondaryMenu = require("./secondaryMenu")
 
 var payloads
 var LHOST
