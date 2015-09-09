@@ -22,7 +22,7 @@ exports.http = function(callback) {
 
         try {
             result._ = result._.toUpperCase();
-            if (result._ === "Y") {
+            if (result._ === "Y" || !result._) {
                 var server = web.init();
                 callback(finalAnswer);
             } else {
@@ -43,7 +43,7 @@ exports.ncat = function(callback) {
 
         try {
             result._ = result._.toUpperCase()
-            if (result._ === "Y") {
+            if (result._ === "Y" || !result._) {
                 var port = db.getConfig("LPORT")
 
                 // kexec currently does not support windows
@@ -78,7 +78,7 @@ exports.ncatReceiveFile = function(callback) {
 
         try {
             result._ = result._.toUpperCase()
-            if (result._ === "Y") {
+            if (result._ === "Y" || !result._) {
                 var port = db.getConfig("LPORT");
                 var path = db.getConfig("PATH");
 
