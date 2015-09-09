@@ -165,9 +165,16 @@ function showAvailablePayloadTitles(array) {
             'right-mid': '',
             'middle': ''
         },
+        style: {compact: true},
 
     });
-
+    var isMixed = false;
+    for (i = 0; i < array.length; i++) {
+        num = i + 1;
+        if (array[i].desc){
+          isMixed = true;
+        }
+    }
     for (i = 0; i < array.length; i++) {
         num = i + 1
 
@@ -188,10 +195,16 @@ function showAvailablePayloadTitles(array) {
                 console.log(err)
             }
 
-            table.push(
-                [log.green('\n' + num + '. ' + array[i].title)], [log.blackBright('  => ') + sample]
-            );
-
+            // If some payloads have a description, they need to be organized using cli-table
+            // Otherwise just use console log to print out all payloads
+            if (isMixed){
+              table.push(
+                  [log.green('\n' + num + '. ' + array[i].title)], [log.blackBright('  => ') + sample]
+              );
+            } else {
+              console.log("\n"+log.green(num + ". " + array[i].title+"\n"))
+              console.log(log.blackBright(' => ')+ sample+"\n")
+            }
 
         } else {
 
@@ -226,6 +239,7 @@ function showAvailablePayloadTitles(array) {
             table.push(
                 [log.green(num + ". " + sample), array[i].desc]
             );
+
 
 
 
