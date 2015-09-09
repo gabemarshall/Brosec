@@ -40,7 +40,7 @@ exports.init = function(argv) {
     Object.keys(interfaces).forEach(function (key) {
       interfaces[key].forEach(function (details) {
         if (details.family == 'IPv4') {
-          log.status(("\thttp://" + details.address + ":" + port));
+          console.log(log.status("\thttp://" + details.address + ":" + port));
         }
       });
     });

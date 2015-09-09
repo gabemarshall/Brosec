@@ -1,5 +1,5 @@
 var db = require('../db/db');
-    log = require('cli-color'),
+    log = require('./log.js'),
     prompt = require('prompt'),
     Table = require('cli-table'),
     pay = require('../payloads/'),
@@ -34,7 +34,7 @@ function mainMenu(callback) {
     console.log(log.green("\t### Welcome to Brosec ###"))
     console.log(log.green("\t#########################"))
     console.log(log.yellow("\nPlease choose one of the following menu options."))
-    console.log("\nAt any time enter "+log.blackBright.inverse("help")+" for usage information.")
+    console.log("\nAt any time enter "+log.status("help")+" for usage information.")
     console.log("\n1. Information Gathering\t4. Web")
     console.log("2. Linux\t\t\t5. Miscellaneous")
     console.log("3. Windows\t\t\t")
@@ -54,10 +54,11 @@ function mainMenu(callback) {
 
     setTimeout(function() {
         prompt.start();
-        prompt.message = "Choose one of the above options"
+        prompt.colors = false;
+        prompt.message = "Choose one of the above options";
         prompt.get([{
             name: 'mainMenu',
-            description: '(1-5)'
+            description: log.status('(1-5)'.green),
         }], function(err, result) {
 
             try {
@@ -120,13 +121,13 @@ exports.helpMenu = function(menuCallback) {
     console.log("- "+log.yellow("LPORT")+" : Local Port")
     console.log("- "+log.red("RHOST")+" : Remote IP or hostname")
     console.log("- "+log.red("RPORT")+" : Remote Port")
-    console.log("- "+log.blackBright("PATH")+" : Local or Remote Path")
-    console.log("- "+log.blackBright("USER")+" : Username \n")
+    console.log("- "+log.blue("PATH")+" : Local or Remote Path")
+    console.log("- "+log.blue("USER")+" : Username \n")
     console.log("- "+log.cyan("PROMPT")+" : User Prompt (This isn't a stored value. Payloads with this variable will prompt for input.)\n")
     prompt.message = "Press enter to return :"
     prompt.get([{
         name: 'helpMenu',
-        description: ':'
+        description: ":",
     }], function(err, result) {
         try {
             if (result.helpMenu.toUpperCase() != "BACK") {
@@ -257,8 +258,8 @@ function printConfig(returnMenu) {
     console.log(log.red("RHOST: ") + RHOST)
     console.log(log.red("RPORT: ") + RPORT)
     console.log("")
-    console.log(log.blackBright("PATH: ") + PATH)
-    console.log(log.blackBright("USER: ") + USER)
+    console.log(log.blue("PATH: ") + PATH)
+    console.log(log.blue("USER: ") + USER)
     console.log("")
 
     if (returnMenu) {
