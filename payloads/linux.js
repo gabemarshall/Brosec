@@ -194,6 +194,13 @@ Load({
 	}
 })
 
+Load({
+	payload: "ssh -L <LPORT>:localhost:<RPORT> <USER>@<RHOST>",
+	desc: "SSH Local Port Forwarder",
+	category: "Networking",
+})
+
+
 
 // ############### Stealth  ######################
 
