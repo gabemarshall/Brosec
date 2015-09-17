@@ -58,7 +58,7 @@ function mainMenu(callback) {
         prompt.message = "Choose one of the above options";
         prompt.get([{
             name: 'mainMenu',
-            description: log.status('(1-5)'.green),
+            description: '(1-5)'.green,
         }], function(err, result) {
 
             try {
