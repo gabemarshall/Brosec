@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var sys = require('util'),
     log = require('cli-color'),
     os = require('os'),
     prompt = require('prompt'),
