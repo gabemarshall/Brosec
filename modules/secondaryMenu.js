@@ -31,7 +31,7 @@ var Menu = function(title, menuOptions, payloadType) {
 
     // Second level of menu system
     var secondaryMenu = function(secondArg, thirdArg) {
-        
+
         if (!secondArg){
             // Print the title for the menu as well as available options
             console.log("\n\n\n\t" + title + "\n")
@@ -75,7 +75,7 @@ var Menu = function(title, menuOptions, payloadType) {
                             setTimeout(function(){
                                 console.log(log.red("[*] Invalid input, please try again.\n"))
                             },15)
-                          
+
                           secondaryMenu()
                         }
 
@@ -90,12 +90,12 @@ var Menu = function(title, menuOptions, payloadType) {
             // Ugly hack, fix later
             setTimeout(function(){
                 if(!thirdArg){
-                    tertiaryMenu(menuOptions[secondArg-1])    
+                    tertiaryMenu(menuOptions[secondArg-1])
                 }
                 else {
                     tertiaryMenu(menuOptions[secondArg-1], thirdArg)
                 }
-                
+
             },10)
         }
 
@@ -105,7 +105,7 @@ var Menu = function(title, menuOptions, payloadType) {
             if(!value){
                 value = db.getConfig("MENU")
             }
-        
+
             if (!thirdArg){
                 console.log("\n\t---[ "+value+" ]---")
 
@@ -132,7 +132,7 @@ var Menu = function(title, menuOptions, payloadType) {
                             // TODO: Investigate why input needed to be up cased originally.
 
                             var inputIsCommand = check.allInputChecks(result.subIGMenu, tertiaryMenu, secondaryMenu)
-                            
+
                             config = menu.getConfig()
                             var thisInput = result.subIGMenu.toUpperCase()
 
@@ -144,7 +144,7 @@ var Menu = function(title, menuOptions, payloadType) {
                                     setTimeout(function(){
                                         console.log(log.red("[*] Invalid input, please try again.\n"))
                                     },15)
-                                    
+
                                     tertiaryMenu()
                                 }
                             }
@@ -154,14 +154,14 @@ var Menu = function(title, menuOptions, payloadType) {
 
 
                     });
-                }, 40)  
+                }, 40)
             }
             else {
 
                 config = menu.getConfig()
-                
+
                 payloads = payloadType.getAll(value)
-                
+
                 try {
                     output.prepare(payloads[thirdArg-1].payload, config.LHOST, config.LPORT, config.RHOST, config.RPORT, config.USER, config.PATH, payloads[thirdArg-1].callback,tertiaryMenu)
                 }
@@ -169,9 +169,9 @@ var Menu = function(title, menuOptions, payloadType) {
                     setTimeout(function(){
                         console.log(log.red("\n[*] Payload not found, please try again.\n"))
                     },15)
-                } 
-                
-                
+                }
+
+
             }
 
 
@@ -184,7 +184,7 @@ var Menu = function(title, menuOptions, payloadType) {
 
 var menus = {}
 var infoGMenu = new Menu("--[ Information Gathering ]--", ["DNS", "Port Scanning", "SMB", "SNMP"], pay.infog);
-var webMenu = new Menu("--[ Web ]--",["XML"], pay.web)
+var webMenu = new Menu("--[ Web ]--",["XML", "SQLi"], pay.web)
 var miscMenu = new Menu('--[ Miscellaneous ]--', ["Reverse Shells", "Exfiltration"], pay.misc)
 var linuxMenu = new Menu('--[ Linux ]--', ["System Info", "File System", "Networking", "Stealth"], pay.linux)
 var windowsMenu = new Menu('--[ Windows ]--', ["System Info", "File System", "Networking", "WMIC", "Powershell", "Windows Registry"], pay.windows)

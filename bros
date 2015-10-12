@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 var argv = require('yargs').argv,
-    log = require('cli-color'),
-    brosDir = require.resolve('cli-color'),
-    db = require('./db/db'),
-    menu = require('./modules/menu'),
-    secondaryMenu = require("./modules/secondaryMenu"),
-    check = require('./modules/inputChecks'),
-    simpleWeb = require('./modules/webserver/simple.js')
+  log = require('cli-color'),
+  brosDir = require.resolve('cli-color'),
+  db = require('./db/db'),
+  menu = require('./modules/menu'),
+  secondaryMenu = require("./modules/secondaryMenu"),
+  check = require('./modules/inputChecks'),
+  simpleWeb = require('./modules/webserver/simple.js')
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
@@ -71,7 +71,9 @@ function parseArgs() {
     // If input is bros http, start a webserver using expressjs, pass all args
     // to the simple web server module
     if (firstArgument.toUpperCase() === "HTTP") {
-      simpleWeb.init(argv);
+      simpleWeb.http(argv);
+    } else if (firstArgument.toUpperCase() === "HTTPS") {
+      simpleWeb.https(argv);
     } else if (firstArgument.toUpperCase() != "CONFIG") {
       if (secondArgument && thirdArgument) {
         check.allInputChecks(firstArgument + " " + secondArgument + " " + thirdArgument, console.log, menu.mainMenu)

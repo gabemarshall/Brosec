@@ -24,7 +24,7 @@ Overview
 - You can navigate to frequently used payloads by entering the menu sequence from the command line: `bros <sequence>`
   - Ex: `bros 413` - This would automate entering 4 for the Web Menu, 1 for the XXE sub menu, and 3 for the XXE local file read payload
 
-Need a quick web server? Forget python SimpleHTTPServer, bros has your back with `bros http` when entered via the command line.
+Need a quick web server? Forget python SimpleHTTPServer, bros has your back with `bros http` when entered via the command line. An SSL server? `bros https` has you covered.
 
 ![](http://i.imgur.com/47BHim4.gif)
 
