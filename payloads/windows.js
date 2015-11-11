@@ -56,6 +56,9 @@ Load({ payload: "sc query state=all", desc: "Show services", category: "System I
 Load({ payload: "tasklist /svc", desc: "Show processes & services", category: "System Info"})
 Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System Info"})
 Load({ payload: "net localgroup administrators", desc: "Prints local admins", category: "System Info"})
+Load({ payload: "net session", desc: "Check for elevated rights (an access denied error will return if not elevated)", category: "System Info"})
+Load({ payload: "net user username password /ADD", desc: "Create new local user", category: "System Info"})
+Load({ payload: "net localgroup administrators username /add", desc: "Add user to local admins group", category: "System Info"})
 
 Load({
 	payload: "taskkill /PID <PROMPT (pid)> /F",
