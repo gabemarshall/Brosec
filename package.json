@@ -16,7 +16,7 @@
     "dirty": "*",
     "ejs": "^2.3.1",
     "express": "*",
-    "kexec": "^1.2.0",
+    "kexec": "^1.3.0",
     "morgan": "*",
     "mstring": "*",
     "prompt": "*",
@@ -27,7 +27,7 @@
     "simple-git": "*"
   },
   "optionalDependencies":{
-    "kexec":"^1.2.0"
+    "kexec":"^1.3.0"
   },
   "author": "Gabe Marshall",
   "license": "ISC"
