@@ -6,7 +6,8 @@ var db = require('../db/db');
     output = require('./output'),
     check = require('./inputChecks'),
     colorize = require('./colorize.js'),
-    secondaryMenu = require("./secondaryMenu");
+    secondaryMenu = require("./secondaryMenu"),
+    interfaces = require('./interfaces');
 
 var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT", "SET USER", "SET PATH"]
 
@@ -316,6 +317,7 @@ function parseConfigPrompt(input, bool) {
     var parseError = false
     pargs = input.split(' ')
     detectedOption = pargs[0] + " " + pargs[1]
+
     detectedOptionValue = pargs[2]
 
     function saveSuccess(configItem, configValue) {
@@ -339,8 +341,12 @@ function parseConfigPrompt(input, bool) {
             configOptionFound = true
 
             if (detectedOption.toUpperCase() === "SET LHOST") {
-                setNewConfig("LHOST", detectedOptionValue)
-                saveSuccess("LHOST", detectedOptionValue)
+                if(!detectedOptionValue){
+                   // interfaces.setlhost(true);
+                } else {
+                    setNewConfig("LHOST", detectedOptionValue);
+                    saveSuccess("LHOST", detectedOptionValue);
+                }
             } else if (detectedOption.toUpperCase() === "SET LPORT") {
                 setNewConfig("LPORT", detectedOptionValue)
                 saveSuccess("LPORT", detectedOptionValue)
@@ -357,6 +363,7 @@ function parseConfigPrompt(input, bool) {
                 setNewConfig("PATH", detectedOptionValue)
                 saveSuccess("PATH", detectedOptionValue)
             }
+
 
         }
 

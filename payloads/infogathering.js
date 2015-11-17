@@ -67,6 +67,23 @@ Load({
 
 })
 
+Load({
+	title: "DNS Zone XFER",
+	payload: "host -t axfr <PROMPT (domain)> <RHOST (dns server)>",
+	category: "DNS",
+	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
+		prompt.message = "What domain would you like to use? :"
+		prompt.get([{name: '_', description: ':'}], function(err, result){
+			returnToPrepare(result._)
+		})
+
+	}
+
+})
+
+
+//host -t axfr domain.name dns-server
+
 
 // ############### Port Scanning Payloads ######################
 

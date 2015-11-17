@@ -10,7 +10,7 @@ var ifUserNeedsHelp = function(input, currentMenu, previousMenu){
 	if (input.match(/(help)/ig)){
 		menu.helpMenu(currentMenu)
 		return true
-	
+
 	}
 	else {
 		return false
@@ -19,7 +19,7 @@ var ifUserNeedsHelp = function(input, currentMenu, previousMenu){
 
 var ifUserWantsBack = function(input, currentMenu, previousMenu){
 	if (input.match(/(back)/ig)){
-		
+
 		previousMenu()
 		return true
 	}
@@ -40,7 +40,7 @@ var ifUserAccessConfig = function(input, currentMenu, previousMenu){
 
 		setTimeout(function(){currentMenu()}, 25)
 		return true
-		
+
 	}
 	else {
 		return false
@@ -48,24 +48,24 @@ var ifUserAccessConfig = function(input, currentMenu, previousMenu){
 }
 
 var ifUserWantsConfig = function(input, currentMenu, previousMenu){
-	
-	
+
+
 	if (input.match(/(config|options)/ig)){
 		menu.printConfig(currentMenu)
 		return true
-		
+
 	}
 
 	else if (input.match(/(RPORT|RHOST|LPORT|LHOST|USER|PATH)/i)){
-		
+
 		var thisConfigValue = input.toUpperCase()
-		
+
 		setTimeout(function(){
 			//clearMenu()
 			currentMenu()
 			console.log("\n"+log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n")
 		},25)
-		
+
 		return true
 	}
 	else {
@@ -84,6 +84,7 @@ var ifUserSaysConfigItem = function(input, currentMenu, previousMenu){
 	var input = input.toUpperCase()
 
 	if (input.match(/(set LPORT|set LHOST|set RHOST|set RPORT|set USER|set PATH)/)){
+    console.log("debugger, im in inputChecks")
 		console.log("\n\n\n")
 		console.log(log.green(input)+" => "+log.blackBright(db.getConfig(input))+"\n\n")
 		currentMenu()

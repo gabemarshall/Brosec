@@ -7,7 +7,8 @@ var argv = require('yargs').argv,
   menu = require('./modules/menu'),
   secondaryMenu = require("./modules/secondaryMenu"),
   check = require('./modules/inputChecks'),
-  simpleWeb = require('./modules/webserver/simple.js')
+  simpleWeb = require('./modules/webserver/simple.js'),
+  interfaces = require('./modules/interfaces');
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
@@ -16,6 +17,16 @@ var thirdArgument = argv._[2];
 // Get install path
 brosDir = brosDir.split("node_modules");
 brosDir = brosDir[0];
+
+function updateBros(){
+  require('simple-git')(brosDir)
+       .status(function(err, update) {
+          // if(update && update.summary.changes) {
+          //    require('child_process').exec('npm restart');
+          // }
+          console.log(update);
+       });  
+}
 
 
 function getFirstArgValue(arg) {
@@ -68,16 +79,27 @@ function parseArgs() {
         secondaryMenu(splitInput[1], splitInput[2])
     }
   } else if (typeof(firstArgument) === "string") {
+    firstArgument = firstArgument.toUpperCase();
+    try {
+      secondArgument = secondArgument.toUpperCase();
+    } catch(err){
+
+    }
     // If input is bros http, start a webserver using expressjs, pass all args
     // to the simple web server module
-    if (firstArgument.toUpperCase() === "HTTP") {
+    if (firstArgument === "HTTP") {
       simpleWeb.http(argv);
-    } else if (firstArgument.toUpperCase() === "HTTPS") {
+    } else if (firstArgument === "HTTPS") {
       simpleWeb.https(argv);
-    } else if (firstArgument.toUpperCase() != "CONFIG") {
+    } else if (firstArgument === "UPDATE"){
+      updateBros();
+    } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
+      interfaces.setlhost();
+
+    } else if (firstArgument != "CONFIG") {
       if (secondArgument && thirdArgument) {
         check.allInputChecks(firstArgument + " " + secondArgument + " " + thirdArgument, console.log, menu.mainMenu)
-      } else if (firstArgument.toUpperCase() === "HELP") {
+      } else if (firstArgument === "HELP") {
         check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu)
       } else {
         check.allInputChecks(firstArgument, console.log, console.log)

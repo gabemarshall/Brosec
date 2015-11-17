@@ -23,7 +23,8 @@
     "yargs": "*",
     "body-parser": "*",
     "method-override": "*",
-    "ecstatic": "*"
+    "ecstatic": "*",
+    "simple-git": "*"
   },
   "optionalDependencies":{
     "kexec":"^1.2.0"
