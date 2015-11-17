@@ -109,7 +109,7 @@ exports.helpMenu = function(menuCallback) {
     console.log(log.green("\n\t### Brosec Help Menu ###\n"))
     console.log("Overview")
     console.log("=========")
-    console.log("\n- Brosec is a RTFM-like utility to help Security Bros remember complex but useful payloads and commands")
+    console.log("\n- Brosec is a reference utility made to help Security Bros with useful payloads and commands")
     console.log("- Brosec utilizes saved variables (set by you) to create custom payloads on the fly. This config info is stored in a local db for your convenience")
     console.log("- Brosec outputs payloads and copies it to your clipboard in order to make your pentesting even more magical")
     console.log("- Your current config can be accessed by the " + log.blackBright("config") + " command at any time, or by entering the variable name")
