@@ -66,7 +66,7 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
         payload = payload.replace(/((<(LHOST)\s*?.*?>))/gi, lhost)
         payload = payload.replace(/((<(LPORT)\s*?.*?>))/gi, lport)
         payload = payload.replace(/((<(RHOST)\s*?.*?>))/gi, rhost)
-        payload = payload.replace(/((<(RPORT)\s*?.*?>))/gi, rhost)
+        payload = payload.replace(/((<(RPORT)\s*?.*?>))/gi, rport)
         payload = payload.replace(/((<(USER)\s*?.*?>))/gi, user)
         payload = payload.replace(/((<(PATH)\s*?.*?>))/gi, path)
 
