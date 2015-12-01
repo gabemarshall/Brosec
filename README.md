@@ -40,7 +40,9 @@ Installation
 
 #### Linux
 
-- `<package manager> install node build-essential g++ xsel netcat` Install Nodejs and other dependencies
+- `<package manager> install npm build-essential g++ xsel netcat` Install dependencies
+- `npm install -g n` Install n (nodejs version manager)
+- `n latest` Install latest version of nodejs
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
