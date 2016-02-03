@@ -1,20 +1,11 @@
-var db = require('../db/db');
-var log = require('cli-color');
-var prompt = require('prompt');
-var pay = require('../payloads/')
-var output = require('./output')
-var check = require('./inputChecks')
-var configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT, SET USER", "SET PATH"]
-var menu = require('./menu');
-
-var payloads
-var config
-var LHOST
-var LPORT
-var RHOST
-var RPORT
-var USER
-var PATH
+var db = require('../db/db'),
+  log = require('cli-color'),
+  prompt = require('prompt'),
+  pay = require('../payloads/'),
+  output = require('./output'),
+  check = require('./inputChecks'),
+  configOptions = ["SET LHOST", "SET RHOST", "SET LPORT", "SET RPORT, SET USER", "SET PATH"],
+  menu = require('./menu'), payloads, config, LHOST ,LPORT, RHOST, RPORT, USER, PATH;
 
 
 // Menu Generator

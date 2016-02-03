@@ -5,7 +5,7 @@ Security, for Bros.
 Overview
 =========
 
-- Brosec is a reference utility to help Security Bros with useful payloads and commands
+Brosec is a reference utility to help Security Bros with useful payloads and commands that might be used...todo
 - Brosec utilizes saved configuration variables (set at any time by you) to create custom payloads on the fly. These variables persist in a local database for your convenience.
 - Brosec outputs payloads and copies them to your clipboard in order to make your pentesting even more magical
 
