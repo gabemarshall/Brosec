@@ -11,32 +11,14 @@ var options = {
   tls: null,
 };
 
-// if (process.env.KEY_FILE && process.env.CERT_FILE) {
-//   console.log('Running as FTPS server');
-//   if (process.env.KEY_FILE.charAt(0) !== '/') {
-//     keyFile = path.join(__dirname, process.env.KEY_FILE);
-//   }
-//   if (process.env.CERT_FILE.charAt(0) !== '/') {
-//     certFile = path.join(__dirname, process.env.CERT_FILE);
-//   }
-//   options.tls = {
-//     key: fs.readFileSync(keyFile),
-//     cert: fs.readFileSync(certFile),
-//     ca: !process.env.CA_FILES ? null : process.env.CA_FILES
-//       .split(':')
-//       .map(function(f) {
-//         return fs.readFileSync(f);
-//       }),
-//   };
-// } else {
-//   console.log();
-//   console.log('*** To run as FTPS server,                 ***');
-//   console.log('***  set "KEY_FILE", "CERT_FILE"           ***');
-//   console.log('***  and (optionally) "CA_FILES" env vars. ***');
-//   console.log();
-// }
-
 var startFtpServer = function(protocol){
+  if (protocol === "ftps"){
+    console.log("ftps")
+    options.tls = {
+      key: fs.readFileSync("/var/tmp/bros.key"),
+      cert: fs.readFileSync("/var/tmp/bros.cert"),
+    };
+  }
   server = new ftpd.FtpServer(options.host, {
 
     getInitialCwd: function() {
@@ -97,5 +79,20 @@ exports.ftp = function(argv) {
   }
 
   startFtpServer("ftp");
+
+}
+
+exports.ftps = function(argv) {
+
+  try {
+      options.port = argv._[1];
+      if (!port){
+        options.port = 2121;
+      }
+  } catch (err){
+      options.port = 2121;
+  }
+
+  startFtpServer("ftps");
 
 }

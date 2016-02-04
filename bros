@@ -96,7 +96,7 @@ function parseArgs() {
       simpleFtp.ftp(argv);
     } else if (firstArgument === "FTPS"){
       console.log("Sorry, FTPs support is planned but currently not available")
-      //simppleFtp.ftps(argv);
+      //simpleFtp.ftps(argv);
     } else if (firstArgument === "UPDATE"){
       updateBros();
     } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
