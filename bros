@@ -8,6 +8,7 @@ var argv = require('yargs').argv,
   secondaryMenu = require("./modules/secondaryMenu"),
   check = require('./modules/inputChecks'),
   simpleWeb = require('./modules/webserver/simple.js'),
+  simpleFtp = require('./modules/webserver/simpleFtp.js'),
   interfaces = require('./modules/interfaces');
 
 var firstArgument = argv._[0];
@@ -25,7 +26,7 @@ function updateBros(){
           //    require('child_process').exec('npm restart');
           // }
           console.log(update);
-       });  
+       });
 }
 
 
@@ -91,6 +92,11 @@ function parseArgs() {
       simpleWeb.http(argv);
     } else if (firstArgument === "HTTPS") {
       simpleWeb.https(argv);
+    } else if (firstArgument === "FTP"){
+      simpleFtp.ftp(argv);
+    } else if (firstArgument === "FTPS"){
+      console.log("Sorry, FTPs support is planned but currently not available")
+      //simppleFtp.ftps(argv);
     } else if (firstArgument === "UPDATE"){
       updateBros();
     } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
