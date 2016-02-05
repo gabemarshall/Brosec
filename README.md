@@ -11,8 +11,6 @@ Assuming the user has already set up the required variables (read on to learn ho
 
 http://showterm.io/100e367a74760534274e6
 
-<br>
-
 #### Payload Variables
 
 Brosec stores and retrieves values of the following variables when used in payloads. While some payloads will already include these variables, you can also include them in any payload that prompts for user input.
