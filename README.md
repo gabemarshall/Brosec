@@ -2,39 +2,68 @@ Brosec
 ======
 Security, for Bros.
 
-Overview
+Overview (TLDR)
 =========
 
-Brosec is a reference utility to help Security Bros with useful payloads and commands that might be used...todo
-- Brosec utilizes saved configuration variables (set at any time by you) to create custom payloads on the fly. These variables persist in a local database for your convenience.
-- Brosec outputs payloads and copies them to your clipboard in order to make your pentesting even more magical
+Brosec is a reference utility designed to help Security Bros with useful (but sometimes complex) payloads and commands that are often used pentest engagementments. Brosec's most useful feature is the ability to generate on the fly reverse shells (python, perl, powershell, etc) that get copied to the clipboard.
+
+Assuming the user has already set up the required variables (read on to learn how) a python reverse shell can be generated as easy as...
+
+<iframe src="http://showterm.io/100e367a74760534274e6" width="640" height="480"></iframe>
 
 <br>
-##### Features and Usage Examples
-###### XXE for Bros
-![](http://i.imgur.com/hxrqlvk.gif)
-Above is an example of how brosec can make XXE testing easier by selecting from a pre-loaded list of payloads.
-<br><br>
+
+#### Payload Variables
+
+Brosec stores and retrieves values of the following variables when used in payloads. While some payloads will already include these variables, you can also include them in any payload that prompts for user input.
+
+For example, the following shows how a Powershell download cradle can be generated using multiple stored variables.
+
+<iframe src="http://showterm.io/af3dc2dd245b69ec79b28" width="640" height="480"></iframe>
+
+##### Available variables
+
+- LHOST : Local IP or name
+- LPORT : Local IP or name
+- RHOST : Remote IP or name
+- RPORT : Remote IP or name
+- USER : Username (only used in a few payloads)
+- PROMPT : User Prompt (This isn't a stored value. Instead, payloads with this variable will prompt for input.)
+
+<br>
 
 ![](http://i.imgur.com/FCateZJ.gif)
-Above are multiple examples of how to access the stored configuration data.
-- Configuration variables can be accessed by the `config` command at any time, or by entering the variable name
-- Config values can be changed at any time by entering `set <variable> <value>`
-- You can navigate to frequently used payloads by entering the menu sequence from the command line: `bros <sequence>`
+Above are multiple examples of how to access and set the stored configuration variables.
+- Configuration variables can be viewed via the `config` command at any time, or by entering the variable name
+- Variables can be changed at any time by entering `set <variable> <value>`
+- You can also navigate to frequently used payloads by entering the menu sequence from the command line: `bros <sequence>`
   - Ex: `bros 413` - This would automate entering 4 for the Web Menu, 1 for the XXE sub menu, and 3 for the XXE local file read payload
 
 <br>
+
+<br>
+##### Additional Features and Usage Examples
+###### XXE for Bros
+![](http://i.imgur.com/hxrqlvk.gif)
+<br>
+In addition to useful payloads such as reverse shells, Brosec also has multiple XXE payloads that you can generate on the fly.
+<br><br>
+
 ###### Simple HTTP(s) Server
 Need a quick web server? Forget python SimpleHTTPServer, bros has your back with `bros http` when entered via the command line. An SSL server? `bros https` has you covered.
 
 ![](http://i.imgur.com/47BHim4.gif)
+
+<br>
+###### Anonymous FTP Server
+Need to exfiltrate some data via ftp? Bros comes with a handy `bros ftp` when entered via the command line. The ftp server accepts anonymous downloads/uploads from the CWD (so be careful when running).
 
 Installation
 ============
 
 #### Mac
 
-- `brew install node netcat` - Install Nodejs and netcat (or nc, ncat, etc)
+- `brew install node netcat` - Install Nodejs and netcat (nc or ncat will work too)
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
@@ -61,13 +90,4 @@ Add bros directory path to your PATH env variable, create a symlink for the bros
 Configuration
 =====================
 
-Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via the settings.netcat variable.
-
-#### Payload Variables
-
-- LHOST : Local IP or name
-- LPORT : Local IP or name
-- RHOST : Remote IP or name
-- RPORT : Remote IP or name
-- USER : Username (only used in a few payloads)
-- PROMPT : User Prompt (This isn't a stored value. Instead, payloads with this variable will prompt for input.)
+Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via the settings.netcat variable (it can also be changed to ncat or nc).
