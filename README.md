@@ -9,7 +9,7 @@ Brosec is a reference utility designed to help Security Bros with useful (but so
 
 Assuming the user has already set up the required variables (read on to learn how) a python reverse shell can be generated as easy as...
 
-<iframe src="http://showterm.io/100e367a74760534274e6" width="640" height="480"></iframe>
+http://showterm.io/100e367a74760534274e6
 
 <br>
 
@@ -19,7 +19,7 @@ Brosec stores and retrieves values of the following variables when used in paylo
 
 For example, the following shows how a Powershell download cradle can be generated using multiple stored variables.
 
-<iframe src="http://showterm.io/af3dc2dd245b69ec79b28" width="640" height="480"></iframe>
+http://showterm.io/af3dc2dd245b69ec79b28
 
 ##### Available variables
 
