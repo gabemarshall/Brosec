@@ -17,7 +17,7 @@ Brosec stores and retrieves values of the following variables when used in paylo
 
 For example, the following shows how a Powershell download cradle can be generated using multiple stored variables.
 
-http://showterm.io/af3dc2dd245b69ec79b28
+[![asciicast](https://asciinema.org/a/c2793p8lzzvla8pqji29snyvc.png)](https://asciinema.org/a/c2793p8lzzvla8pqji29snyvc)
 
 ##### Available variables
 
