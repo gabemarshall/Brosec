@@ -182,15 +182,12 @@ Load({ payload: "route -n", desc: "Find the ip of your gateway", category: "Netw
 Load({ payload: "route -n get default", desc: "Find the ip of your gateway (MacOS)", category: "Networking"})
 
 Load({
-	payload: "smb://<RHOST>/<PROMPT (share)>",
-	desc: "Mount Windows share",
+	payload: "mount -t cifs <PROMPT> -o username=,password= <PATH (local path to mount)>",
+	desc: "Mount an SMB Share (null session)",
 	category: "Networking",
-	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		prompt.message = "What share would you like to mount? :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})
-
+	callback: function(bro){
+		question("What's the path of the SMB share? (Ex: //server/ipc$");
+		ask.some(questions, bro);
 	}
 })
 
@@ -200,6 +197,11 @@ Load({
 	category: "Networking",
 })
 
+Load({
+	payload: "ssh -D <LPORT> <USER>@<RHOST>",
+	desc: "SSH SOCKS Proxy",
+	category: "Networking",
+})
 
 
 // ############### Stealth  ######################
