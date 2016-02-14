@@ -5,7 +5,7 @@ Security, for Bros.
 Overview (TLDR)
 =========
 
-Brosec is a reference utility designed to help Security Bros with useful (but sometimes complex) payloads and commands that are often used pentest engagementments. Brosec's most useful feature is the ability to generate on the fly reverse shells (python, perl, powershell, etc) that get copied to the clipboard.
+Brosec is a reference utility designed to help Security Bros with useful (but sometimes complex) payloads and commands that are often used during pentest engagementments. An example of one of Brosec's most popular use cases is the ability to generate on the fly reverse shells (python, perl, powershell, etc) that get copied to the clipboard.
 
 Assuming the user has already set up the required variables (read on to learn how) a reverse shell using the awk command can be generated as easy as...
 
