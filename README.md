@@ -1,4 +1,4 @@
-![](http://i.imgur.com/iaM1W7k.png)
+![](http://i.imgur.com/si9nuwC.png)
 
 Security, for Bros.
 
