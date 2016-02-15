@@ -9,7 +9,9 @@ var argv = require('yargs').argv,
   check = require('./modules/inputChecks'),
   simpleWeb = require('./modules/webserver/simple.js'),
   simpleFtp = require('./modules/webserver/simpleFtp.js'),
-  interfaces = require('./modules/interfaces');
+  interfaces = require('./modules/interfaces'),
+  settings = require('./settings'),
+  child_process = require('child_process');
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
@@ -106,7 +108,11 @@ function parseArgs() {
       if (secondArgument && thirdArgument) {
         check.allInputChecks(firstArgument + " " + secondArgument + " " + thirdArgument, console.log, menu.mainMenu)
       } else if (firstArgument === "HELP") {
-        check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu)
+        check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu);
+      } else if (firstArgument === "CLEAN") {
+        child_process.execFile('rm', [settings.dbPath], function(error, stdout, stderr){  	
+        });
+        console.log("The Brosec database located at %s has been wiped.", settings.dbPath)
       } else {
         check.allInputChecks(firstArgument, console.log, console.log)
       }

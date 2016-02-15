@@ -1,6 +1,5 @@
 var prompt = require('prompt'),
-	ask = require('../modules/questionUser'),
-	ncat = require("../modules/ncat.js");
+	ask = require('../modules/questionUser')
 
 // Payload Array
 arrayMisc = []

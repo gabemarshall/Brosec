@@ -1,14 +1,22 @@
 # ChangeLog
 
-## 0.2 _(Feb 15, 2016)_
+## 0.2a _(Feb 15, 2016)_
+
+- Features
+    - `bros clean`
+        - New feature added to allow quick deletion of the local Brosec database.
+
+- Minor performance improvements throughout Brosec
+
+## 0.2 _(Feb 5, 2016)_
 
 - Features
     - `bros ftp`
-        - New feature added to allow for a simple (insecure) ftp server which allows download/upload of the current directory via anonymous connections. 
-    
+        - New feature added to allow for a simple (insecure) ftp server which allows download/upload of the current directory via anonymous connections.
+
     - `bros set lhost`
     	- This feature (ran from the command line) will help you set the LHOST variable by prompting you with the available list of network interfaces.
-   
+
 - Dependencies
     - ftpd (nodejs module)
         - Required for the `bros ftp` feature
