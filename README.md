@@ -1,4 +1,4 @@
-![](http://i.imgur.com/si9nuwC.png)
+![](http://i.imgur.com/WDatGEq.png)
 
 Overview (tl;dr)
 =========
