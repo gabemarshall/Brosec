@@ -1,5 +1,5 @@
-Brosec
-======
+![](http://i.imgur.com/iaM1W7k.png)
+
 Security, for Bros.
 
 Overview (TLDR)
