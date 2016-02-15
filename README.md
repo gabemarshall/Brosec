@@ -1,11 +1,9 @@
 ![](http://i.imgur.com/si9nuwC.png)
 
-Security, for Bros.
-
-Overview (TLDR)
+Overview (tl;dr)
 =========
 
-Brosec is a reference utility designed to help Security Bros with useful (but sometimes complex) payloads and commands that are often used during pentest engagementments. An example of one of Brosec's most popular use cases is the ability to generate on the fly reverse shells (python, perl, powershell, etc) that get copied to the clipboard.
+Brosec is a terminal based reference utility designed to help us infosec bros and broettes with useful (yet sometimes complex) payloads and commands that are often used during work as infosec practitioners. An example of one of Brosec's most popular use cases is the ability to generate on the fly reverse shells (python, perl, powershell, etc) that get copied to the clipboard.
 
 Assuming the user has already set up the required variables (read on to learn how) a reverse shell using the awk command can be generated as easy as...
 
@@ -13,9 +11,9 @@ Assuming the user has already set up the required variables (read on to learn ho
 
 #### Payload Variables
 
-Brosec stores and retrieves values of the following variables when used in payloads. While some payloads will already include these variables, you can also include them in any payload that prompts for user input.
+Brosec allows you to store and retrieve values (in a local json db) for several variables in order to make command/payload generation easier. While some payloads will already include these variables, you can also include them in any payload that prompts for user input.
 
-For example, the following shows how a Powershell download cradle can be generated using multiple stored variables.
+For example, the following shows how a Powershell download cradle can be generated using the LHOST and LPORT variables (the values of which had already been set).
 
 [![asciicast](https://asciinema.org/a/c2793p8lzzvla8pqji29snyvc.png)](https://asciinema.org/a/c2793p8lzzvla8pqji29snyvc)
 
