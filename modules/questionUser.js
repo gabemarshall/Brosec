@@ -35,6 +35,8 @@ exports.http = function(callback) {
 }
 
 exports.ncat = function(callback) {
+  var port = db.getConfig("LPORT")
+  if (kexec){
     prompt.message = "Should I start a netcat listener for you? (Y/n) :"
     prompt.get([{
         name: '_',
@@ -44,21 +46,9 @@ exports.ncat = function(callback) {
         try {
             result._ = result._.toUpperCase()
             if (result._ === "Y" || !result._) {
-                var port = db.getConfig("LPORT")
-
-                // kexec currently does not support windows
-                // if user is using windows, send them a nice error msg :/
-                if (!checkModule.kexec()) {
-                    console.log(log.red("\n[!] kexec module for netcat payloads appears to be missing!"));
-                    console.log(log.blackBright("[*] To start a netcat listener, run the following => " + settings.netcat + " -lnp " + port + " -vv"));
-                    callback(finalAnswer);
-                } else {
-                    console.log(log.blackBright("\n[*] Initializing hacking sequence (" + settings.netcat + " -lnp " + port + " -vv)"));
-                    callback(finalAnswer);
-                    kexec(settings.netcat + " -lnp " + port + " -vv");
-
-                }
-
+              console.log(log.blackBright("\n[*] Initializing hacking sequence (" + settings.netcat + " -lnp " + port + " -vv)"));
+              callback(finalAnswer);
+              kexec(settings.netcat + " -lnp " + port + " -vv");
             } else {
                 callback(finalAnswer);
             }
@@ -67,9 +57,19 @@ exports.ncat = function(callback) {
         }
 
     })
+  } else {
+    console.log("");
+    console.log(log.blackBright("[*] To start a netcat listener, run the following => " + settings.netcat + " -lnp " + port + " -vv"));
+    callback(finalAnswer);
+  }
 }
 
 exports.ncatReceiveFile = function(callback) {
+  var port = db.getConfig("LPORT");
+  var path = db.getConfig("PATH");
+  var localFile = finalAnswer.replace(/(\/)/g, "_")
+
+  if (!kexec){
     prompt.message = "Should I start a netcat listener for you? (Y/n) :"
     prompt.get([{
         name: '_',
@@ -79,23 +79,18 @@ exports.ncatReceiveFile = function(callback) {
         try {
             result._ = result._.toUpperCase()
             if (result._ === "Y" || !result._) {
-                var port = db.getConfig("LPORT");
-                var path = db.getConfig("PATH");
+
 
                 if (!path || path.length <= 0) {
                     log.yellow("Warning: Path variable is not set, defaulting to /var/tmp/")
                 }
                 path = "/var/tmp/"
-                    // kexec currently does not support windows
-                    // if user is using windows, send them a nice error msg :/
-                if (currentOS !== 'Darwin' && currentOS !== 'Linux') {
-                    console.log("Sorry, currently this feature is unavailable in Windows. You'll have to manually start netcat: (Ex: netcat -lnp %s -vv", port);
-                } else {
+
+                    // if kexec isn't installed, notify the user
                     callback(finalAnswer);
-                    var localFile = finalAnswer.replace(/(\/)/g, "_")
+
                     console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved as " + path + "/bros" + localFile + ")\n"))
                     kexec(settings.netcat + " -lnp " + port + " > " + path + "/bros" + localFile + " -vv");
-                }
 
             } else {
                 callback(finalAnswer);
@@ -104,6 +99,12 @@ exports.ncatReceiveFile = function(callback) {
             console.log("\nLater bro!");
         }
     })
+
+  } else {
+    callback(finalAnswer);
+    console.log("");
+    console.log(log.blackBright("[*] To start a netcat listener, run the following => " + settings.netcat + " -lnp " + port + " > " + path + "/bros" + localFile));
+  }
 }
 
 exports.some = function(question, callback, type) {
