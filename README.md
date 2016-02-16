@@ -57,6 +57,8 @@ Need to exfiltrate some data via ftp? Bros comes with a handy `bros ftp` when en
 Installation
 ============
 
+*Portable binaries coming soon*
+
 #### Mac
 
 - `brew install node netcat` - Install Nodejs and netcat (nc or ncat will work too)
