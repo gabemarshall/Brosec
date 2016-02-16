@@ -29,7 +29,7 @@ For example, the following shows how a Powershell download cradle can be generat
 <br>
 
 ![](http://i.imgur.com/FCateZJ.gif)
-Above are multiple examples of how to access and set the stored configuration variables.
+<br>Above are multiple examples of how to access and set the stored configuration variables.
 - Configuration variables can be viewed via the `config` command at any time, or by entering the variable name
 - Variables can be changed at any time by entering `set <variable> <value>`
 - You can also navigate to frequently used payloads by entering the menu sequence from the command line: `bros <sequence>`
