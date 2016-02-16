@@ -1,5 +1,4 @@
-![](http://i.imgur.com/0iIA5OV.png)
-<br><sup><sup>[logo by Vilhaum ](https://github.com/vilhaum)</sup></sup>
+![https://github.com/vilhaum](http://i.imgur.com/0iIA5OV.png "logo by Vilhaum")
 
 Overview (tl;dr)
 =========
