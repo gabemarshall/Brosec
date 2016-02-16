@@ -42,7 +42,7 @@ For example, the following shows how a Powershell download cradle can be generat
 ###### XXE for Bros
 ![](http://i.imgur.com/hxrqlvk.gif)
 <br>
-In addition to useful payloads such as reverse shells, Brosec also has multiple XXE payloads that you can generate on the fly.
+In addition to payloads such as reverse shells, Brosec also has multiple XXE payloads that you can generate on the fly.
 <br><br>
 
 ###### Simple HTTP(s) Server
