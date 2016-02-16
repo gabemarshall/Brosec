@@ -2,7 +2,6 @@
 
 var argv = require('yargs').argv,
   log = require('cli-color'),
-  brosDir = require.resolve('cli-color'),
   db = require('./db/db'),
   menu = require('./modules/menu'),
   secondaryMenu = require("./modules/secondaryMenu"),
@@ -11,25 +10,17 @@ var argv = require('yargs').argv,
   simpleFtp = require('./modules/webserver/simpleFtp.js'),
   interfaces = require('./modules/interfaces'),
   settings = require('./settings'),
-  child_process = require('child_process');
+  child_process = require('child_process'),
+  utilities = require('./modules/utilities'),
+  log = require('./modules/log.js');
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
 var thirdArgument = argv._[2];
 
-// Get install path
-brosDir = brosDir.split("node_modules");
-brosDir = brosDir[0];
 
-function updateBros(){
-  require('simple-git')(brosDir)
-       .status(function(err, update) {
-          // if(update && update.summary.changes) {
-          //    require('child_process').exec('npm restart');
-          // }
-          console.log(update);
-       });
-}
+
+
 
 
 function getFirstArgValue(arg) {
@@ -100,7 +91,7 @@ function parseArgs() {
       console.log("Sorry, FTPs support is planned but currently not available")
       //simpleFtp.ftps(argv);
     } else if (firstArgument === "UPDATE"){
-      updateBros();
+      utilities.update();
     } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
       interfaces.setlhost();
 
@@ -113,7 +104,8 @@ function parseArgs() {
         child_process.execFile('rm', [settings.dbPath], function(error, stdout, stderr){  	
         });
         console.log("The Brosec database located at %s has been wiped.", settings.dbPath)
-      } else {
+      } 
+      else {
         check.allInputChecks(firstArgument, console.log, console.log)
       }
     } else {

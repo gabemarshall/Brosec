@@ -1,6 +1,7 @@
 var menu = require('./menu');
 var db = require('../db/db');
-var log = require('cli-color');
+var log = require('cli-color'),
+	utilities = require('./utilities');
 
 function clearMenu() {
     console.log('\033[2J');
@@ -31,6 +32,13 @@ var ifUserWantsBack = function(input, currentMenu, previousMenu){
 var ifUserWantsHome = function(input, currentMenu, previousMenu){
 	if (input.match(/(home|main)/ig)){
 		menu.mainMenu(menu.clearMenu())
+	}
+}
+
+var ifUserWantsUpdate = function(input, currentMenu, previousMenu){
+	if (input.match(/(update)/ig)){
+		setTimeout(function(){console.log(log.yellow("Sorry, currently update feature must be run from the command line."))}, 25)
+		menu.clearMenu()
 	}
 }
 
@@ -98,12 +106,13 @@ exports.ifUserAccessConfig = ifUserAccessConfig
 exports.ifUserWantsToExit = ifUserWantsToExit
 exports.ifUserWantsHome = ifUserWantsHome
 exports.ifUserSaysConfigItem = ifUserSaysConfigItem
+exports.ifUserWantsUpdate = ifUserWantsUpdate
 
 exports.allInputChecks = function(input, currentMenu, previousMenu){
 
 	var inputMatchedCheck = false
 
-	var inputChecks = [ifUserNeedsHelp,ifUserWantsBack,ifUserAccessConfig,ifUserWantsConfig,ifUserWantsToExit,ifUserWantsHome,ifUserSaysConfigItem]
+	var inputChecks = [ifUserNeedsHelp,ifUserWantsBack,ifUserAccessConfig,ifUserWantsConfig,ifUserWantsToExit,ifUserWantsHome,ifUserSaysConfigItem, ifUserWantsUpdate]
 	for (i=0;i<inputChecks.length;i++){
 		if(inputChecks[i](input, currentMenu, previousMenu)){
 			inputMatchedCheck = true

@@ -1,5 +1,12 @@
 # ChangeLog
 
+## 0.2b _(Feb 16, 2016)_
+
+- Features
+    - `bros update`
+        - Convenience module that check for updates via git, pull if any updates are found, and installs any new dependencies.
+
+
 ## 0.2a _(Feb 15, 2016)_
 
 - Features

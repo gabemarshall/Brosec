@@ -6,4 +6,8 @@ color.status = function(msg){
     return whiteOnBlack(msg);
 };
 
+color.okay = function(msg){
+	return color.green(msg);
+};
+
 module.exports = color;
