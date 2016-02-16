@@ -1,4 +1,4 @@
-![https://github.com/vilhaum](http://i.imgur.com/0iIA5OV.png "logo by Vilhaum")
+![](http://i.imgur.com/0iIA5OV.png "logo by Vilhaum - https://github.com/vilhaum")
 
 Overview (tl;dr)
 =========
