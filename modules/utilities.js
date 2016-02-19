@@ -8,9 +8,9 @@ brosDir = brosDir[0];
 
 exports.update = function(){
   console.log("Checking for updates...")
-  
+
   require('simple-git')(brosDir)
-       .pull(function(err, update) {              
+       .pull(function(err, update) {
           if(update && update.summary.changes) {
             if(update.summary.changes > 0){
               require('child_process').exec('npm restart && npm install');
@@ -20,7 +20,7 @@ exports.update = function(){
             }
           } else {
             console.log(log.okay("No updates were found, you're up to date!"));
-          }         
+          }
        })
 
 }

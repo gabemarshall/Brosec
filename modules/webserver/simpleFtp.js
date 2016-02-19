@@ -71,9 +71,6 @@ exports.ftp = function(argv) {
 
   try {
       options.port = argv._[1];
-      if (!port){
-        options.port = 2121;
-      }
   } catch (err){
       options.port = 2121;
   }
@@ -86,9 +83,6 @@ exports.ftps = function(argv) {
 
   try {
       options.port = argv._[1];
-      if (!port){
-        options.port = 2121;
-      }
   } catch (err){
       options.port = 2121;
   }
