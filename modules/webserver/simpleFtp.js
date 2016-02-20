@@ -62,8 +62,15 @@ var startFtpServer = function(protocol){
   });
 
   server.debugging = 4;
-  server.listen(options.port);
-  console.log(" [*] An "+log.status("anonymous")+" "+protocol+" server is serving "+process.cwd()+" on port "+options.port+" (ctrl c to stop)");
+  
+  ftpPort = options.port
+
+  if (!ftpPort){
+    ftpPort = 2121;
+  }
+  
+  server.listen(ftpPort);
+  console.log(" [*] An "+log.status("anonymous")+" "+protocol+" server is serving "+process.cwd()+" on port "+ftpPort+" (ctrl c to stop)");
 
 }
 
