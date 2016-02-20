@@ -57,7 +57,11 @@ Need to exfiltrate some data via ftp? Bros comes with a handy `bros ftp` when en
 Installation
 ============
 
-*Portable binaries coming soon*
+### Brosec binaries
+
+[Releases](https://github.com/gabemarshall/Brosec/releases) *Some features are unavailable in the compiled version, but is a good way to quickly try out Brosec*
+
+### Manual installation 
 
 #### Mac
 
