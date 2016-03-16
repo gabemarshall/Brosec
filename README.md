@@ -69,9 +69,10 @@ Installation
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
-#### Linux
+#### Kali Linux
 
-- `<package manager> install npm build-essential g++ xsel netcat` Install dependencies
+- `apt-get install npm build-essential g++ xsel netcat` Install dependencies
+- `npm config set registry http://registry.npmjs.org/` Npm registry seems to be broken by default when installed from Kali repos
 - `npm install -g n` Install n (nodejs version manager)
 - `n latest` Install latest version of nodejs
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
