@@ -1,4 +1,7 @@
-![](http://i.imgur.com/0iIA5OV.png "logo by Vilhaum - https://github.com/vilhaum")
+![](https://i.imgur.com/1QyMN3G.png "logo by Vilhaum - https://github.com/vilhaum")
+
+
+<sup>[Want a sticker?](#sticker)</sup>
 
 Overview (tl;dr)
 =========
@@ -61,7 +64,7 @@ Installation
 
 *Some features are unavailable in the compiled version, but is a good way to quickly try out Brosec*
 
-### Manual installation 
+### Manual installation
 
 #### Mac
 
@@ -94,3 +97,12 @@ Configuration
 =====================
 
 Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via the settings.netcat variable (it can also be changed to ncat or nc).
+
+
+Swag
+====
+
+<a name="sticker">Want a free Brosec sticker?</a>
+<br><br> Submit a pull request, create an issue, or just send feedback to <gabemarshall@me.com> and I'll happily send you a sticker (supplies limited).
+
+Otherwise you can order one from [StickerMule](https://www.stickermule.com/marketplace/10877-brosec-security-for-bros)

@@ -3,6 +3,6 @@ exports.kexec = function(){
     var kexec = require('kexec');
     return true
   } catch (err){
-    return false
+    return false;
   }
 }
