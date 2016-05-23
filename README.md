@@ -1,8 +1,6 @@
 ![](https://i.imgur.com/1QyMN3G.png "logo by Vilhaum - https://github.com/vilhaum")
 
 
-<sup>[Want a sticker?](#sticker)</sup>
-
 Overview (tl;dr)
 =========
 
@@ -103,6 +101,6 @@ Swag
 ====
 
 <a name="sticker">Want a free Brosec sticker?</a>
-<br><br> Submit a pull request, create an issue, or just send feedback to <gabemarshall@me.com> and I'll happily send you a sticker (supplies limited).
+<br><br> Submit a pull request, create an issue, or just send feedback to <gabemarshall@me.com> and I'll happily send you a sticker (supplies limited, free shipping to continental US only).
 
 Otherwise you can order one from [StickerMule](https://www.stickermule.com/marketplace/10877-brosec-security-for-bros)
