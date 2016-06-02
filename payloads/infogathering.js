@@ -49,7 +49,7 @@ Load({
 
 Load({
 	title: "Reverse DNS Lookup of an IP Address",
-	payload: "dig +short -x <RHOST (dns server)>",
+	payload: "dig +short -x <RHOST (ip address)>",
 	category: "DNS"
 })
 
