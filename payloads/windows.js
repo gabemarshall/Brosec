@@ -141,6 +141,8 @@ Load({payload: "netsh firewall set opmode disable", desc: "Disable Windows Firew
 Load({payload: "wmic qfe get hotfixid", desc: "Get Patch IDs", category: "WMIC"})
 Load({payload: "wmic process list full", desc: "List all processes and their attributes", category: "WMIC"})
 Load({payload: "wmic ntdomain list", desc: "Get Domain and DC Information", category: "WMIC"})
+Load({payload: "wmic /namespace:\\\\root\\securitycenter2 path antivirusproduct", desc: "List Anti-Virus Product(s)", category: "WMIC"})
+
 // ############### Powershell ######################
 
 Load({
