@@ -145,7 +145,7 @@ Load({payload: "wmic ntdomain list", desc: "Get Domain and DC Information", cate
 
 Load({
 	title: "TCP Port Scan",
-	payload: '$ports=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($p in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$p);}catch{};if ($socket -eq $NULL){echo $ip":"$p" - Closed";}else{echo $ip":"$p" - Open";$socket = $NULL;}}',
+	payload: '$ps=(<PROMPT (ports)>);$ip="<RHOST>";foreach ($p in $ps){try{$s=New-object System.Net.Sockets.TCPClient($ip,$p);}catch{};if ($s -eq $NULL){echo $ip":"$p" - Closed";}else{echo $ip":"$p" - Open";$s = $NULL;}}',
 	category: "Powershell",
 	callback: function(bro){
 		question("Ports to scan? (ex: 80,443,8080)");
