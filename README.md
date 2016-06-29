@@ -104,3 +104,15 @@ Swag
 <br><br> Submit a pull request, create an issue, or just send feedback to <gabemarshall@me.com> and I'll happily send you a sticker (supplies limited, free shipping to continental US only).
 
 Otherwise you can order one from [StickerMule](https://www.stickermule.com/marketplace/10877-brosec-security-for-bros)
+
+
+Credits
+======
+
+Brosec was heavily inspired by the Red Team Field Manual by Ben Clark. In addition, many payloads were referenced from other resources and deserve a shoutout.
+
+- [pentestmonkey reverse shells](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+- [g0tmi1k linux privesc](https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/)
+- [obsecuresecurity](http://obscuresecurity.blogspot.com/2014/05/dirty-powershell-webserver.html)
+
+Special thanks to [@LuxCupitor](https://twitter.com/LuxCupitor)
