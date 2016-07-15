@@ -42,7 +42,7 @@ function getFirstArgValue(arg) {
 }
 
 function parseArgs() {
-
+  var oldSecondary;
 
   if (firstArgument >= 1 && firstArgument <= 6) {
     secondaryMenu = getFirstArgValue(firstArgument);
@@ -75,6 +75,7 @@ function parseArgs() {
   } else if (typeof(firstArgument) === "string") {
     firstArgument = firstArgument.toUpperCase();
     try {
+      oldSecondary = secondArgument;
       secondArgument = secondArgument.toUpperCase();
     } catch(err){
 
@@ -92,6 +93,13 @@ function parseArgs() {
       //simpleFtp.ftps(argv);
     } else if (firstArgument === "UPDATE"){
       utilities.update();
+    } else if (firstArgument === "ENCODE"){
+      if (secondArgument){
+        utilities.encoder(oldSecondary);  
+      } else {
+        utilities.encoder();
+      }
+      
     } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
       interfaces.setlhost();
 
