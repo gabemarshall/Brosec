@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 1.1.0a _(July 23, 2016)_
+
+- Dependencies
+  - Removed kexec dependency that was used to run netcat listeners (replaced by ```modules/nc.js```)
+
+
+- Bug fixes
+
 ## 0.2b _(Feb 16, 2016)_
 
 - Features

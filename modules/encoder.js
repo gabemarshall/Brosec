@@ -1,12 +1,13 @@
 var blessed = require("blessed"),
 	output = require('./output'),
 	outputValue = '';
-var screen = blessed.screen({
-  smartCSR: true
-});
-screen.title = 'Brosec Encoder';
-exports.init = function(input){
 
+
+exports.init = function(input){
+	var screen = blessed.screen({
+	  smartCSR: true
+	});
+	process.title = 'Brosec Encoder';
 	// box at bottom for chat input
 	inputBox = blessed.textbox({
 		parent: screen,
@@ -17,6 +18,7 @@ exports.init = function(input){
 			type: 'line', fg: "#27ea09"
 		},
 		width: '80%',
+		content: '',
 		top: 'center',
 		left: 'center',
 	});
@@ -29,7 +31,7 @@ exports.init = function(input){
 	  autoPadding: true,
 	  label: '[ Output ]',
 	  height: '15%',
-	  content: "",
+	  content: '',
 	  tags: true,
 	    border: {
 	    type: 'line', fg: "#27ea09"
@@ -59,8 +61,8 @@ exports.init = function(input){
 
 	var inputBoxFocusHandler = function() {
 
-		inputBox.readInput(function(data) {
-
+		inputBox.readInput("foo", "bar", function(data) {
+			console.log(data);
 	  	});
 		inputBox.key('C-c', function(){
 			return process.exit(0);

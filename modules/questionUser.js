@@ -5,12 +5,8 @@ var prompt = require('prompt'),
     settings = require('../settings.js'),
     db = require('../db/db'),
     currentOS = os.type(),
-    checkModule = require('./checkModule.js'),
+    netcat = require('./nc'),
     finalAnswer
-
-if (checkModule.kexec()) {
-    var kexec = require('kexec');
-}
 
 exports.http = function(callback) {
     prompt.message = "Should I fire up a web server for you? (Y/n) :"
@@ -36,8 +32,8 @@ exports.http = function(callback) {
 
 exports.ncat = function(callback) {
   var port = db.getConfig("LPORT")
-  if (kexec){
-    prompt.message = "Should I start a netcat listener for you? (Y/n) :"
+
+    prompt.message = "Should I start a tcp listener on port "+port+" for you? (Y/n) :"
     prompt.get([{
         name: '_',
         description: ":"
@@ -46,9 +42,9 @@ exports.ncat = function(callback) {
         try {
             result._ = result._.toUpperCase()
             if (result._ === "Y" || !result._) {
-              console.log(log.blackBright("\n[*] Initializing hacking sequence (" + settings.netcat + " -lnp " + port + " -vv)"));
               callback(finalAnswer);
-              kexec(settings.netcat + " -lnp " + port + " -vv");
+              console.log(log.blackBright("\n[*] TCP socket server listening on port " + port));
+              netcat.listen(port);
             } else {
                 callback(finalAnswer);
             }
@@ -57,20 +53,15 @@ exports.ncat = function(callback) {
         }
 
     })
-  } else {
-    console.log("");
-    console.log(log.blackBright("[*] To start a netcat listener, run the following => " + settings.netcat + " -lnp " + port + " -vv"));
-    callback(finalAnswer);
-  }
+
 }
 
 exports.ncatReceiveFile = function(callback) {
   var port = db.getConfig("LPORT");
-  var path = db.getConfig("PATH");
+  var path = process.cwd()+"/";
   var localFile = finalAnswer.replace(/(\/)/g, "_")
 
-  if (!kexec){
-    prompt.message = "Should I start a netcat listener for you? (Y/n) :"
+    prompt.message = "Should I start a tcp listener on port "+port+" for you? (Y/n) :"
     prompt.get([{
         name: '_',
         description: ":"
@@ -80,17 +71,10 @@ exports.ncatReceiveFile = function(callback) {
             result._ = result._.toUpperCase()
             if (result._ === "Y" || !result._) {
 
-
-                if (!path || path.length <= 0) {
-                    log.yellow("Warning: Path variable is not set, defaulting to /var/tmp/")
-                }
-                path = "/var/tmp/"
-
-                    // if kexec isn't installed, notify the user
                     callback(finalAnswer);
+                    console.log(log.blackBright("\n[*] TCP socket server listening on port " + port + " (File will be saved as "+path+localFile+")\n"));
 
-                    console.log(log.blackBright("\n[*] Initializing hacking sequence (File will be saved as " + path + "/bros" + localFile + ")\n"))
-                    kexec(settings.netcat + " -lnp " + port + " > " + path + "/bros" + localFile + " -vv");
+                    netcat.receiveFile(port, path, localFile);
 
             } else {
                 callback(finalAnswer);
@@ -100,11 +84,6 @@ exports.ncatReceiveFile = function(callback) {
         }
     })
 
-  } else {
-    callback(finalAnswer);
-    console.log("");
-    console.log(log.blackBright("[*] To start a netcat listener, run the following => " + settings.netcat + " -lnp " + port + " > " + path + "/bros" + localFile));
-  }
 }
 
 exports.some = function(question, callback, type) {
