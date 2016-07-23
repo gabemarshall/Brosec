@@ -66,13 +66,13 @@ Installation
 
 #### Mac
 
-- `brew install node netcat` - Install Nodejs and netcat (nc or ncat will work too)
+- `brew install node` - Install Nodejs
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
 - `cd Brosec && npm install` - cd into the directory and install npm depdendencies
 
 #### Kali Linux
 
-- `apt-get install npm build-essential g++ xsel netcat` Install dependencies
+- `apt-get install npm build-essential g++ xsel` Install dependencies
 - `npm install -g n` Install n (nodejs version manager)
   - If the above fails, try - `npm config set registry http://registry.npmjs.org/`
 
@@ -84,10 +84,7 @@ Installation
 ### Windows (Unsupported)
 
 - Install [nodejs](https://nodejs.org/download)
-- Install [ncat](https://nmap.org/download.html)
 - `git clone https://github.com/gabemarshall/Brosec.git` - Clone Brosec repo
-
-Payloads that utilize netcat will not work due to the kexec library not being supported in Windows
 
 
 #### Optional
@@ -96,7 +93,7 @@ Add bros directory path to your PATH env variable, create a symlink for the bros
 Configuration
 =====================
 
-Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file. Brosec also uses netcat for several payloads. If needed, the path to netcat can be altered via the settings.netcat variable (it can also be changed to ncat or nc).
+Brosec stores configuration values in a local json db file. The default storage location is /var/tmp, but can be changed by editing settings.dbPath variable in the settings.js file.
 
 
 Swag
