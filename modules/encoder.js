@@ -34,11 +34,24 @@ var modes = [{
         try{return new Buffer(data).toString('base64');}catch(err){return data;}
     },
     'title': 'Base64'
+},
+{
+    'DEC': function(data) {
+        try{return new Buffer(data, 'hex').toString('ascii')}catch(err){return data;}
+    },
+    'ENC': function(data) {
+        try{return new Buffer(data).toString('hex');}catch(err){return data;}
+    },
+    'title': 'Hex'
 }]
 
 function setTitle(title, mode) {
     //console.log(mode);
-    var instructions = "\n\nChange (E)ncoding: " + log.blackBright("Ctrl + e") + "\n(A)pply to input: " + log.blackBright("Ctrl + a") + " \n(T)oggle Mode: " + log.blackBright("Ctrl + t") + "\n\nPress " + log.blackBright("return") + " to exit.";
+    var e = log.cyanBright("e");
+    var a = log.cyanBright("a");
+    var t = log.cyanBright("t");
+    var ret = log.cyanBright("return");
+    var instructions = "\n\nChange (E)ncoding: " + log.blackBright("Ctrl + "+e+"") + "\n(A)pply to input: " + log.blackBright("Ctrl + "+a) + " \n(T)oggle Mode: " + log.blackBright("Ctrl + "+t) + "\n\nPress " + ret + " to exit.";
     var broTitle = "\nCurrent Mode: " + log.blackBright(mode) + " \nCurrent Encoding: " + log.blackBright(title) + instructions;
     return broTitle;
 }
@@ -71,6 +84,7 @@ function toggleEncoding() {
 }
 
 exports.init = function(input) {
+
     var screen = blessed.screen({
         smartCSR: true
     });
@@ -202,7 +216,6 @@ exports.init = function(input) {
     setTimeout(function() {
         screen.render();
     }, 50)
-
 
     screen.key('tab', function(ch, key) {
         if (inputBox.focused) {
