@@ -3,7 +3,9 @@ var blessed = require("blessed"),
     htmlEncode = require('js-htmlencode').htmlEncode,
     htmlDecode = require('js-htmlencode').htmlDecode,
     outputValue = '',
-    counter = 0;
+    justatest = '',
+    counter = 0,
+    keychanged = false;
 
 var method = 'ENC',
     methodTitle = 'Encoding';
@@ -146,12 +148,17 @@ exports.init = function(input) {
             inputBox.setValue(input);
         }
         setInterval(function() {
-            outputValue = encode(inputBox.getContent());
-            box.setContent(outputValue);
-            list.setContent(modeTitle);
-            screen.render();
+            if(keychanged){
+              outputValue = encode(inputBox.getContent());
+              justatest = outputValue;
+              box.setContent(outputValue);
+              list.setContent(modeTitle);
+              screen.render();
+            }
         }, 5)
-    }, 100)
+        list.setContent(modeTitle);
+        screen.render();
+    }, 50)
 
     screen.render();
 
@@ -181,6 +188,13 @@ exports.init = function(input) {
 
         inputBox.key('C-c', function() {
             return process.exit(0);
+        })
+        inputBox.on('keypress', function(){
+          outputValue = encode(inputBox.getContent());
+          keychanged = true;
+          setTimeout(function(){
+            keychanged = false;
+          }, 75)
         })
 
         eHandler();
