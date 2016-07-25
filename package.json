@@ -25,7 +25,8 @@
     "ecstatic": "*",
     "simple-git": "*",
     "ftpd": "*",
-    "blessed": "*"
+    "blessed": "*",
+    "js-htmlencode": "*"
   },
   "author": "Gabe Marshall",
   "license": "ISC"
