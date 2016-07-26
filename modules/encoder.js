@@ -3,7 +3,6 @@ var blessed = require("blessed"),
     htmlEncode = require('js-htmlencode').htmlEncode,
     htmlDecode = require('js-htmlencode').htmlDecode,
     outputValue = '',
-    justatest = '',
     counter = 0,
     keychanged = false;
 
@@ -20,8 +19,10 @@ var modes = [{
         }
     },
     'ENC': function(data) {
-            keychanged = false;
-            return encodeURIComponent(data);
+        keychanged = false;
+        var a = encodeURIComponent(data);
+        a = a.replace(/(')/g, "%27")
+        return a;
     },
     'title': 'URL'
 }, {
@@ -192,6 +193,7 @@ exports.init = function(input) {
         modeTitle = setTitle(modes[counter]['title'], methodTitle);
         refreshScreen();
     }
+
     function toggleMode() {
         if (method === 'ENC') {
             method = 'DEC';
@@ -225,6 +227,16 @@ exports.init = function(input) {
             tHandler();
         })
     }
+
+    function aHandler() {
+        this.init = inputBox.key('C-a', function(ch, key) {
+            inputBox.unkey('C-a');
+            keypress = true;
+            inputBox.setValue(outputValue);
+            outputValue = encode(inputBox.getContent());
+            refreshScreen();
+        })
+    }
     var inputBoxFocusHandler = function() {
 
         inputBox.key('C-c', function() {
@@ -238,14 +250,9 @@ exports.init = function(input) {
         })
 
         eHandler();
-
         tHandler();
+        aHandler();
 
-        inputBox.key('C-a', function(ch, key) {
-            inputBox.setValue(outputValue);
-            keychanged = true;
-            outputValue = encode(inputBox.getContent());
-        })
 
         inputBox.key('enter', function(ch, key) {
 
