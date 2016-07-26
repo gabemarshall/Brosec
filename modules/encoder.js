@@ -17,7 +17,11 @@ var modes = [{
 				}
     },
     'ENC': function(data) {
-        return encodeURIComponent(data)
+        if (keychanged){
+          keychanged = false;
+          var a = encodeURIComponent(data);
+          return encodeURIComponent(data);
+        }
     },
     'title': 'URL'
 }, {
@@ -128,6 +132,7 @@ exports.init = function(input) {
         top: '45%',
         width: '80%',
         left: 'center',
+        scrollable: true,
         autoPadding: true,
         label: '[ Output ]',
         height: '15%',
@@ -190,11 +195,10 @@ exports.init = function(input) {
             return process.exit(0);
         })
         inputBox.on('keypress', function(){
-          outputValue = encode(inputBox.getContent());
-          keychanged = true;
-          setTimeout(function(){
-            keychanged = false;
-          }, 75)
+          if (!keychanged){
+              outputValue = encode(inputBox.getContent());
+              keychanged = true;
+          }
         })
 
         eHandler();
@@ -208,7 +212,8 @@ exports.init = function(input) {
         inputBox.key('enter', function(ch, key) {
 
             var command = inputBox.getValue();
-
+            keychanged = true;
+            outputValue = encode(inputBox.getValue());
             box.hide();
             inputBox.hide();
             screen.destroy();
