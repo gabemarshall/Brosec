@@ -21,7 +21,9 @@ var modes = [{
     'ENC': function(data) {
         keychanged = false;
         var a = encodeURIComponent(data);
-        a = a.replace(/(')/g, "%27")
+        a = a.replace(/(')/g, "%27");
+        a = a.replace(/(\()/g, "%28");
+        a = a.replace(/(\))/g, "%29");
         return a;
     },
     'title': 'URL'
@@ -128,11 +130,6 @@ exports.init = function(input) {
             fg: 'green'
         },
         top: '12%',
-        // border: {
-        //     type: 'bg',
-        //     ch: '_',
-        //     fg: "#27ea09"
-        // },
         left: 'center',
     })
     screen.append(list);
@@ -253,7 +250,6 @@ exports.init = function(input) {
         tHandler();
         aHandler();
 
-
         inputBox.key('enter', function(ch, key) {
 
             var command = inputBox.getValue();
@@ -275,21 +271,6 @@ exports.init = function(input) {
 
     };
     inputBox.on('focus', inputBoxFocusHandler);
-
-    setTimeout(function() {
-        screen.render();
-    }, 50)
-
-    screen.key('tab', function(ch, key) {
-        if (inputBox.focused) {
-            list.focus();
-        } else {
-            inputBox.focus();
-        }
-
-        screen.render();
-    });
-
 
     screen.key(['escape', 'q', 'C-c'], function(ch, key) {
         return process.exit(0);
