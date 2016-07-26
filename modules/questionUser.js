@@ -32,7 +32,11 @@ exports.http = function(callback) {
 
 exports.ncat = function(callback) {
   var port = db.getConfig("LPORT")
-
+  if (!port){
+    console.log(log.red("[!] Missing required variable LPORT"));
+    console.log("Have you tried the "+log.green("help")+" command?");
+    return false;
+  }
     prompt.message = "Should I start a tcp listener on port "+port+" for you? (Y/n) :"
     prompt.get([{
         name: '_',
@@ -58,6 +62,11 @@ exports.ncat = function(callback) {
 
 exports.ncatReceiveFile = function(callback) {
   var port = db.getConfig("LPORT");
+  if (!port){
+    console.log(log.red("[!] Missing required variable LPORT"));
+    console.log("Have you tried the "+log.green("help")+" command?");
+    return false;
+  }
   var path = process.cwd()+"/";
   var localFile = finalAnswer.replace(/(\/)/g, "_")
 

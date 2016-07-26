@@ -26,7 +26,8 @@
     "simple-git": "*",
     "ftpd": "*",
     "blessed": "*",
-    "js-htmlencode": "*"
+    "js-htmlencode": "*",
+    "copy-paste":"*"
   },
   "author": "Gabe Marshall",
   "license": "ISC"
