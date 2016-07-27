@@ -93,7 +93,7 @@ function setTitle(title, mode) {
     var a = log.cyanBright("a");
     var t = log.cyanBright("t");
     var ret = log.cyanBright("return");
-    var instructions = "\n\nChange (E)ncoding: " + log.blackBright("Ctrl + " + e + "") + "\n(A)pply to input: " + log.blackBright("Ctrl + " + a) + " \n(T)oggle Mode: " + log.blackBright("Ctrl + " + t) + "\n\nPress " + ret + " to exit.";
+    var instructions = "\n\nChange (E)ncoding type: " + log.blackBright("Ctrl + " + e + "") + "\n(A)pply Output value to Input: " + log.blackBright("Ctrl + " + a) + " \n(T)oggle Encoding/Decoding: " + log.blackBright("Ctrl + " + t) + "\n\nPress " + ret + " to exit.";
     var broTitle = "\nCurrent Mode: " + log.blackBright(mode) + " \nCurrent Encoding: " + log.blackBright(title) + instructions;
     return broTitle;
 }
@@ -205,6 +205,12 @@ exports.init = function(input) {
         }
         refreshScreen();
     }
+
+    function applyMode() {
+        inputBox.setValue(outputValue);
+        outputValue = encode(inputBox.getContent());
+        refreshScreen();
+    }
     inputBox.focus();
 
     function eHandler() {
@@ -226,12 +232,11 @@ exports.init = function(input) {
     }
 
     function aHandler() {
-        this.init = inputBox.key('C-a', function(ch, key) {
+        this.init = inputBox.onceKey('C-a', function(ch, key) {
             inputBox.unkey('C-a');
             keypress = true;
-            inputBox.setValue(outputValue);
-            outputValue = encode(inputBox.getContent());
-            refreshScreen();
+            applyMode();
+            aHandler();
         })
     }
     var inputBoxFocusHandler = function() {
