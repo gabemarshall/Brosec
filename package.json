@@ -1,14 +1,17 @@
 {
   "name": "Brosec",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Brosec - Pentest fu for bros",
-  "main": "bros.js",
+  "main": "bros",
   "repository": {
     "type": "git",
     "url": "git://github.com/gabemarshall/Brosec.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "bros": "./bros"
   },
   "dependencies": {
     "cli-color": "*",

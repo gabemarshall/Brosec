@@ -111,7 +111,6 @@ function parseArgs() {
         var dir = settings.dbPath;
         if (currentOS.match("Windows")){
             cmd = "del";
-            var dir = os.tmpdir()+"\\bros.db";
         } else {
 
         }

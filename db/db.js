@@ -4,12 +4,7 @@ var os = require('os');
 // By default, brosec stores its data file in /var/tmp
 // Change storage location by altering settings.js
 try {
-  var currentOS = os.type();
-  if (currentOS.match("Windows")){
-      var db = dirty(os.tmpdir()+"\\bros.db");
-  } else {
-      var db = dirty(settings.dbPath);
-  }
+  var db = dirty(settings.dbPath);
 }
 catch (err){
   console.log("There was a problem initializing the bros. Check the settings.js file to specify a valid storage location.")
