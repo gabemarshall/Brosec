@@ -1,5 +1,5 @@
 var dirty = require('dirty');
-var settings = require('../settings.js');
+var settings = require('./settings.js');
 var os = require('os');
 // By default, brosec stores its data file in /var/tmp
 // Change storage location by altering settings.js
