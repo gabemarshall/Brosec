@@ -3,6 +3,7 @@
 var argv = require('yargs').argv,
   log = require('cli-color'),
   db = require('./db/db'),
+  os = require('os'),
   menu = require('./modules/menu'),
   secondaryMenu = require("./modules/secondaryMenu"),
   check = require('./modules/inputChecks'),
@@ -104,7 +105,18 @@ function parseArgs() {
       } else if (firstArgument === "HELP") {
         check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu);
       } else if (firstArgument === "CLEAN") {
-        child_process.execFile('rm', [settings.dbPath], function(error, stdout, stderr){
+
+        var currentOS = os.type();
+        var cmd = "rm";
+        var dir = settings.dbPath;
+        if (currentOS.match("Windows")){
+            cmd = "del";
+            var dir = os.tmpdir()+"\\bros.db";
+        } else {
+
+        }
+
+        child_process.execFile(cmd, [dir], function(error, stdout, stderr){
         });
         console.log("The Brosec database located at %s has been wiped.", settings.dbPath)
       }
