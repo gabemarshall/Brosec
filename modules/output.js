@@ -12,11 +12,13 @@ var warn = function(){
     },50)
 }
 
-exports.cmd = function(input){
+exports.cmd = function(input, encoder){
   ncp.copy(input, function () {
       console.log(log.green('Output copied to clipboard!'));
       console.log(log.yellow('\n'+input+'\n'))
-      process.exit(1);
+      if (encoder){
+        process.exit(1);
+      }
   })
 }
 

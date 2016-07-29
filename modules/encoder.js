@@ -265,7 +265,7 @@ exports.init = function(input) {
             screen.destroy();
 
             setTimeout(function() {
-                output.cmd(outputValue);
+                output.cmd(outputValue, true);
             }, 50)
 
             inputBox.unkey('enter');
