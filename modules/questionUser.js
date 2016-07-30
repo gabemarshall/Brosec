@@ -6,7 +6,7 @@ var prompt = require('prompt'),
     db = require('../db/db'),
     currentOS = os.type(),
     netcat = require('./nc'),
-    finalAnswer
+    finalAnswer = [];
 
 exports.http = function(callback) {
     prompt.message = "Should I fire up a web server for you? (Y/n) :"
@@ -113,7 +113,7 @@ exports.some = function(question, callback, type) {
                 if (err) {
                     console.log(err);
                 } else {
-                    finalAnswer = result._;
+                    finalAnswer.push(result._);
                     temp += 1;
                 }
 
@@ -138,6 +138,7 @@ exports.some = function(question, callback, type) {
                 clearInterval(checkStatus);
                 // If the last question is a string, send output to final parsing
                 if (typeof(question[temp - 1]) === "string") {
+                    finalAnswer = JSON.stringify(finalAnswer);
                     callback(finalAnswer);
                 }
             }

@@ -1,21 +1,31 @@
 # ChangeLog
 
-## 1.1.0a _(July 23, 2016)_
+## Major Release 1.1.1 _(July 30, 2016)_
 
+- Features
+  - <strong>Full Windows Support added</strong>
+  - Better documentation added to the new  [wiki](https://github.com/gabemarshall/Brosec/wiki)
+  - Simplified install process. Once you have nodejs installed just run ```npm install -g Brosec```
+  - ```bros encode``` module added (realtime encoder/decoder)
+  - ```bros ftp``` now supports auth via ```--username``` and ```--password``` parameters.
+  - New SQLi Polyglots added to ```bros 43```
+  - New XSS payloads ```bros 42```
+    - (```bros 424``` Credit to [@0xsobky](https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot))
 - Dependencies
-  - Removed kexec dependency that was used to run netcat listeners (replaced by ```modules/nc.js```)
+  - Removed kexec dependency that was used to run netcat listeners (replaced by ```modules/nc.js```) -- this greatly reduces the complexity of Brosec and makes it easier to install.
 
 
 - Bug fixes
+  - Lots and lots of bug fixes...and probably new bugs introduced ;p
 
-## 0.2b _(Feb 16, 2016)_
+## 1.0.2b _(Feb 16, 2016)_
 
 - Features
     - `bros update`
         - Convenience module that check for updates via git, pull if any updates are found, and installs any new dependencies.
 
 
-## 0.2a _(Feb 15, 2016)_
+## 1.0.2a _(Feb 15, 2016)_
 
 - Features
     - `bros clean`
@@ -23,7 +33,7 @@
 
 - Minor performance improvements throughout Brosec
 
-## 0.2 _(Feb 5, 2016)_
+## 1.0.2 _(Feb 5, 2016)_
 
 - Features
     - `bros ftp`

@@ -35,7 +35,15 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
         if(userResponse){
 
             if(typeof(userResponse) === "string"){
-                payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, userResponse)
+                var t = JSON.parse(userResponse)
+                if (t.length > 1){
+                  for (i=0;i<t.length;i++){
+                      payload = eval("payload.replace(/((<(PROMPT)\\s*?.*?>))/i, t["+i+"])");
+                  }
+                } else {
+                  payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, t[0]);
+                }
+
             } else {
                 tmenu()
                 return
