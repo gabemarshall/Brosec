@@ -26,7 +26,7 @@ exports.setlhost = function(bool) {
     }
 
     console.log();
-    
+
     prompt.message = "\nWhich would you like to set as LHOST? :"
 
     prompt.get([{
@@ -40,13 +40,11 @@ exports.setlhost = function(bool) {
             if (bool){
             	console.log("Damn")
             } else {
-            	check.allInputChecks("SET LHOST "+ipArray[choice], console.log, menu.mainMenu);	
+            	check.allInputChecks("SET LHOST "+ipArray[choice], console.log, menu.mainMenu);
             }
-            
+
         } catch (err) {
             console.log("\nLater bro!");
         }
     })
 }
-
-

@@ -54,12 +54,13 @@ function mainMenu(callback) {
     }, 25)
 
     setTimeout(function() {
+        var title = log.okay('(1-5)');
         prompt.start();
         prompt.colors = false;
         prompt.message = "Choose one of the above options";
         prompt.get([{
             name: 'mainMenu',
-            description: '(1-5)'.green,
+            description: title,
         }], function(err, result) {
 
             try {

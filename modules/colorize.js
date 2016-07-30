@@ -25,9 +25,6 @@ exports.samples = function(sample){
             sample = sample.replace(val[0], color(val[0]));
           }
 
-          // sample = replaceAll(sample, val[b], color(val[b]));
-          //var temp1 = sample.split(val[1])
-          //var final = temp1[0]+color(val[1])+temp1[1]
           var final = sample;
 
         return final;

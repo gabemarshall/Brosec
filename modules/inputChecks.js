@@ -1,7 +1,8 @@
 var menu = require('./menu');
 var db = require('../db/db');
 var log = require('cli-color'),
-	utilities = require('./utilities');
+	utilities = require('./utilities'),
+	output = require('./output');
 
 function clearMenu() {
     console.log('\033[2J');
@@ -72,6 +73,7 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 			//clearMenu()
 			currentMenu()
 			console.log("\n"+log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n")
+			output.cmd(db.getConfig(thisConfigValue));
 		},25)
 
 		return true
