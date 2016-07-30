@@ -20,8 +20,10 @@ exports.http = function(callback) {
             result._ = result._.toUpperCase();
             if (result._ === "Y" || !result._) {
                 var server = web.init();
+                //finalAnswer = JSON.stringify(finalAnswer);
                 callback(finalAnswer);
             } else {
+                //finalAnswer = JSON.stringify(finalAnswer);
                 callback(finalAnswer);
             }
         } catch (err) {
@@ -46,10 +48,12 @@ exports.ncat = function(callback) {
         try {
             result._ = result._.toUpperCase()
             if (result._ === "Y" || !result._) {
+              finalAnswer = JSON.stringify(finalAnswer);
               callback(finalAnswer);
               console.log(log.blackBright("\n[*] TCP socket server listening on port " + port));
               netcat.listen(port);
             } else {
+                finalAnswer = JSON.stringify(finalAnswer);
                 callback(finalAnswer);
             }
         } catch (err) {
@@ -64,11 +68,11 @@ exports.ncatReceiveFile = function(callback) {
   var port = db.getConfig("LPORT");
   if (!port){
     console.log(log.red("[!] Missing required variable LPORT"));
-    console.log("Have you tried the "+log.green("help")+" command?");
+    console.log("Have you tried the "+log.green("help")+" command or read the wiki?");
     return false;
   }
   var path = process.cwd()+"/";
-  var localFile = finalAnswer.replace(/(\/)/g, "_")
+  var localFile = finalAnswer[0].replace(/(\/)/g, "_")
 
     prompt.message = "Should I start a tcp listener on port "+port+" for you? (Y/n) :"
     prompt.get([{
@@ -79,13 +83,14 @@ exports.ncatReceiveFile = function(callback) {
         try {
             result._ = result._.toUpperCase()
             if (result._ === "Y" || !result._) {
-
+                    finalAnswer = JSON.stringify(finalAnswer);
                     callback(finalAnswer);
                     console.log(log.blackBright("\n[*] TCP socket server listening on port " + port + " (File will be saved as "+path+localFile+")\n"));
 
                     netcat.receiveFile(port, path, localFile);
 
             } else {
+                finalAnswer = JSON.stringify(finalAnswer);
                 callback(finalAnswer);
             }
         } catch (err) {
