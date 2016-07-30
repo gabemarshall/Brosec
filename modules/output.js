@@ -34,17 +34,23 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
     function prepPayload(userResponse){
         if(userResponse){
             if(typeof(userResponse) === "string"){
-                var t = JSON.parse(userResponse)
-                if (t.length > 1){
-                  for (i=0;i<t.length;i++){
-                      payload = eval("payload.replace(/((<(PROMPT)\\s*?.*?>))/i, t["+i+"])");
+                try {
+                  var t = JSON.parse(userResponse)
+                  if (t.length > 1){
+                    for (i=0;i<t.length;i++){
+                        payload = eval("payload.replace(/((<(PROMPT)\\s*?.*?>))/i, t["+i+"])");
+                    }
+                  } else {
+                    payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, t[0]);
                   }
-                } else {
-                  payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, t[0]);
+                } catch (err){
+                  console.log(userResponse);
+                  payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, userResponse);
                 }
 
+
             } else if (typeof(userResponse) === "object"){
-              
+
             } else {
                 //tmenu()
                 //return

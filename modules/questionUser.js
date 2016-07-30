@@ -20,10 +20,10 @@ exports.http = function(callback) {
             result._ = result._.toUpperCase();
             if (result._ === "Y" || !result._) {
                 var server = web.init();
-                //finalAnswer = JSON.stringify(finalAnswer);
+                finalAnswer = JSON.stringify(finalAnswer);
                 callback(finalAnswer);
             } else {
-                //finalAnswer = JSON.stringify(finalAnswer);
+                finalAnswer = JSON.stringify(finalAnswer);
                 callback(finalAnswer);
             }
         } catch (err) {

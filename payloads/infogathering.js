@@ -1,4 +1,5 @@
-var prompt = require('prompt');
+var prompt = require('prompt'),
+		ask = require('../modules/questionUser');
 
 // Initialize array and Payload Helper
 arrayInfo = []
@@ -7,7 +8,11 @@ var Load = function(obj){
 	arrayInfo.push(obj)
 }
 
-/* 
+var questions = [];
+var question = function(val){
+	questions.push(val);
+}
+/*
 ###########################################
 ############### Payloads ##################
 ###########################################
@@ -17,7 +22,7 @@ var Load = function(obj){
 
 Required: title, payload, and category
 Optional: callback (used for prompt variable)
-	
+
 	Ex:
 
 	callback: function(bro){
@@ -31,9 +36,9 @@ Optional: callback (used for prompt variable)
 * If variables aren't added properly, they will not work
 * Variables can include instructions if needed.
 * Instructions should be kept in parenthesis
-	
+
 	ex: foobar <RHOST> <LHOST> <LPORT>
-	ex: foobar <RHOST (hostname)> <RPORT>	 
+	ex: foobar <RHOST (hostname)> <RPORT>
 
 
 */
@@ -101,13 +106,11 @@ Load({
 
 Load({
 	title: "Send TCP SYN packets every 5 seconds to a specific port",
-	payload: "hping <RHOST (hostname)> -S -V -p <RPORT> -i 5",
+	payload: "hping <RHOST (hostname)> -S -V -p <PROMPT (port)> -i 5",
 	category: "Port Scanning",
-	callback: function(returnToPrepare){
-		prompt.message = "What port would you like to use? :"
-		prompt.get([{name: '_', description: ':'}], function(err, result){
-			returnToPrepare(result._)
-		})
+	callback: function(bro){
+		question("What port would you like to check?");
+		ask.some(questions, bro);
 	}
 })
 
@@ -238,6 +241,3 @@ Load({
 
 
 module.exports = arrayInfo;
-
-
-
