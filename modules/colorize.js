@@ -2,7 +2,7 @@ var log = require('cli-color');
 
 exports.samples = function(sample){
 
-    var doesSampleContainPrompt = sample.match(/((<(PROMPT)\s*?.*?>))/)
+    var doesSampleContainPrompt = sample.match(/((<(PROMPT)\s*?.*?>))/gi)
     var doesSampleContainRemote = sample.match(/((<(RHOST)\s*?.*?>))/)
     var doesSampleContainRemotePort = sample.match(/((<(RPORT)\s*?.*?>))/)
     var doesSampleContainLocal = sample.match(/((<(LHOST)\s*?.*?>))/)
@@ -10,14 +10,31 @@ exports.samples = function(sample){
     var doesSampleContainUser = sample.match(/((<(USER)\s*?.*?>))/)
     var doesSampleContainPath = sample.match(/((<(PATH)\s*?.*?>))/)
 
-    function addSomeColor(val, color){
-        var temp = sample.split(val[0])
-        var final = temp[0]+color(val[0])+temp[1]
+    function replaceAll(str, find, replace) {
+      return str.replace(new RegExp(find, 'g'), replace);
+    }
+
+    function addSomeColor(val, color, debug){
+
+          if (val.length > 1){
+            for (b=0;b<val.length;b++){
+                sample = sample.replace(val[b], color(val[b]));
+                sample = replaceAll(sample, val[b], color(val[b]));
+            }
+          } else {
+            sample = sample.replace(val[0], color(val[0]));
+          }
+
+          // sample = replaceAll(sample, val[b], color(val[b]));
+          //var temp1 = sample.split(val[1])
+          //var final = temp1[0]+color(val[1])+temp1[1]
+          var final = sample;
+
         return final;
     }
 
     if (doesSampleContainPrompt){
-        sample = addSomeColor(doesSampleContainPrompt, log.cyan) 
+        sample = addSomeColor(doesSampleContainPrompt, log.cyan, true)
     }
     if (doesSampleContainRemote){
         sample = addSomeColor(doesSampleContainRemote, log.red)

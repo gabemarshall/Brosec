@@ -1,5 +1,6 @@
 var child_process = require('child_process'),
 	log = require('./log.js'),
+  encoder = require('./encoder'),
 	brosDir = require.resolve('cli-color');
 
 // Get install path
@@ -23,4 +24,8 @@ exports.update = function(){
           }
        })
 
+}
+
+exports.encoder = function(input){
+  encoder.init(input);
 }

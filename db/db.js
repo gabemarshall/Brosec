@@ -1,10 +1,10 @@
 var dirty = require('dirty');
-var settings = require('../settings.js')
-
+var settings = require('../modules/settings.js');
+var os = require('os');
 // By default, brosec stores its data file in /var/tmp
 // Change storage location by altering settings.js
 try {
-  var db = dirty(settings.dbPath);  
+  var db = dirty(settings.dbPath);
 }
 catch (err){
   console.log("There was a problem initializing the bros. Check the settings.js file to specify a valid storage location.")
@@ -19,7 +19,7 @@ exports.new = function(title, description){
 }
 
 exports.newConfig = function(key, val){
-  var keyExists = false  
+  var keyExists = false
     db.forEach(function(keyStore, valStore) {
       if (key === keyStore){
         keyExists = true
@@ -33,7 +33,7 @@ exports.newConfig = function(key, val){
     }
     else {
       db.set(key, val)
-    }  
+    }
   db.on('drain', function() {
   });
 }
@@ -52,11 +52,10 @@ function getConfig(value){
       }
       // If none exist
       else {
-        
+
       }
     });
     return test
 }
 
 exports.getConfig = getConfig;
-

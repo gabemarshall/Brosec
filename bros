@@ -3,13 +3,14 @@
 var argv = require('yargs').argv,
   log = require('cli-color'),
   db = require('./db/db'),
+  os = require('os'),
   menu = require('./modules/menu'),
   secondaryMenu = require("./modules/secondaryMenu"),
   check = require('./modules/inputChecks'),
   simpleWeb = require('./modules/webserver/simple.js'),
   simpleFtp = require('./modules/webserver/simpleFtp.js'),
   interfaces = require('./modules/interfaces'),
-  settings = require('./settings'),
+  settings = require('./modules/settings'),
   child_process = require('child_process'),
   utilities = require('./modules/utilities'),
   log = require('./modules/log.js');
@@ -17,11 +18,6 @@ var argv = require('yargs').argv,
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
 var thirdArgument = argv._[2];
-
-
-
-
-
 
 function getFirstArgValue(arg) {
   switch (arg) {
@@ -42,7 +38,7 @@ function getFirstArgValue(arg) {
 }
 
 function parseArgs() {
-
+  var oldSecondary;
 
   if (firstArgument >= 1 && firstArgument <= 6) {
     secondaryMenu = getFirstArgValue(firstArgument);
@@ -75,6 +71,7 @@ function parseArgs() {
   } else if (typeof(firstArgument) === "string") {
     firstArgument = firstArgument.toUpperCase();
     try {
+      oldSecondary = secondArgument;
       secondArgument = secondArgument.toUpperCase();
     } catch(err){
 
@@ -92,6 +89,13 @@ function parseArgs() {
       //simpleFtp.ftps(argv);
     } else if (firstArgument === "UPDATE"){
       utilities.update();
+    } else if (firstArgument === "ENCODE"){
+      if (secondArgument){
+        utilities.encoder(oldSecondary);
+      } else {
+        utilities.encoder();
+      }
+
     } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
       interfaces.setlhost();
 
@@ -101,10 +105,20 @@ function parseArgs() {
       } else if (firstArgument === "HELP") {
         check.allInputChecks(firstArgument, menu.mainMenu, menu.mainMenu);
       } else if (firstArgument === "CLEAN") {
-        child_process.execFile('rm', [settings.dbPath], function(error, stdout, stderr){  	
+
+        var currentOS = os.type();
+        var cmd = "rm";
+        var dir = settings.dbPath;
+        if (currentOS.match("Windows")){
+            cmd = "del";
+        } else {
+
+        }
+
+        child_process.execFile(cmd, [dir], function(error, stdout, stderr){
         });
         console.log("The Brosec database located at %s has been wiped.", settings.dbPath)
-      } 
+      }
       else {
         check.allInputChecks(firstArgument, console.log, console.log)
       }

@@ -3,42 +3,23 @@ var exec = require('child_process').exec;
 var log = require('cli-color');
 var os = require('os');
 var menu = require('./menu');
+var ncp = require("copy-paste");
 var red = log.red
 
 var warn = function(){
-    console.log(red("\nError: Missing required variable. See \"help\" for more information."))
-    menu.mainMenu()
+    setTimeout(function(){
+      console.log(red("\nError: Missing required variable. See \"help\" for more information."));
+    },50)
 }
 
-exports.cmd = function(input){
-
-   input = input.replace(/(\\')/gi,"'")
-   // TODO ^ do we need this?
-   //input = input.replace(/(@@)/gi,"\\")
-
-    if (input.match(/(\\)/gi)){
-        console.log(log.yellow('\n'+input+'\n'))
-        input = input.replace(/(\\)/gi,"\\\\")
-    }
-    else {
-        console.log(log.yellow('\n'+input+'\n'))
-    }
-    input = input.replace(/(\$)/gi,"\\\$")
-    input = input.replace(/(")/gi,"\\\"")
-
-    var currentOS = os.type()
-
-    if (currentOS === "Darwin"){
-       exec("printf \"%s\" \""+input+"\"| pbcopy", print);
-    }
-    else if (currentOS === "Linux"){
-        exec("printf \"%s\" \""+input+"\"| xsel -i -b", print);
-    }
-    else {
-        exec("echo \""+input+"\" | clip", print);
-    }
-
-    console.log(log.green('Output copied to clipboard!'));
+exports.cmd = function(input, encoder){
+  ncp.copy(input, function () {
+      console.log(log.green('Output copied to clipboard!'));
+      console.log(log.yellow('\n'+input+'\n'))
+      if (encoder){
+        process.exit(1);
+      }
+  })
 }
 
 exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, callback, tmenu){
@@ -54,8 +35,15 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
         if(userResponse){
 
             if(typeof(userResponse) === "string"){
-                payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, userResponse)
-                //payload = payload.replace(/(\\)/gi,"@@")
+                var t = JSON.parse(userResponse)
+                if (t.length > 1){
+                  for (i=0;i<t.length;i++){
+                      payload = eval("payload.replace(/((<(PROMPT)\\s*?.*?>))/i, t["+i+"])");
+                  }
+                } else {
+                  payload = payload.replace(/((<(PROMPT)\s*?.*?>))/gi, t[0]);
+                }
+
             } else {
                 tmenu()
                 return
@@ -70,7 +58,6 @@ exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, call
         payload = payload.replace(/((<(USER)\s*?.*?>))/gi, user)
         payload = payload.replace(/((<(PATH)\s*?.*?>))/gi, path)
 
-        payload = payload.replace(/(')/gi, "\\'")
         if(payload.match(/undefined/)){
             warn()
             return false;

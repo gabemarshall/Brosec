@@ -2,16 +2,19 @@ var ftpd = require('ftpd');
 var fs = require('fs');
 var path = require('path');
 var log = require('../log.js');
-var keyFile;
-var certFile;
-var server;
+var argv = require('yargs').argv;
+var userArg = argv.username;
+var passArg = argv.password;
+var keyFile, certFile, server;
 var options = {
   host: process.env.IP || '127.0.0.1',
   port: process.env.PORT || 7002,
   tls: null,
 };
 
+
 var startFtpServer = function(protocol){
+  console.log(" [!] WARNING: This ftp server is not intended to be secure and should be used with caution.\n")
   if (protocol === "ftps"){
     console.log("ftps")
     options.tls = {
@@ -44,33 +47,46 @@ var startFtpServer = function(protocol){
     var username = null;
     console.log('client connected: ' + connection.remoteAddress);
     connection.on('command:user', function(user, success, failure) {
-      if (user) {
-        username = user;
-        success();
-      } else {
-        failure();
-      }
+        if (user) {
+          username = user;
+          success();
+        } else {
+          failure();
+        }
     });
 
     connection.on('command:pass', function(pass, success, failure) {
-      if (pass) {
-        success(username);
+      if(!passArg){
+        if (pass) {
+          success(username);
+        } else {
+          failure();
+        }
       } else {
-        failure();
+        if (pass === passArg){
+          success(username);
+        } else {
+          failure();
+        }
       }
     });
   });
 
   server.debugging = 4;
-  
+
   ftpPort = options.port
 
   if (!ftpPort){
     ftpPort = 2121;
   }
-  
+
   server.listen(ftpPort);
-  console.log(" [*] An "+log.status("anonymous")+" "+protocol+" server is serving "+process.cwd()+" on port "+ftpPort+" (ctrl c to stop)");
+  var ftpType = " anonymous ";
+  if (userArg){
+      ftpType = "";
+  }
+  console.log(" [*] An"+log.status(ftpType)+" "+protocol+" server is serving "+process.cwd()+" on port "+ftpPort+" (ctrl c to stop)");
+
 
 }
 
