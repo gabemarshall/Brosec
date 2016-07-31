@@ -2,6 +2,7 @@ var blessed = require("blessed"),
     output = require('./output'),
     htmlEncode = require('js-htmlencode').htmlEncode,
     htmlDecode = require('js-htmlencode').htmlDecode,
+    utilities = require('./utilities'),
     outputValue = '',
     counter = 0,
     keychanged = false;
@@ -86,6 +87,15 @@ var modes = [{
     },
     'title': 'Hex'
 }]
+var borderSettings = {
+    type: 'line',
+    fg: "#27ea09"
+}
+
+if (utilities.isWindows()){
+  borderSettings.type = 'bg';
+  borderSettings.ch = '#';
+}
 
 function setTitle(title, mode) {
     //console.log(mode);
@@ -93,8 +103,8 @@ function setTitle(title, mode) {
     var a = log.cyanBright("a");
     var t = log.cyanBright("t");
     var ret = log.cyanBright("return");
-    var instructions = "\n\nChange (E)ncoding type: " + log.blackBright("Ctrl + " + e + "") + "\n(A)pply Output value to Input: " + log.blackBright("Ctrl + " + a) + " \n(T)oggle Encoding/Decoding: " + log.blackBright("Ctrl + " + t) + "\n\nPress " + ret + " to exit.";
-    var broTitle = "\nCurrent Mode: " + log.blackBright(mode) + " \nCurrent Encoding: " + log.blackBright(title) + instructions;
+    var instructions = "\n\nChange (E)ncoding type: " + log.normal("Ctrl + " + e + "") + "\n(A)pply Output value to Input: " + log.normal("Ctrl + " + a) + " \n(T)oggle Encoding/Decoding: " + log.normal("Ctrl + " + t) + "\n\nPress " + ret + " to exit.";
+    var broTitle = "\nCurrent Mode: " + log.normal(mode) + " \nCurrent Encoding: " + log.normal(title) + instructions;
     return broTitle;
 }
 var modeTitle = setTitle(modes[counter]['title'], methodTitle);
@@ -111,10 +121,7 @@ exports.init = function(input) {
         height: '15%',
         label: '[ Input ]',
         inputOnFocus: true,
-        border: {
-            type: 'line',
-            fg: "#27ea09"
-        },
+        border: borderSettings,
         width: '80%',
         content: '',
         top: '65%',
@@ -144,10 +151,7 @@ exports.init = function(input) {
         height: '15%',
         content: '',
         tags: true,
-        border: {
-            type: 'line',
-            fg: "#27ea09"
-        }
+        border: borderSettings
     });
 
     screen.append(box);
