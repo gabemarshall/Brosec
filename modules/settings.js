@@ -7,7 +7,7 @@ var settings = {},
 var currentOS = os.type();
 
 if (currentOS.match("Windows")){
-    settings.dbPath = dirty(os.tmpdir()+"\\bros.db");
+    settings.dbPath = os.tmpdir()+'\\bros.db';
 } else {
     settings.dbPath = '/var/tmp/bros.db'
 }
