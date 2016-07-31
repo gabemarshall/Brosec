@@ -43,9 +43,6 @@ Learn about these features and more on the [Brosec wiki](https://github.com/gabe
 Installation
 ============
 
-### [Releases](https://github.com/gabemarshall/Brosec/releases)
-
-
 ### Mac
 
 #### Quick Installation
@@ -64,12 +61,12 @@ Installation
 - `n latest` Install latest version of nodejs
 - `npm install -g Brosec` - Install Brosec (may need sudo to symlink to /usr/local/bin)
 
-### Windows (Unsupported)
+### Windows
 
-- Install via official installer [nodejs](https://nodejs.org/download)
+- Install [nodejs](https://nodejs.org/download) via official installer 
 - `npm install -g Brosec` - Install Brosec
 
-
+#### Or see [Releases](https://github.com/gabemarshall/Brosec/releases) to download a compiled copy of Brosec
 
 Swag
 ====
