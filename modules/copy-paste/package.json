@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      "copy-paste@*",
+      "/Users/jumpman/Desktop/Dev/Security/Brosec"
+    ]
+  ],
+  "_from": "copy-paste@*",
+  "_id": "copy-paste@1.3.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/copy-paste",
+  "_nodeVersion": "1.2.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/copy-paste-1.3.0.tgz_1465669280564_0.7867658494506031"
+  },
+  "_npmUser": {
+    "email": "xavi.rmz@gmail.com",
+    "name": "xavi"
+  },
+  "_npmVersion": "2.5.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "copy-paste",
+    "raw": "copy-paste@*",
+    "rawSpec": "*",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/copy-paste/-/copy-paste-1.3.0.tgz",
+  "_shasum": "a7e6c4a1c28fdedf2b081e72b97df2ef95f471ed",
+  "_shrinkwrap": null,
+  "_spec": "copy-paste@*",
+  "_where": "/Users/jumpman/Desktop/Dev/Security/Brosec",
+  "bugs": {
+    "url": "https://github.com/xavi-/node-copy-paste/issues"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.4.8",
+    "sync-exec": "~0.6.x"
+  },
+  "description": "A command line utility that allows read/write (i.e copy/paste) access to the system clipboard.",
+  "devDependencies": {
+    "mocha": "*",
+    "should": ">=8.2.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "a7e6c4a1c28fdedf2b081e72b97df2ef95f471ed",
+    "tarball": "https://registry.npmjs.org/copy-paste/-/copy-paste-1.3.0.tgz"
+  },
+  "gitHead": "160fae2bd4352739f26459dc965c9df0c5c7038b",
+  "homepage": "https://github.com/xavi-/node-copy-paste",
+  "keywords": [
+    "clipboard",
+    "copy",
+    "copy and paste",
+    "paste"
+  ],
+  "main": "./index.js",
+  "maintainers": [
+    {
+      "name": "xavi",
+      "email": "xavi.rmz@gmail.com"
+    }
+  ],
+  "name": "copy-paste",
+  "optionalDependencies": {
+    "sync-exec": "~0.6.x"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xavi-/node-copy-paste.git"
+  },
+  "scripts": {
+    "test": "mocha -w"
+  },
+  "version": "1.3.0"
+}

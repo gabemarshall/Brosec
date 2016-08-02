@@ -3,7 +3,7 @@ var exec = require('child_process').exec;
 var log = require('cli-color');
 var os = require('os');
 var menu = require('./menu');
-var ncp = require("copy-paste");
+var ncp = require("./copy-paste");
 var red = log.red
 
 var warn = function(){
