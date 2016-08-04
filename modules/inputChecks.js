@@ -72,8 +72,14 @@ var ifUserWantsConfig = function(input, currentMenu, previousMenu){
 		setTimeout(function(){
 			//clearMenu()
 			currentMenu()
-			console.log("\n"+log.green(thisConfigValue)+" => "+log.blackBright(db.getConfig(thisConfigValue))+"\n")
-			output.cmd(db.getConfig(thisConfigValue));
+			var configResult = db.getConfig(thisConfigValue);
+			if (!configResult){
+				configResult = "";
+			} else {
+				output.cmd(configResult);
+			}
+			console.log("\n"+log.green(thisConfigValue)+" => "+log.blackBright(configResult))
+
 		},25)
 
 		return true

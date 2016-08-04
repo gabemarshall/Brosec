@@ -13,13 +13,17 @@ var warn = function(){
 }
 
 exports.cmd = function(input, encoder){
-  ncp.copy(input, function () {
-      console.log(log.green('Output copied to clipboard!'));
-      console.log(log.yellow('\n'+input+'\n'))
-      if (encoder){
-        process.exit(1);
-      }
-  })
+  try {
+    ncp.copy(input, function () {
+        console.log(log.yellow('\n'+input+'\n'));
+        if (encoder){
+          process.exit(1);
+        }
+    })
+  } catch(err){
+    console.log(log.red(err));
+    process.exit(1);
+  }
 }
 
 exports.prepare = function(payload, lhost, lport, rhost, rport, user, path, callback, tmenu){

@@ -1,5 +1,12 @@
 # ChangeLog
 
+## 1.1.5 _(August 4, 2016)_
+- Features
+  - Brosec variable values will be copied to the clipboard when retrieved. For example, running ```bros lhost``` from the command line will retrieve the LHOST variable, and copy it to your clipboard.
+- Bug fixes!
+- Cleaned up output
+  - Removed the ```Output copied to clipboard!``` message to reduce clutter.
+
 ## Major Release 1.1.1 _(July 30, 2016)_
 
 - Features
