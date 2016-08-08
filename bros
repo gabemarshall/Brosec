@@ -58,7 +58,6 @@ function parseArgs() {
       return parseInt(t)
     })
     var inputLength = splitInput.length;
-
     secondaryMenu = getFirstArgValue(splitInput[0]);
 
     switch (inputLength) {
@@ -67,6 +66,11 @@ function parseArgs() {
         break;
       case 3:
         secondaryMenu(splitInput[1], splitInput[2])
+      case 4:
+        var a = new String(splitInput[2]);
+        var b = new String(splitInput[3]);
+        var c = a+b
+        secondaryMenu(splitInput[1], parseInt(c))
     }
   } else if (typeof(firstArgument) === "string") {
     firstArgument = firstArgument.toUpperCase();

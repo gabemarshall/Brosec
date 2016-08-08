@@ -3,6 +3,7 @@ var blessed = require("blessed"),
     htmlEncode = require('js-htmlencode').htmlEncode,
     htmlDecode = require('js-htmlencode').htmlDecode,
     utilities = require('./utilities'),
+    crypto = require('crypto'),
     outputValue = '',
     counter = 0,
     keychanged = false;
@@ -86,7 +87,48 @@ var modes = [{
         }
     },
     'title': 'Hex'
-}]
+}, {
+    'DEC': function(data) {
+        return data;
+    },
+    'ENC': function(data) {
+        try {
+            keychanged = false;
+            return crypto.createHash('md5').update(data).digest("hex");
+        } catch (err) {
+            return data;
+        }
+    },
+    'title': 'MD5'
+}, {
+    'DEC': function(data) {
+        return data;
+    },
+    'ENC': function(data) {
+        try {
+            keychanged = false;
+            return crypto.createHash('sha1').update(data).digest("hex");
+        } catch (err) {
+            return data;
+        }
+    },
+    'title': 'SHA1'
+}, {
+    'DEC': function(data) {
+        return data;
+    },
+    'ENC': function(data) {
+        try {
+            keychanged = false;
+            return crypto.createHash('sha256').update(data).digest("hex");
+        } catch (err) {
+            return data;
+        }
+    },
+    'title': 'SHA256'
+}
+]
+
 var borderSettings = {
     type: 'line',
     fg: "#27ea09"

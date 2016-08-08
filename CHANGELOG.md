@@ -1,9 +1,21 @@
 # ChangeLog
 
+## 1.1.6 _(August 8, 2016)_
+- Features
+  - Encoder
+    - Added md5, sha1, sha256 hashing methods
+- Payloads
+  - Added ```Add user to remote desktop group``` to ```bros 31``` category
+  - Added prompts to several bros 31 (Windows System Info) payloads.
+- Bug Fixes!
+  - Fixed an issue that would cause Brosec to prematurely exit when a payload with a menu option value greater than 9 was requested from the command line. For example, the <code>bros 3</code>  > <code>1</code> > <code>11</code>  payload (Windows payload to search the registry for a specific value) would exit prematurely if <code>bros 3111</code> was entered from the command line.
+  - Minor fixes to a few Windows payloads that were using a deprecated Brosec syntax
+
 ## 1.1.5 _(August 4, 2016)_
 - Features
   - Brosec variable values will be copied to the clipboard when retrieved. For example, running ```bros lhost``` from the command line will retrieve the LHOST variable, and copy it to your clipboard.
 - Bug fixes!
+- Improved error handling
 - Cleaned up output
   - Removed the ```Output copied to clipboard!``` message to reduce clutter.
 

