@@ -1,6 +1,6 @@
 {
   "name": "Brosec",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "Brosec - Pentest fu for bros",
   "main": "bros",
   "repository": {
@@ -14,23 +14,25 @@
     "bros": "./bros"
   },
   "dependencies": {
+    "basic-auth": "^1.0.4",
+    "blessed": "*",
+    "body-parser": "*",
     "cli-color": "*",
     "cli-table": "*",
     "dirty": "*",
+    "ecstatic": "*",
     "ejs": "^2.3.1",
     "express": "*",
+    "ftpd": "*",
+    "iconv-lite": "^0.4.8",
+    "js-htmlencode": "*",
+    "method-override": "*",
     "morgan": "*",
     "mstring": "*",
+    "multer": "^1.2.0",
     "prompt": "*",
-    "yargs": "*",
-    "body-parser": "*",
-    "method-override": "*",
-    "ecstatic": "*",
-    "ftpd": "*",
-    "blessed": "*",
-    "js-htmlencode": "*",
-    "iconv-lite": "^0.4.8",
-    "sync-exec": "~0.6.x"
+    "sync-exec": "~0.6.x",
+    "yargs": "*"
   },
   "author": "Gabe Marshall",
   "license": "ISC"

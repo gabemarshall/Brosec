@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 1.2.0 _(August 11, 2016)_
+- Features
+  - bros http
+    - Added a simple file upload at /upload
+    - Added a basic auth support via ```bros http(s) --username=foo --password=bar
+- Bug Fixes
+  - Several minor bug fixes
+  
 ## 1.1.6 _(August 8, 2016)_
 - Features
   - Encoder
