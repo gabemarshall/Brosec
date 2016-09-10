@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.2.1 _(September 10, 2016)_
+- Enhancement
+  - bros http uploader is disabled by default. It is now enabled via the --upload option. Ex: ```bros http --upload```
+
 ## 1.2.0 _(August 11, 2016)_
 - Features
   - bros http

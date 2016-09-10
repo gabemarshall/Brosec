@@ -104,8 +104,9 @@ exports.http = function(argv) {
     }
 
     var options = {};
-
-    initUpload();
+    if (argv.upload){
+        initUpload();    
+    }
 
     var server = app.listen(port, function() {
         serverIsReady("http");
@@ -133,7 +134,9 @@ exports.https = function(argv) {
             key: key
         }
 
-        initUpload();
+        if (argv.upload){
+            initUpload();
+        }
 
         https.createServer(options, app).listen(port, function() {
             serverIsReady("https");
