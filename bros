@@ -13,7 +13,8 @@ var argv = require('yargs').argv,
   settings = require('./modules/settings'),
   child_process = require('child_process'),
   utilities = require('./modules/utilities'),
-  log = require('./modules/log.js');
+  log = require('./modules/log.js'),
+  sshd = require('./modules/sshd.js');
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
@@ -93,7 +94,10 @@ function parseArgs() {
     } else if (firstArgument === "FTPS"){
       console.log("Sorry, FTPs support is planned but currently not available")
       //simpleFtp.ftps(argv);
-    } else if (firstArgument === "UPDATE"){
+    } else if (firstArgument === "SSHD"){
+      sshd.logger(argv);
+    } 
+      else if (firstArgument === "UPDATE"){
       utilities.update();
     } else if (firstArgument === "ENCODE"){
       if (secondArgument){
