@@ -44,7 +44,7 @@ var port;
       new ssh2.Server({
           hostKeys: [fs.readFileSync(path)]
       }, function(client) {
-          console.log('Client connected!');
+          console.log('Client connected from '+client._sock._peername.address);
 
           client.on('authentication', function(ctx) {
               if (ctx.method === 'password') {
