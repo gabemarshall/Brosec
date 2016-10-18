@@ -43,6 +43,10 @@ Learn about these features and more on the [Brosec wiki](https://github.com/gabe
 Installation
 ============
 
+The preferred method of installation (in order to get all of the latest updates) is to clone the source and install the dependencies manualy (git clone && npm install).
+
+However, a stable build can be quickly installed via the following instructions.
+
 ### Mac
 
 #### Quick Installation
@@ -63,10 +67,10 @@ Installation
 
 ### Windows
 
-- Install [nodejs](https://nodejs.org/download) via official installer 
+- Install [nodejs](https://nodejs.org/download) via official installer
 - `npm install -g Brosec` - Install Brosec
 
-#### Or see [Releases](https://github.com/gabemarshall/Brosec/releases) to download a compiled copy of Brosec
+#### If you have trouble installing, you can also try a compiled copy of Brosec. See [Releases](https://github.com/gabemarshall/Brosec/releases).
 
 Swag
 ====
