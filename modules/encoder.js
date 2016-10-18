@@ -142,10 +142,11 @@ if (utilities.isWindows()){
 function setTitle(title, mode) {
     //console.log(mode);
     var e = log.cyanBright("e");
+    var f = log.cyanBright("f");
     var a = log.cyanBright("a");
     var t = log.cyanBright("t");
     var ret = log.cyanBright("return");
-    var instructions = "\n\nChange (E)ncoding type: " + log.normal("Ctrl + " + e + "") + "\n(A)pply Output value to Input: " + log.normal("Ctrl + " + a) + " \n(T)oggle Encoding/Decoding: " + log.normal("Ctrl + " + t) + "\n\nPress " + ret + " to exit.";
+    var instructions = "\n\nChange Encoding (T)ype: " + log.normal("Ctrl + " + t + "") + "\n(A)pply Output value to Input: " + log.normal("Ctrl + " + a) + " \n(F)lip Between Encoding/Decoding: " + log.normal("Ctrl + " + f) + "\n\nPress " + ret + " to exit.";
     var broTitle = "\nCurrent Mode: " + log.normal(mode) + " \nCurrent Encoding: " + log.normal(title) + instructions;
     return broTitle;
 }
@@ -160,11 +161,12 @@ exports.init = function(input) {
 
     var inputBox = blessed.textbox({
         parent: screen,
-        height: '15%',
+        height: '20%',
         label: '[ Input ]',
         inputOnFocus: true,
         border: borderSettings,
         width: '80%',
+        keys : true,
         content: '',
         top: '65%',
         left: 'center',
@@ -190,7 +192,7 @@ exports.init = function(input) {
         scrollable: true,
         autoPadding: true,
         label: '[ Output ]',
-        height: '15%',
+        height: '20%',
         content: '',
         tags: true,
         border: borderSettings
@@ -203,7 +205,7 @@ exports.init = function(input) {
         screen.render();
         if (input) {
             keychanged = true;
-            inputBox.setValue(input);
+            inputBox.setContent(input);
         }
         setInterval(function() {
             if (keychanged) {
@@ -253,15 +255,15 @@ exports.init = function(input) {
     }
 
     function applyMode() {
-        inputBox.setValue(outputValue);
+        inputBox.setContent(outputValue);
         outputValue = encode(inputBox.getContent());
         refreshScreen();
     }
     inputBox.focus();
 
     function eHandler() {
-        this.init = inputBox.onceKey('C-e', function(ch, key) {
-            inputBox.unkey('C-e');
+        this.init = inputBox.onceKey('C-t', function(ch, key) {
+            inputBox.unkey('C-t');
             keypress = true;
             toggleEncoding();
             eHandler();
@@ -269,8 +271,8 @@ exports.init = function(input) {
     }
 
     function tHandler() {
-        this.init = inputBox.onceKey('C-t', function(ch, key) {
-            inputBox.unkey('C-t');
+        this.init = inputBox.onceKey('C-f', function(ch, key) {
+            inputBox.unkey('C-f');
             keypress = true;
             toggleMode();
             tHandler();
@@ -305,7 +307,7 @@ exports.init = function(input) {
 
             var command = inputBox.getValue();
             keychanged = true;
-            outputValue = encode(inputBox.getValue());
+            outputValue = encode(inputBox.getContent());
             box.hide();
             inputBox.hide();
             screen.destroy();

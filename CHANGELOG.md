@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.2.2 _(October 18, 2016)_
+- Enhancement
+  - Some minor changes to the ```bros encode`` module. The input field can be opened in the default text editor (Mac/Linux only) via C-e. In order to implement this, the other keyboard shortcuts had to be changed.
+
 ## 1.2.1 _(September 10, 2016)_
 - Enhancement
   - bros http uploader is disabled by default. It is now enabled via the --upload option. Ex: ```bros http --upload```
@@ -11,7 +15,7 @@
     - Added a basic auth support via ```bros http(s) --username=foo --password=bar
 - Bug Fixes
   - Several minor bug fixes
-  
+
 ## 1.1.6 _(August 8, 2016)_
 - Features
   - Encoder
