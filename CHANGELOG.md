@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 1.2.3 _(October 27, 2016)_
+
+- Bug Fixes
+  A dependency issue was discovered in ftpd when running Brosec with nodejs v7.0. A temporary fix has been put in place.
+
 ## 1.2.2 _(October 18, 2016)_
 - Enhancement
   - Some minor changes to the ```bros encode`` module. The input field can be opened in the default text editor (Mac/Linux only) via C-e. In order to implement this, the other keyboard shortcuts had to be changed.
