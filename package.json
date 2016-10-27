@@ -23,7 +23,7 @@
     "ecstatic": "*",
     "ejs": "^2.3.1",
     "express": "*",
-    "ftpd": "*",
+    "ftpd": "0.2.14",
     "iconv-lite": "^0.4.8",
     "js-htmlencode": "*",
     "method-override": "*",
