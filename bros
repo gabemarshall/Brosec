@@ -60,7 +60,7 @@ function parseArgs() {
     })
     var inputLength = splitInput.length;
     secondaryMenu = getFirstArgValue(splitInput[0]);
-    console.log(inputLength);
+    
     switch (inputLength) {
       case 2:
         secondaryMenu(splitInput[1]);
