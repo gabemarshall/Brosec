@@ -307,7 +307,11 @@ exports.init = function(input) {
 
             var command = inputBox.getValue();
             keychanged = true;
-            outputValue = encode(inputBox.getContent());
+            outputValue = encode(inputBox.getValue());
+            var lengthCheck = outputValue.length;
+            if (lengthCheck === 0){
+                outputValue = encode(inputBox.getContent());
+            }
             box.hide();
             inputBox.hide();
             screen.destroy();
