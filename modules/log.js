@@ -14,4 +14,8 @@ color.normal = function(msg){
   return color.white(msg);
 }
 
+color.error = function(msg){
+	console.log(color.red(msg));
+}
+
 module.exports = color;

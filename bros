@@ -14,11 +14,13 @@ var argv = require('yargs').argv,
   child_process = require('child_process'),
   utilities = require('./modules/utilities'),
   log = require('./modules/log.js'),
+  enigma = require('./modules/enigma'),
   sshd = require('./modules/sshd.js');
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
 var thirdArgument = argv._[2];
+var fourthArgument = argv._[3];
 
 function getFirstArgValue(arg) {
   switch (arg) {
@@ -99,9 +101,11 @@ function parseArgs() {
     } 
       else if (firstArgument === "UPDATE"){
       utilities.update();
-    } else if (firstArgument === "ENCODE"){
-      if (secondArgument){
+    } else if (firstArgument === "ENCODE" || firstArgument === "DECODE" || firstArgument === "ENC" || firstArgument === "DEC"){
+      if (secondArgument && !thirdArgument){
         utilities.encoder(oldSecondary);
+      } else if (thirdArgument){
+        enigma(argv._);
       } else {
         utilities.encoder();
       }

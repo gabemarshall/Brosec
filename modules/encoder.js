@@ -3,7 +3,6 @@ var blessed = require("blessed"),
     htmlEncode = require('js-htmlencode').htmlEncode,
     htmlDecode = require('js-htmlencode').htmlDecode,
     utilities = require('./utilities'),
-    crypto = require('crypto'),
     outputValue = '',
     counter = 0,
     keychanged = false;
@@ -22,13 +21,9 @@ var modes = [{
     },
     'ENC': function(data) {
         keychanged = false;
-        var a = encodeURIComponent(data);
-        a = a.replace(/(')/g, "%27");
-        a = a.replace(/(\()/g, "%28");
-        a = a.replace(/(\))/g, "%29");
-        return a;
+        return utilities.urlencode(data);
     },
-    'title': 'URL'
+    
 }, {
     'DEC': function(data) {
         try {
@@ -73,7 +68,7 @@ var modes = [{
     'DEC': function(data) {
         try {
             keychanged = false;
-            return new Buffer(data, 'hex').toString('ascii')
+            return new Buffer(data, 'hex').toString('ascii');
         } catch (err) {
             return data;
         }
@@ -94,7 +89,7 @@ var modes = [{
     'ENC': function(data) {
         try {
             keychanged = false;
-            return crypto.createHash('md5').update(data).digest("hex");
+            return utilities.md5(data);
         } catch (err) {
             return data;
         }
@@ -107,7 +102,7 @@ var modes = [{
     'ENC': function(data) {
         try {
             keychanged = false;
-            return crypto.createHash('sha1').update(data).digest("hex");
+            return utilities.sha1(data);
         } catch (err) {
             return data;
         }
@@ -120,7 +115,7 @@ var modes = [{
     'ENC': function(data) {
         try {
             keychanged = false;
-            return crypto.createHash('sha256').update(data).digest("hex");
+            return utilities.sha256(data);
         } catch (err) {
             return data;
         }
