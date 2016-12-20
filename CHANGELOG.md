@@ -1,5 +1,15 @@
 # ChangeLog
 
+## 1.3.0 _(Dec , 2016)_
+
+- Enhancement
+  - Added a new section (```bros 6```) for Brosec auxiliary modules (bros http, ftp, encode)
+  - Added a command line interface for bros encode
+  - Added MSF Venom one liners to a sub-section under ```bros 5```
+
+- Bug Fixes
+  - Fixed an issue in bros encoder (long strings were getting chopped) 
+
 ## 1.2.3 _(October 27, 2016)_
 
 - Bug Fixes
@@ -10,6 +20,7 @@
   - Some minor changes to the ```bros encode`` module. The input field can be opened in the default text editor (Mac/Linux only) via C-e. In order to implement this, the other keyboard shortcuts had to be changed.
 
 ## 1.2.1 _(September 10, 2016)_
+
 - Enhancement
   - bros http uploader is disabled by default. It is now enabled via the --upload option. Ex: ```bros http --upload```
 
