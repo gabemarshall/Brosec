@@ -21,7 +21,7 @@ exports.urlencode = function(input){
 }
 
 exports.base64Decode = function(input){
-  return new Buffer(data, 'base64').toString();
+  return new Buffer(input, 'base64').toString();
 }
 
 exports.base64Encode = function(input){
@@ -46,6 +46,7 @@ exports.ascii2hex = function(input){
 exports.hex2ascii = function(input){
   return new Buffer(input, 'hex').toString('ascii')
 }
+
 
 exports.isWindows = function(){
   var currentOS = os.type();

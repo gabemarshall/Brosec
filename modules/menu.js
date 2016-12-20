@@ -38,7 +38,7 @@ function mainMenu(callback) {
     console.log("\nAt any time enter "+log.status("help")+" for usage information.")
     console.log("\n1. Information Gathering\t4. Web")
     console.log("2. Linux\t\t\t5. Miscellaneous")
-    console.log("3. Windows\t\t\t")
+    console.log("3. Windows\t\t\t6. Brosec Aux Modules")
     console.log("")
 
     if (callback) {
@@ -54,7 +54,7 @@ function mainMenu(callback) {
     }, 25)
 
     setTimeout(function() {
-        var title = log.okay('(1-5)');
+        var title = log.okay('(1-6)');
         prompt.start();
         prompt.colors = false;
         prompt.message = "Choose one of the above options";
@@ -85,6 +85,9 @@ function mainMenu(callback) {
                         break;
                     case "5":
                         secondaryMenu.misc()
+                        break;
+                    case "6":
+                        secondaryMenu.aux()
                         break;
                     case "HOME":
                     case "HELP":
@@ -383,7 +386,6 @@ exports.parseConfigPrompt = parseConfigPrompt
 function getConfig() {
     LHOST = db.getConfig("LHOST")
     LPORT = db.getConfig("LPORT")
-
     RHOST = db.getConfig("RHOST")
     RPORT = db.getConfig("RPORT")
 

@@ -177,12 +177,14 @@ var menus = {}
 var infoGMenu = new Menu("--[ Information Gathering ]--", ["DNS", "Port Scanning", "SMB", "SNMP"], pay.infog);
 var webMenu = new Menu("--[ Web ]--",["XML", "XSS", "SQLi"], pay.web)
 var miscMenu = new Menu('--[ Miscellaneous ]--', ["Reverse Shells", "Exfiltration", "MSF Venom"], pay.misc)
+var auxMenu = new Menu('--[ Brosec Auxiliary Modules ]--', ["Brosec Simple HTTP(s) Server", "Brosec Simple FTP Server", "Brosec Encoder Module"], pay.aux)
 var linuxMenu = new Menu('--[ Linux ]--', ["System Info", "File System", "Networking", "Stealth", "Privesc"], pay.linux)
 var windowsMenu = new Menu('--[ Windows ]--', ["System Info", "File System", "Networking", "WMIC", "Powershell", "Windows Registry"], pay.windows)
 
 menus.infoGathering = infoGMenu.grabSecondaryMenu
 menus.webAttacks = webMenu.grabSecondaryMenu
 menus.misc = miscMenu.grabSecondaryMenu
+menus.aux = auxMenu.grabSecondaryMenu
 menus.linux = linuxMenu.grabSecondaryMenu
 menus.windows = windowsMenu.grabSecondaryMenu
 

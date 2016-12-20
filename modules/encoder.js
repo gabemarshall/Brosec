@@ -20,9 +20,14 @@ var modes = [{
         }
     },
     'ENC': function(data) {
-        keychanged = false;
-        return utilities.urlencode(data);
+        try {
+            keychanged = false;
+            return utilities.urlencode(data);
+        } catch (err){
+            return data;
+        }
     },
+    'title': 'URL'
     
 }, {
     'DEC': function(data) {
@@ -200,7 +205,8 @@ exports.init = function(input) {
         screen.render();
         if (input) {
             keychanged = true;
-            inputBox.setContent(input);
+            input = input.toString();
+            inputBox.setValue(input);
         }
         setInterval(function() {
             if (keychanged) {

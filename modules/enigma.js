@@ -13,9 +13,15 @@ module.exports = function(args) {
     }
     var payload = args[1];
     var mod1 = args[2];
+
     var mod2 = args[3];
     var method;
 
+    if (parseInt(mod1[mod1.length-1]) && mod1 != "base64" && mod1 != "md5" && mod1 != "sha1" && mod1 != "sha256"){
+    	mod2 = mod1[mod1.length-1];
+    	mod1 = mod1[0];
+    }
+    
     if (!mod2) {
         mod2 = 1;
     }

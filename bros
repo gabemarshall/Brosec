@@ -37,6 +37,8 @@ function getFirstArgValue(arg) {
       return secondaryMenu.webAttacks;
     case 5:
       return secondaryMenu.misc;
+    case 6:
+      return secondaryMenu.aux;
   }
 }
 

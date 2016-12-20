@@ -7,12 +7,8 @@ var os = require('os'),
   	secondaryMenu = require("./secondaryMenu"),
   	check = require('./inputChecks');
 
-
-
-exports.setlhost = function(bool) {
-
-	var ipArray = [];
-
+exports.getAllInterfaces = function(){
+    var ipArray = [];
     Object.keys(interfaces).forEach(function(key) {
         interfaces[key].forEach(function(details) {
             if (details.family == 'IPv4') {
@@ -20,12 +16,17 @@ exports.setlhost = function(bool) {
             }
         });
     });
+    return ipArray;
+}
+
+exports.setlhost = function(bool) {
+
+	var ipArray = exports.getAllInterfaces();
+
     console.log(log.yellow("\nThe following interfaces are currently available:\n"));
     for (i=0;i<ipArray.length;i++){
     	console.log(i+1+". "+ipArray[i]);
     }
-
-    console.log();
 
     prompt.message = "\nWhich would you like to set as LHOST? :"
 
