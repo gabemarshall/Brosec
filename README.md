@@ -30,7 +30,9 @@ Need to exfiltrate some data via ftp? Bros comes with a handy `bros ftp` when en
 
 ###### [Bros Encode](https://github.com/gabemarshall/Brosec/wiki/bros-encode)
 
-A realtime encoder/decoder utility designed with web pentesters in mind that often find the need to encode and decode various payloads.
+A encoder/decoder utility designed with penetration testers in mind that often find the need to encode and decode various payloads.
+
+![](https://i.imgur.com/EgTMG88.png)
 
 ![](http://i.imgur.com/wxFpA7o.png)
 
