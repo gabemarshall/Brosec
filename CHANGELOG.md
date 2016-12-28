@@ -1,5 +1,10 @@
 # ChangeLog
 
+## 1.3.0.1 _(Dec 28, 2016)_
+
+- Bug Fixes
+  - Fixed a typo that caused bros encode asciihex to not work
+
 ## 1.3.0 _(Dec , 2016)_
 
 - Enhancement
