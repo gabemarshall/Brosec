@@ -41,7 +41,7 @@ exports.sha256 = function(input){
 }
 
 exports.ascii2hex = function(input){
-  return new Buffer(data).toString('hex');
+  return new Buffer(input).toString('hex');
 }
 exports.hex2ascii = function(input){
   return new Buffer(input, 'hex').toString('ascii')

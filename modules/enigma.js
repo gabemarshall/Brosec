@@ -48,7 +48,12 @@ module.exports = function(args) {
         	}
             break;
         case "hex":
-            method = utilities.asciihex;
+            if (m === "encode"){
+                method = utilities.ascii2hex;
+            } else {
+                method = utilities.hex2ascii;
+            }
+            console.log(1);
             break;
         case "m": case "md5":
             method = utilities.md5;
