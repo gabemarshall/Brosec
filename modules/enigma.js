@@ -53,7 +53,6 @@ module.exports = function(args) {
             } else {
                 method = utilities.hex2ascii;
             }
-            console.log(1);
             break;
         case "m": case "md5":
             method = utilities.md5;
