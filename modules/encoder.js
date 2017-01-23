@@ -154,7 +154,8 @@ var modeTitle = setTitle(modes[counter]['title'], methodTitle);
 var encode = modes[0][method];
 
 exports.init = function(input) {
-
+    var inputLabel = "[ Input - 0 characters ]";
+    var boxLabel = "[ Output - 0 characters ]";
     var screen = blessed.screen({
         smartCSR: true
     });
@@ -162,7 +163,7 @@ exports.init = function(input) {
     var inputBox = blessed.textbox({
         parent: screen,
         height: '20%',
-        label: '[ Input ]',
+        label: inputLabel,
         inputOnFocus: true,
         border: borderSettings,
         width: '80%',
@@ -191,7 +192,7 @@ exports.init = function(input) {
         left: 'center',
         scrollable: true,
         autoPadding: true,
-        label: '[ Output ]',
+        label: boxLabel,
         height: '20%',
         content: '',
         tags: true,
@@ -199,6 +200,11 @@ exports.init = function(input) {
     });
 
     screen.append(box);
+
+    function updateCounters(input, output){
+        inputBox.setLabel("[ Input - "+input.length.toString()+" characters]");
+        box.setLabel("[ Output - "+output.length.toString()+" characters]");
+    }
 
     setTimeout(function() {
         inputBox.focus();
@@ -210,10 +216,13 @@ exports.init = function(input) {
         }
         setInterval(function() {
             if (keychanged) {
-                outputValue = encode(inputBox.getContent());
+                var currentInput = inputBox.getContent();
+                outputValue = encode(currentInput);
                 box.setContent(outputValue);
+                updateCounters(currentInput, outputValue);
             }
             list.setContent(modeTitle);
+            
             screen.render();
         }, 5)
 
