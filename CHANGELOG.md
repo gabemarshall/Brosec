@@ -1,5 +1,13 @@
 # ChangeLog
 
+## 1.3.0.2 _(Jan 23, 2016)_
+
+- Enhancement
+  - Added a length counter to interactive bros encode module
+
+- Bug Fixes
+  - The XXE using parameterized entities wasn't working correctly. Should be fixed now.
+
 ## 1.3.0.1 _(Dec 28, 2016)_
 
 - Bug Fixes
