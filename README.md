@@ -1,5 +1,6 @@
 ![](https://i.imgur.com/1QyMN3G.png "logo by Vilhaum - https://github.com/vilhaum")
 
+[![Black Hat Arsenal](https://www.toolswatch.org/badges/arsenal/2016.svg)](https://www.toolswatch.org/2016/06/the-black-hat-arsenal-usa-2016-remarkable-line-up/)
 
 Overview (tl;dr)
 =========
