@@ -21,10 +21,16 @@ exports.urlencode = function(input){
 }
 
 exports.base64Decode = function(input){
+  if (typeof(input) != "string"){
+    input = input.toString();
+  }
   return new Buffer(input, 'base64').toString();
 }
 
 exports.base64Encode = function(input){
+  if (typeof(input) != "string"){
+    input = input.toString();
+  }
   return new Buffer(input).toString('base64');
 }
 
