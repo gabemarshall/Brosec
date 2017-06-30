@@ -1,6 +1,13 @@
 # ChangeLog
 
-## 1.3.0.2 _(Jan 23, 2016)_
+## 1.3.0.3 _(June 30, 2017)_
+
+- Enhancement
+  - Added new payloads to wmic (```bros 34```)
+  - Added netsh proxy command to ```bros 33```
+  - Added multiple COM Scriplet payloads (credit to @subTee and @enigma0x3) to ```bros 37```
+
+## 1.3.0.2 _(Jan 23, 2017)_
 
 - Enhancement
   - Added a length counter to interactive bros encode module
