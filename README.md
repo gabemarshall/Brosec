@@ -24,7 +24,7 @@ Need a quick web server? Forget python SimpleHTTPServer, bros has your back with
 
 ![](http://i.imgur.com/47BHim4.gif)
 
-<br>
+
 ###### [Bros FTP](https://github.com/gabemarshall/Brosec/wiki/bros-ftp)
 Need to exfiltrate some data via ftp? Bros comes with a handy `bros ftp` when entered via the command line. The ftp server accepts anonymous downloads/uploads from the CWD (so be careful when running).
 
