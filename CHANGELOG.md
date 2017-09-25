@@ -1,5 +1,12 @@
 # ChangeLog
 
+## 1.4.1 _(Sept 25, 2017)_
+
+- Enhancement
+  - Added the ability to pipe input to bros encoder when used in headless mode (bros encoder terminal mode currently isnt supported)
+    - Ex: ``` cat payload.txt | bros encode url ```
+    - Ex: ``` bros enc url < some_file.txt ```
+
 ## 1.3.0.3 _(June 30, 2017)_
 
 - Enhancement
