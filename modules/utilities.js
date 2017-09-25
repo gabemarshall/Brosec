@@ -62,3 +62,9 @@ exports.isWindows = function(){
   }
   return bool;
 }
+
+exports.delay = function(time, cb){
+  setTimeout(function(){
+    cb()
+  }, time)
+}

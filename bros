@@ -15,12 +15,26 @@ var argv = require('yargs').argv,
   utilities = require('./modules/utilities'),
   log = require('./modules/log.js'),
   enigma = require('./modules/enigma'),
+  initialEntry = true,
+  initialData = "",
   sshd = require('./modules/sshd.js');
 
 var firstArgument = argv._[0];
 var secondArgument = argv._[1];
 var thirdArgument = argv._[2];
 var fourthArgument = argv._[3];
+
+function getIt(){
+  if (initialEntry){
+    
+    var chunk = process.stdin.read()
+    // _readableState:
+    initialEntry = false;
+  }
+  if (chunk){
+    initialData = chunk;
+  }
+}
 
 function getFirstArgValue(arg) {
   switch (arg) {
@@ -104,13 +118,27 @@ function parseArgs() {
       else if (firstArgument === "UPDATE"){
       utilities.update();
     } else if (firstArgument === "ENCODE" || firstArgument === "DECODE" || firstArgument === "ENC" || firstArgument === "DEC"){
-      if (secondArgument && !thirdArgument){
-        utilities.encoder(oldSecondary);
-      } else if (thirdArgument){
-        enigma(argv._);
-      } else {
-        utilities.encoder();
-      }
+      process.stdin.setEncoding('utf8');
+      process.stdin.once('readable', function () {
+        getIt();
+      });
+      utilities.delay(10, function(){
+        if (initialData){
+              if(argv._.length === 2){
+                enigma(argv._,initialData);  
+              }  
+          } else {
+                  if (secondArgument && !thirdArgument){
+
+                    utilities.encoder(oldSecondary);    
+                  } else if (thirdArgument){
+                    enigma(argv._);
+                  } else {
+                    utilities.encoder();
+                  }
+          }    
+      })
+
 
     } else if (firstArgument+" "+secondArgument === "SET LHOST" && !thirdArgument){
       interfaces.setlhost();
@@ -149,6 +177,7 @@ function parseArgs() {
 }
 
 if (!firstArgument) {
+
   menu.mainMenu();
 } else {
   parseArgs();

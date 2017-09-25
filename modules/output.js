@@ -15,7 +15,7 @@ var warn = function(){
 exports.cmd = function(input, encoder){
   try {
     ncp.copy(input, function () {
-        console.log(log.yellow('\n'+input+'\n'));
+        console.log(log.yellow(input));
         if (encoder){
           process.exit(1);
         }
