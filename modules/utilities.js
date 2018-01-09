@@ -1,6 +1,7 @@
 
 var log = require('./log.js'),
     os = require('os'),
+    BufferReader = require('buffer-reader'),
     crypto = require('crypto');
 
 exports.update = function(){
@@ -36,6 +37,22 @@ exports.base64Encode = function(input){
 
 exports.md5 = function(input){
   return crypto.createHash('md5').update(input).digest("hex");
+}
+
+exports.escapedHex = function(input){
+    input = Buffer.from(input, 'utf8' )
+    try {
+        var reader = new BufferReader(input);
+        var output = '';
+
+        for (i=0;i<input.length;i++){
+            var buf = reader.nextBuffer(1);
+            output += "\\x"+buf.toString('hex');
+        }
+        return output;
+    } catch (err) {
+        return input;
+    }
 }
 
 exports.sha1 = function(input){

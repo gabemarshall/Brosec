@@ -81,10 +81,14 @@ function parseArgs() {
     
     switch (inputLength) {
       case 2:
-        secondaryMenu(splitInput[1]);
+        setTimeout(function(){
+          secondaryMenu(splitInput[1]);
+        },15)
         break;
       case 3:
-        secondaryMenu(splitInput[1], splitInput[2])
+        setTimeout(function(){
+          secondaryMenu(splitInput[1], splitInput[2])
+        },15)
         break;
       case 4:
         var a = new String(splitInput[2]);

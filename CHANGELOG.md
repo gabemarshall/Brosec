@@ -1,5 +1,14 @@
 # ChangeLog
 
+## 1.4.2 _(Jan 9, 2017)_
+
+- Enhancement
+  - Added the ability to pipe into to the cli bros encoder and output as an escaped string
+    - Options: ```bros enc esc``` ```bros enc e``` ```bros enc escaped```
+    - Ex: ```printf Brosec | bros enc escaped``` = ```\x42\x72\x6f\x73\x65\x63```  
+- Other
+  - Misc other fixes and optimizations.. no longer using colorized output to allow for better cli usage
+
 ## 1.4.1 _(Sept 25, 2017)_
 
 - Enhancement

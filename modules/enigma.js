@@ -64,6 +64,9 @@ module.exports = function(args, payload) {
         case "m": case "md5":
             method = utilities.md5;
             break;
+        case "e": case "esc": case "escaped":
+            method = utilities.escapedHex;
+            break;
         case "sha1":
             method = utilities.sha1;
             break;

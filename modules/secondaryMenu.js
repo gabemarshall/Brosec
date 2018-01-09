@@ -150,7 +150,7 @@ var Menu = function(title, menuOptions, payloadType) {
             else {
 
                 config = menu.getConfig()
-
+                
                 payloads = payloadType.getAll(value)
 
                 try {

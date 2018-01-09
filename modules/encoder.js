@@ -1,5 +1,6 @@
 var blessed = require("blessed"),
     output = require('./output'),
+    BufferReader = require('buffer-reader'),
     htmlEncode = require('js-htmlencode').htmlEncode,
     htmlDecode = require('js-htmlencode').htmlDecode,
     utilities = require('./utilities'),
@@ -87,7 +88,17 @@ var modes = [{
         }
     },
     'title': 'Hex'
-}, {
+}, 
+{
+    'DEC': function(data) {
+        try {
+            keychanged = false;
+            return new Buffer(data, 'hex').toString('ascii');
+        } catch (err) {
+            return data;
+        }
+    },
+{
     'DEC': function(data) {
         return data;
     },
