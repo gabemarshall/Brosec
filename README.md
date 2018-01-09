@@ -54,9 +54,9 @@ However, a stable build can be quickly installed via the following instructions.
 
 #### Quick Installation
 
-- `brew install node` - Install Nodejs (or download installer from https://nodejs.org/en/download/)
-- `npm install -g Brosec` - Install Brosec (may need sudo to symlink to /usr/local/bin)
-
+- Install [Homebrew](https://brew.sh/)
+- `brew tap t94j0/security` - Use t94j0's tap which contains the brosec formula
+- `brew install brosec` - Installs the brosec package
 
 #### Kali Linux
 
