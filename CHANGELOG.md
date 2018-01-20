@@ -1,6 +1,13 @@
 # ChangeLog
 
-## 1.4.2 _(Jan 9, 2017)_
+## 1.4.3 _(Jan 20, 2018)_
+
+- Enhancement
+  - Added a verbose mode to bros http ```bros http -v``` so that you can view all headers and the body of an incoming request.
+- Other
+  - Fix for a bug that was introduced in 1.4.2 that broke the encoder module... ugh sorry ;/
+
+## 1.4.2 _(Jan 9, 2018)_
 
 - Enhancement
   - Added the ability to pipe into to the cli bros encoder and output as an escaped string
