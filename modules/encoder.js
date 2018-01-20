@@ -98,7 +98,8 @@ var modes = [{
             return data;
         }
     },
-{
+},
+    {
     'DEC': function(data) {
         return data;
     },

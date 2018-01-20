@@ -53,8 +53,32 @@ function serverInit(argv) {
         };
         app.use(auth);
     }
+    if (argv.v){
+    app.use(morgan(function(tokens, req, res){
+        console.log("")
+        console.log(req.method+" "+req.originalUrl+"\t"+res.statusCode)
+        console.log("")
+        for (key in req.headers) {
+            var fixedHeader = key.replace(/((?:^|-)[a-z])/g, function(val) { return val.toUpperCase(); });
+            console.log(fixedHeader+": "+req.headers[key])
+        }
+        console.log("")
+        if (req.rawBody){
+            console.log("foo")
+        }
+        if (req.body){
+            
+            for (key in req.body){
+                console.log(key+"="+req.body[key])
+            }
+            
+        }
+    }))
+    } else {
+       app.use(morgan('combined')); 
+    }
 
-    app.use(morgan('combined'));
+
     app.use(methodOverride());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
