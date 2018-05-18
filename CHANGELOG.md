@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.4.4 _(May 18, 2018)_
+- Bug Fixes
+    - Fixed a couple of bugs in the encoder module
+
 ## 1.4.3 _(Jan 20, 2018)_
 
 - Enhancement
