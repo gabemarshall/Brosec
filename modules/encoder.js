@@ -91,16 +91,6 @@ var modes = [{
 }, 
 {
     'DEC': function(data) {
-        try {
-            keychanged = false;
-            return new Buffer(data, 'hex').toString('ascii');
-        } catch (err) {
-            return data;
-        }
-    },
-},
-    {
-    'DEC': function(data) {
         return data;
     },
     'ENC': function(data) {

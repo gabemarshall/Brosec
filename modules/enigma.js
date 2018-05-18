@@ -24,7 +24,7 @@ module.exports = function(args, payload) {
     var mod2 = args[3+modifier];
     var method;
 
-    if (parseInt(mod1[mod1.length-1]) && mod1 != "base64" && mod1 != "md5" && mod1 != "sha1" && mod1 != "sha256"){
+    if (parseInt(mod1[mod1.length-1]) && mod1 != "base64" && mod1 != "b64" && mod1 != "md5" && mod1 != "sha1" && mod1 != "sha256"){
     	mod2 = mod1[mod1.length-1];
     	mod1 = mod1[0];
     }
