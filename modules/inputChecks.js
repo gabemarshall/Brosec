@@ -2,6 +2,7 @@ var menu = require('./menu');
 var db = require('../db/db');
 var log = require('cli-color'),
 	utilities = require('./utilities'),
+	inquire = require('./inquire'),
 	output = require('./output');
 
 function clearMenu() {
@@ -33,6 +34,16 @@ var ifUserWantsBack = function(input, currentMenu, previousMenu){
 var ifUserWantsHome = function(input, currentMenu, previousMenu){
 	if (input.match(/(home|main)/ig)){
 		menu.mainMenu(menu.clearMenu())
+		inquire.search()
+	}
+}
+
+var ifUserWantsSearch = function(input, currentMenu, previousMenu){
+	if (input.match(/(search|\?)/ig)){
+		inquire.search()
+		return true
+	} else {
+		return false
 	}
 }
 
@@ -113,6 +124,7 @@ exports.ifUserWantsBack = ifUserWantsBack
 exports.ifUserAccessConfig = ifUserAccessConfig
 exports.ifUserWantsToExit = ifUserWantsToExit
 exports.ifUserWantsHome = ifUserWantsHome
+exports.ifUserWantsSearch = ifUserWantsSearch
 exports.ifUserSaysConfigItem = ifUserSaysConfigItem
 exports.ifUserWantsUpdate = ifUserWantsUpdate
 
@@ -120,7 +132,7 @@ exports.allInputChecks = function(input, currentMenu, previousMenu){
 
 	var inputMatchedCheck = false
 
-	var inputChecks = [ifUserNeedsHelp,ifUserWantsBack,ifUserAccessConfig,ifUserWantsConfig,ifUserWantsToExit,ifUserWantsHome,ifUserSaysConfigItem, ifUserWantsUpdate]
+	var inputChecks = [ifUserNeedsHelp,ifUserWantsBack,ifUserAccessConfig,ifUserWantsConfig,ifUserWantsToExit,ifUserWantsHome,ifUserSaysConfigItem, ifUserWantsUpdate, ifUserWantsSearch]
 	for (i=0;i<inputChecks.length;i++){
 		if(inputChecks[i](input, currentMenu, previousMenu)){
 			inputMatchedCheck = true

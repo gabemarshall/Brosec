@@ -78,7 +78,13 @@ function serverInit(argv) {
        app.use(morgan('combined')); 
     }
 
-
+    function preventCaching(req, res, next) {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      next();
+    }
+    app.use(preventCaching);
     app.use(methodOverride());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({

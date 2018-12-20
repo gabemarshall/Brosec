@@ -142,7 +142,6 @@ if (utilities.isWindows()){
 }
 
 function setTitle(title, mode) {
-    //console.log(mode);
     var e = log.cyanBright("e");
     var f = log.cyanBright("f");
     var a = log.cyanBright("a");

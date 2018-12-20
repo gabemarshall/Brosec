@@ -37,7 +37,6 @@ var initializePayloads = function(payloadArray, value){
 			tempArray.push(payloadArray[i]);
 		}
 	}
-
 	return tempArray;
 }
 
@@ -47,3 +46,53 @@ exports.aux = aux;
 exports.web = web;
 exports.linux = linux;
 exports.windows = windows;
+
+exports.arrayPayloads = function(){
+	rawArray = [];
+	for (i=0;i<infog.length;i++){
+		rawArray.push(infog[i].payload);
+	}
+
+	for (i=0;i<misc.length;i++){
+		rawArray.push(misc[i].payload);	
+	}
+
+	for (i=0;i<aux.length;i++){
+		rawArray.push(aux[i].payload);	
+	}
+		for (i=0;i<web.length;i++){
+		rawArray.push(web[i].payload);	
+	}
+		for (i=0;i<linux.length;i++){
+		rawArray.push(linux[i].payload);	
+	}
+		for (i=0;i<windows.length;i++){
+		rawArray.push(windows[i].payload);	
+	}	
+
+	return rawArray
+}
+exports.rawPayloads = function(){
+	rawArray = [];
+	for (i=0;i<infog.length;i++){
+		rawArray.push(infog[i]);
+	}
+	for (i=0;i<misc.length;i++){
+		rawArray.push(misc[i]);	
+	}
+
+	for (i=0;i<aux.length;i++){
+		rawArray.push(aux[i]);	
+	}
+		for (i=0;i<web.length;i++){
+		rawArray.push(web[i]);	
+	}
+		for (i=0;i<linux.length;i++){
+		rawArray.push(linux[i]);	
+	}
+		for (i=0;i<windows.length;i++){
+		rawArray.push(windows[i]);	
+	}		
+	return rawArray
+}
+  

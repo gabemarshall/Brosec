@@ -1,5 +1,11 @@
 # ChangeLog
 
+## 1.5.0 _(Nov, 14, 2018)_
+
+- Enhancement
+  - Added fuzzy search capability with ```bros search``` (or enter search or ? within the interactive menu)
+  - Slight modifications to a few payloads
+
 ## 1.4.4 _(May 18, 2018)_
 - Bug Fixes
     - Fixed a couple of bugs in the encoder module
